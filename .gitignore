@@ -1,0 +1,56 @@
+# Object files
+*.o
+*.o.*
+*.ko
+*.obj
+*.elf
+
+
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+
+
+# Binary files
+debug/*
+release/*
+
+
+
+# Temp files
+*.*~
+
+
+# ui forms files
+ui_*.h
+
+
+
+# Configs for QT_Creator (I use QT_Creator as IDE)
+*.config
+*.creator
+*.creator.user
+*.pro.user
+*.files
+*.includes
+
+
+# It's QT project ignoring Makefile
+Makefile*
+
+
+
+# Files that we don't want to ignore
+!.gitignore
