@@ -38,14 +38,16 @@ SOURCES += main.cpp \
            mainwindow.cpp \
            bitwidget.cpp \
            bitset64.cpp \
-           ucrc_t.cpp
+           ucrc_t.cpp \
+           qucrc_t.cpp
 
 
 
 HEADERS += mainwindow.h \
            bitwidget.h \
            bitset64.h \
-           ucrc_t.h
+           ucrc_t.h \
+           qucrc_t.h
 
 
 
