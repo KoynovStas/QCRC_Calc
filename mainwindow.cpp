@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("CRC Calculator ver " + QString::number(MAJOR_VERSION) + '.' + QString::number(MINOR_VERSION));
+
+
+    ui->CRC_Res_Bin_groupBox->setLayout(bit_set.layout());
 }
 
 

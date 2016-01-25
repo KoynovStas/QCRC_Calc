@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "bitset64.h"
 
 
 
@@ -26,6 +27,7 @@ class MainWindow : public QMainWindow
 
         Ui::MainWindow *ui;
 
+        BitSet64 bit_set;
 };
 
 
