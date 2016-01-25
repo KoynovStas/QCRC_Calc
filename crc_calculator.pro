@@ -37,13 +37,15 @@ CONFIG(release, debug|release) {
 SOURCES += main.cpp \
            mainwindow.cpp \
            bitwidget.cpp \
-           bitset64.cpp
+           bitset64.cpp \
+           ucrc_t.cpp
 
 
 
 HEADERS += mainwindow.h \
            bitwidget.h \
-           bitset64.h
+           bitset64.h \
+           ucrc_t.h
 
 
 
