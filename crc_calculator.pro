@@ -35,11 +35,13 @@ CONFIG(release, debug|release) {
 
 # Input
 SOURCES += main.cpp \
-           mainwindow.cpp
+           mainwindow.cpp \
+           bitwidget.cpp
 
 
 
-HEADERS += mainwindow.h
+HEADERS += mainwindow.h \
+           bitwidget.h
 
 
 
