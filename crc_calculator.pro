@@ -9,6 +9,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
 
+DEFINES += MAJOR_VERSION=0
+DEFINES += MINOR_VERSION=0
+
+
+
 CONFIG += qt
 CONFIG += debug_and_release  build_all
 
