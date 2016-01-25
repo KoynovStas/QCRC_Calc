@@ -36,12 +36,14 @@ CONFIG(release, debug|release) {
 # Input
 SOURCES += main.cpp \
            mainwindow.cpp \
-           bitwidget.cpp
+           bitwidget.cpp \
+           bitset64.cpp
 
 
 
 HEADERS += mainwindow.h \
-           bitwidget.h
+           bitwidget.h \
+           bitset64.h
 
 
 
