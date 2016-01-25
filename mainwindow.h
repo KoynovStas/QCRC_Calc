@@ -23,6 +23,11 @@ class MainWindow : public QMainWindow
         ~MainWindow();
 
 
+    public slots:
+
+        void Hex_tab_WrapWord_checkBox_stateChanged(int state);
+        void Text_tab_WrapWord_checkBox_stateChanged(int state);
+
     private:
 
         Ui::MainWindow *ui;
