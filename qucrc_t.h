@@ -38,9 +38,34 @@
 #define QUCRC_T_H
 
 #include <QObject>
+#include <QString>
+#include <vector>
 
 #include "ucrc_t.h"
 
+
+
+
+
+struct CRC_Param_Info
+{
+    QString  name;
+    uint8_t  bits;
+    uint64_t poly;
+    uint64_t init;
+    bool     ref_in;
+    bool     ref_out;
+    uint64_t xor_out;
+
+
+    CRC_Param_Info( QString  _name,
+                    uint8_t  _bits,
+                    uint64_t _poly,
+                    uint64_t _init,
+                    bool     _ref_in,
+                    bool     _ref_out,
+                    uint64_t _xor_out);
+};
 
 
 
@@ -54,9 +79,13 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         explicit QuCRC_t(QObject *parent = 0);
 
 
+        static const std::vector<CRC_Param_Info> CRC_List;
+
+
     signals:
 
         void param_changed();
+        void index_changed(uint32_t index);
 
 
     public slots:
@@ -96,10 +125,21 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         uint64_t get_final_crc(uint64_t raw_crc)                        const { return ucrc.get_final_crc(raw_crc);    }
 
 
+
+        uint32_t get_index() const { return index; }
+        int      set_index(uint32_t new_index);
+
+
     private:
 
-        uCRC_t  ucrc;
+        uCRC_t   ucrc;
 
+        uint32_t index;
+
+        uint32_t find_index();
+        void     update_index();
+
+        static const std::vector<CRC_Param_Info> get_crc_list();
 };
 
 
