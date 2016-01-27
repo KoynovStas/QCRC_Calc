@@ -44,6 +44,8 @@ class MainWindow : public QMainWindow
 
         QuCRC_t  qucrc;
 
+        bool select_index_done;
+
 
         void Prepare_CRC_Param_comboBox();
 };

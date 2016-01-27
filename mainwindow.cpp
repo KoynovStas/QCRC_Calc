@@ -7,7 +7,9 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+
+    select_index_done(true)
 {
     ui->setupUi(this);
 
@@ -94,8 +96,12 @@ void MainWindow::selected_index_CRC_in_comboBox(int new_index)
         return;  // for Custom no action
 
 
+    select_index_done = false;
+
     qucrc.set_index(new_index);
     CRC_Param_to_GUI();
+
+    select_index_done = true;
 }
 
 
@@ -125,6 +131,10 @@ void MainWindow::CRC_Param_to_GUI()
 
 void MainWindow::CRC_Param_from_GUI()
 {
+    if( !select_index_done )
+        return;
+
+
     qucrc.set_bits( ui->CRC_Bits_spinBox->value() );
 
 
