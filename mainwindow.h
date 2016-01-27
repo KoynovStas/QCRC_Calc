@@ -4,6 +4,8 @@
 #include <QMainWindow>
 
 #include "bitset64.h"
+#include "qucrc_t.h"
+
 
 
 
@@ -28,11 +30,21 @@ class MainWindow : public QMainWindow
         void Hex_tab_WrapWord_checkBox_stateChanged(int state);
         void Text_tab_WrapWord_checkBox_stateChanged(int state);
 
+        void selected_index_CRC_in_comboBox(int new_index);
+        void set_index_CRC_in_comboBox(uint32_t new_index);
+        void CRC_Param_to_GUI();
+
+
     private:
 
         Ui::MainWindow *ui;
 
         BitSet64 bit_set;
+
+        QuCRC_t  qucrc;
+
+
+        void Prepare_CRC_Param_comboBox();
 };
 
 
