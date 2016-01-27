@@ -164,6 +164,15 @@ void QuCRC_t::set_ref_out(bool new_ref_out)
 
 
 
+uint64_t QuCRC_t::get_check()
+{
+    const char std_check_data[] = "123456789";
+
+    return ucrc.get_crc(std_check_data, sizeof(std_check_data) - 1 ); //-1 without '\0'
+}
+
+
+
 int QuCRC_t::set_index(uint32_t new_index)
 {
     if( new_index == index)

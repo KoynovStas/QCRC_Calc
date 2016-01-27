@@ -125,6 +125,8 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         uint64_t get_final_crc(uint64_t raw_crc)                        const { return ucrc.get_final_crc(raw_crc);    }
 
 
+        uint64_t get_check();
+
 
         uint32_t get_index() const { return index; }
         int      set_index(uint32_t new_index);
