@@ -33,6 +33,7 @@ class MainWindow : public QMainWindow
         void selected_index_CRC_in_comboBox(int new_index);
         void set_index_CRC_in_comboBox(uint32_t new_index);
         void CRC_Param_to_GUI();
+        void CRC_Param_from_GUI();
 
 
     private:

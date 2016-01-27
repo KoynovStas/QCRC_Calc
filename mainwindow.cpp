@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     CRC_Param_to_GUI();
 
 
-    //Signal/Slots for Wrap word checkBox
+    // Signal/Slots for Wrap word checkBox
     QObject::connect(ui->Hex_tab_WrapWord_checkBox,  SIGNAL(stateChanged(int)),
                      this, SLOT(Hex_tab_WrapWord_checkBox_stateChanged(int)) );
 
@@ -31,13 +31,32 @@ MainWindow::MainWindow(QWidget *parent) :
                      this, SLOT(Text_tab_WrapWord_checkBox_stateChanged(int)) );
 
 
-
+    // Signal/Slots for CRC_Param_comboBox (User select new index)
     QObject::connect(ui->CRC_Param_comboBox,  SIGNAL(currentIndexChanged(int)),
                      this, SLOT(selected_index_CRC_in_comboBox(int)) );
 
-
     QObject::connect(&qucrc,  SIGNAL(index_changed(uint32_t)),
                      this, SLOT(set_index_CRC_in_comboBox(uint32_t)) );
+
+
+    // Signal/Slots User changed CRC Param in GUI
+    QObject::connect(ui->CRC_Bits_spinBox,  SIGNAL(valueChanged(int)),
+                     this, SLOT(CRC_Param_from_GUI()) );
+
+    QObject::connect(ui->CRC_RefIn_checkBox,  SIGNAL(stateChanged(int)),
+                     this, SLOT(CRC_Param_from_GUI()) );
+
+    QObject::connect(ui->CRC_RefOut_checkBox,  SIGNAL(stateChanged(int)),
+                     this, SLOT(CRC_Param_from_GUI()) );
+
+    QObject::connect(ui->CRC_Poly_lineEdit,  SIGNAL(textChanged(const QString &)),
+                     this, SLOT(CRC_Param_from_GUI()) );
+
+    QObject::connect(ui->CRC_Init_lineEdit,  SIGNAL(textChanged(const QString &)),
+                     this, SLOT(CRC_Param_from_GUI()) );
+
+    QObject::connect(ui->CRC_XorOut_lineEdit,  SIGNAL(textChanged(const QString &)),
+                     this, SLOT(CRC_Param_from_GUI()) );
 }
 
 
@@ -81,6 +100,7 @@ void MainWindow::selected_index_CRC_in_comboBox(int new_index)
 
 
 
+// (User changed CRC Param in GUI. We must find new index for CRC_Param_comboBox)
 void MainWindow::set_index_CRC_in_comboBox(uint32_t new_index)
 {
     ui->CRC_Param_comboBox->setCurrentIndex(new_index);
@@ -99,6 +119,22 @@ void MainWindow::CRC_Param_to_GUI()
 
     ui->CRC_RefIn_checkBox->setChecked(qucrc.get_ref_in());
     ui->CRC_RefOut_checkBox->setChecked(qucrc.get_ref_out());
+}
+
+
+
+void MainWindow::CRC_Param_from_GUI()
+{
+    qucrc.set_bits( ui->CRC_Bits_spinBox->value() );
+
+
+    qucrc.set_poly( ui->CRC_Poly_lineEdit->text().toULongLong(NULL, 16) );
+    qucrc.set_init( ui->CRC_Init_lineEdit->text().toULongLong(NULL, 16) );
+    qucrc.set_xor_out( ui->CRC_XorOut_lineEdit->text().toULongLong(NULL, 16) );
+
+
+    qucrc.set_ref_in( ui->CRC_RefIn_checkBox->isChecked() );
+    qucrc.set_ref_out( ui->CRC_RefOut_checkBox->isChecked() );
 }
 
 
