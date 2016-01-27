@@ -35,6 +35,8 @@ class MainWindow : public QMainWindow
         void CRC_Param_to_GUI();
         void CRC_Param_from_GUI();
 
+        void set_Result_CRC(uint64_t value);
+
 
     private:
 
@@ -44,7 +46,8 @@ class MainWindow : public QMainWindow
 
         QuCRC_t  qucrc;
 
-        bool select_index_done;
+        uint64_t crc_result;
+        bool     select_index_done;  // to protect against recursion (user select/program select in CRC_Param_comboBox)
 
 
         void Prepare_CRC_Param_comboBox();

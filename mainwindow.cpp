@@ -9,18 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
 
+    crc_result(0),
     select_index_done(true)
 {
     ui->setupUi(this);
 
     setWindowTitle("CRC Calculator ver " + QString::number(MAJOR_VERSION) + '.' + QString::number(MINOR_VERSION));
 
-
     ui->CRC_Res_Bin_groupBox->setLayout(bit_set.layout());
 
 
     Prepare_CRC_Param_comboBox();
-
 
     CRC_Param_to_GUI();
 
@@ -39,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QObject::connect(&qucrc,  SIGNAL(index_changed(uint32_t)),
                      this, SLOT(set_index_CRC_in_comboBox(uint32_t)) );
+
+    QObject::connect(&qucrc,  SIGNAL(param_changed()),
+                     this, SLOT(CRC_Param_to_GUI()) );
 
 
     // Signal/Slots User changed CRC Param in GUI
@@ -99,7 +101,6 @@ void MainWindow::selected_index_CRC_in_comboBox(int new_index)
     select_index_done = false;
 
     qucrc.set_index(new_index);
-    CRC_Param_to_GUI();
 
     select_index_done = true;
 }
@@ -109,7 +110,14 @@ void MainWindow::selected_index_CRC_in_comboBox(int new_index)
 // (User changed CRC Param in GUI. We must find new index for CRC_Param_comboBox)
 void MainWindow::set_index_CRC_in_comboBox(uint32_t new_index)
 {
+    if( !select_index_done )
+        return;
+
+    select_index_done = false;
+
     ui->CRC_Param_comboBox->setCurrentIndex(new_index);
+
+    select_index_done = true;
 }
 
 
@@ -145,6 +153,24 @@ void MainWindow::CRC_Param_from_GUI()
 
     qucrc.set_ref_in( ui->CRC_RefIn_checkBox->isChecked() );
     qucrc.set_ref_out( ui->CRC_RefOut_checkBox->isChecked() );
+}
+
+
+
+void MainWindow::set_Result_CRC(uint64_t value)
+{
+    if( crc_result == value )
+        return;
+
+    crc_result = value;
+
+    ui->CRC_Res_Hex_lineEdit->setText( "0x" + QString::number(value, 16).toUpper() );
+    ui->CRC_Res_Dec_lineEdit->setText( QString::number(value, 10) );
+    ui->CRC_Res_Oct_lineEdit->setText( QString::number(value, 8) );
+
+    ui->CRC_Res_Base_lineEdit->setText( QString::number(value, ui->CRC_Res_Base_spinBox->value()) );
+
+    bit_set.set_value(value);
 }
 
 
