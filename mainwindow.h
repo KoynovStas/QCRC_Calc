@@ -5,6 +5,7 @@
 
 #include "bitset64.h"
 #include "qucrc_t.h"
+#include "crc_calc_for_hex.h"
 
 
 
@@ -38,6 +39,10 @@ class MainWindow : public QMainWindow
         void set_Result_CRC(uint64_t value);
         void set_Result_CRC_for_custom_base();
 
+        void textChanged_for_Hex();
+        void Hex_revers_chunk_checkBox_stateChanged(int state);
+        void Hex_revers_data_checkBox_stateChanged(int state);
+
 
     private:
 
@@ -51,6 +56,9 @@ class MainWindow : public QMainWindow
         bool     select_index_done;  // to protect against recursion (user select/program select in CRC_Param_comboBox)
 
 
+        CRC_Calc_for_Hex  Hex_calc;
+
+        void Prepare_Hex_calc();
         void Prepare_CRC_Param_comboBox();
 };
 

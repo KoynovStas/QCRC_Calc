@@ -66,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Signal changed base for Result CRC
     QObject::connect(ui->CRC_Res_Base_spinBox,  SIGNAL(valueChanged(int)),
                      this, SLOT(set_Result_CRC_for_custom_base()) );
+
+
+    Prepare_Hex_calc();
 }
 
 
@@ -210,4 +213,69 @@ void MainWindow::Prepare_CRC_Param_comboBox()
 void MainWindow::set_Result_CRC_for_custom_base()
 {
     ui->CRC_Res_Base_lineEdit->setText( QString::number(crc_result, ui->CRC_Res_Base_spinBox->value()) );
+}
+
+
+
+void MainWindow::textChanged_for_Hex()
+{
+    Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
+}
+
+
+
+void MainWindow::Hex_revers_chunk_checkBox_stateChanged(int state)
+{
+    if( state )
+        Hex_calc.set_revers_chunk(true);
+    else
+        Hex_calc.set_revers_chunk(false);
+
+
+    Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
+}
+
+
+
+void MainWindow::Hex_revers_data_checkBox_stateChanged(int state)
+{
+    if( state )
+        Hex_calc.set_revers_data(true);
+    else
+        Hex_calc.set_revers_data(false);
+
+
+    Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
+}
+
+
+
+void MainWindow::Prepare_Hex_calc()
+{
+
+    Hex_calc.set_ucrc(&qucrc);
+
+
+    QObject::connect(&Hex_calc, SIGNAL(calculated(uint64_t)),
+                     this, SLOT(set_Result_CRC(uint64_t)) );
+
+
+    QObject::connect(&qucrc, SIGNAL(param_changed()),
+                     this, SLOT(textChanged_for_Hex()) );
+
+
+    QObject::connect(ui->Hex_tab_RevWord_checkBox, SIGNAL(stateChanged(int)),
+                     this, SLOT(Hex_revers_chunk_checkBox_stateChanged(int)) );
+
+
+    QObject::connect(ui->Hex_tab_RevData_checkBox, SIGNAL(stateChanged(int)),
+                     this, SLOT(Hex_revers_data_checkBox_stateChanged(int)) );
+
+
+    QObject::connect(ui->Hex_tab_plainTextEdit, SIGNAL(textChanged()),
+                     this, SLOT(textChanged_for_Hex()) );
+
+
+//    QObject::connect(&Hex_calc, SIGNAL(error(QString)),
+//                     ui->statusBar,  SLOT(showMessage(QString)) );
 }
