@@ -36,6 +36,7 @@ class MainWindow : public QMainWindow
         void CRC_Param_from_GUI();
 
         void set_Result_CRC(uint64_t value);
+        void set_Result_CRC_for_custom_base();
 
 
     private:

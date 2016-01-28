@@ -61,6 +61,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QObject::connect(ui->CRC_XorOut_lineEdit,  SIGNAL(textChanged(const QString &)),
                      this, SLOT(CRC_Param_from_GUI()) );
+
+
+    // Signal changed base for Result CRC
+    QObject::connect(ui->CRC_Res_Base_spinBox,  SIGNAL(valueChanged(int)),
+                     this, SLOT(set_Result_CRC_for_custom_base()) );
 }
 
 
@@ -168,7 +173,7 @@ void MainWindow::set_Result_CRC(uint64_t value)
     ui->CRC_Res_Dec_lineEdit->setText( QString::number(value, 10) );
     ui->CRC_Res_Oct_lineEdit->setText( QString::number(value, 8) );
 
-    ui->CRC_Res_Base_lineEdit->setText( QString::number(value, ui->CRC_Res_Base_spinBox->value()) );
+    set_Result_CRC_for_custom_base();
 
     bit_set.set_value(value);
 }
@@ -198,4 +203,11 @@ void MainWindow::Prepare_CRC_Param_comboBox()
 
 
     ui->CRC_Param_comboBox->setCurrentIndex( qucrc.get_index() );
+}
+
+
+
+void MainWindow::set_Result_CRC_for_custom_base()
+{
+    ui->CRC_Res_Base_lineEdit->setText( QString::number(crc_result, ui->CRC_Res_Base_spinBox->value()) );
 }
