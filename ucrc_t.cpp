@@ -2,7 +2,7 @@
  * ucrc_t.cpp
  *
  *
- * version 1.0
+ * version 1.1
  *
  *
  * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
@@ -178,16 +178,16 @@ uint64_t uCRC_t::get_raw_crc(const char* buf, size_t len, uint64_t crc) const
                 crc = (crc >> 8) ^ crc_table[ (crc ^ *buf++) & 0xff ];
         else
             while (len--)
-                crc = (crc << 8) ^ crc_table[ ((crc >> shift) & 0xff) ^ *buf++ ];
+                crc = (crc << 8) ^ crc_table[ ((crc >> shift) ^ *buf++) & 0xff ];
     }
     else
     {
         if (ref_in)
             while (len--)
-                crc = crc_table[ crc ^ *buf++ ];
+                crc = crc_table[ (crc ^ *buf++) & 0xff ];
         else
             while (len--)
-                crc = crc_table[ (crc << shift) ^ *buf++ ];
+                crc = crc_table[ ((crc << shift) ^ *buf++) & 0xff ];
     }
 
 
