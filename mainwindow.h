@@ -40,6 +40,7 @@ class MainWindow : public QMainWindow
         void set_Result_CRC_for_custom_base();
 
         void textChanged_for_Hex();
+        void calculate_CRC_for_Hex();
         void Hex_revers_chunk_checkBox_stateChanged(int state);
         void Hex_revers_data_checkBox_stateChanged(int state);
 
@@ -60,6 +61,7 @@ class MainWindow : public QMainWindow
 
         void Prepare_Hex_calc();
         void Prepare_CRC_Param_comboBox();
+        void set_GUI_mode(bool mode);
 };
 
 

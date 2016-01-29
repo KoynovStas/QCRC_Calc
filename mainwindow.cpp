@@ -102,8 +102,16 @@ void MainWindow::Text_tab_WrapWord_checkBox_stateChanged(int state)
 
 void MainWindow::selected_index_CRC_in_comboBox(int new_index)
 {
-    if( new_index == 0 )
-        return;  // for Custom no action
+    // if new_index == Custom(0) or index already set - no action
+    if( (new_index == 0) || ((uint32_t)new_index == qucrc.get_index()) )
+        return;
+
+
+    if( !select_index_done)
+        return;
+
+
+    set_GUI_mode(false);
 
 
     select_index_done = false;
@@ -120,6 +128,9 @@ void MainWindow::set_index_CRC_in_comboBox(uint32_t new_index)
 {
     if( !select_index_done )
         return;
+
+    set_GUI_mode(false);
+
 
     select_index_done = false;
 
@@ -150,14 +161,14 @@ void MainWindow::CRC_Param_from_GUI()
     if( !select_index_done )
         return;
 
+    set_GUI_mode(false);
+
 
     qucrc.set_bits( ui->CRC_Bits_spinBox->value() );
-
 
     qucrc.set_poly( ui->CRC_Poly_lineEdit->text().toULongLong(NULL, 16) );
     qucrc.set_init( ui->CRC_Init_lineEdit->text().toULongLong(NULL, 16) );
     qucrc.set_xor_out( ui->CRC_XorOut_lineEdit->text().toULongLong(NULL, 16) );
-
 
     qucrc.set_ref_in( ui->CRC_RefIn_checkBox->isChecked() );
     qucrc.set_ref_out( ui->CRC_RefOut_checkBox->isChecked() );
@@ -167,10 +178,14 @@ void MainWindow::CRC_Param_from_GUI()
 
 void MainWindow::set_Result_CRC(uint64_t value)
 {
+    set_GUI_mode(true);  // calculate done
+
+
     if( crc_result == value )
         return;
 
     crc_result = value;
+
 
     ui->CRC_Res_Hex_lineEdit->setText( "0x" + QString::number(value, 16).toUpper() );
     ui->CRC_Res_Dec_lineEdit->setText( QString::number(value, 10) );
@@ -210,6 +225,32 @@ void MainWindow::Prepare_CRC_Param_comboBox()
 
 
 
+void MainWindow::set_GUI_mode(bool mode)
+{
+    static QWidget *widget_in_focus = NULL;
+    static bool old_mode = true;
+
+    if( old_mode == mode )
+        return;
+
+
+    old_mode = mode;
+
+
+    if( !mode )
+        widget_in_focus = QApplication::focusWidget();
+
+
+    ui->CRC_Param_groupBox->setEnabled(mode);
+    ui->CRC_Data_groupBox->setEnabled(mode);
+
+
+   if( mode && widget_in_focus )
+        widget_in_focus->setFocus();  // restore focus
+}
+
+
+
 void MainWindow::set_Result_CRC_for_custom_base()
 {
     ui->CRC_Res_Base_lineEdit->setText( QString::number(crc_result, ui->CRC_Res_Base_spinBox->value()) );
@@ -219,6 +260,23 @@ void MainWindow::set_Result_CRC_for_custom_base()
 
 void MainWindow::textChanged_for_Hex()
 {
+    static QString old_text;
+
+
+    if( old_text == ui->Hex_tab_plainTextEdit->toPlainText() )
+        return;
+
+    old_text = ui->Hex_tab_plainTextEdit->toPlainText();
+
+
+    calculate_CRC_for_Hex();
+}
+
+
+
+void MainWindow::calculate_CRC_for_Hex()
+{
+    set_GUI_mode(false);
     Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
 }
 
@@ -226,6 +284,9 @@ void MainWindow::textChanged_for_Hex()
 
 void MainWindow::Hex_revers_chunk_checkBox_stateChanged(int state)
 {
+    set_GUI_mode(false);
+
+
     if( state )
         Hex_calc.set_revers_chunk(true);
     else
@@ -239,6 +300,9 @@ void MainWindow::Hex_revers_chunk_checkBox_stateChanged(int state)
 
 void MainWindow::Hex_revers_data_checkBox_stateChanged(int state)
 {
+    set_GUI_mode(false);
+
+
     if( state )
         Hex_calc.set_revers_data(true);
     else
@@ -261,7 +325,7 @@ void MainWindow::Prepare_Hex_calc()
 
 
     QObject::connect(&qucrc, SIGNAL(param_changed()),
-                     this, SLOT(textChanged_for_Hex()) );
+                     this, SLOT(calculate_CRC_for_Hex()) );
 
 
     QObject::connect(ui->Hex_tab_RevWord_checkBox, SIGNAL(stateChanged(int)),
