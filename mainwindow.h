@@ -50,6 +50,8 @@ class MainWindow : public QMainWindow
         void selected_encodings_in_comboBox(int new_index);
         void calculate_CRC_for_Text();
 
+        void calculate_CRC();
+
 
     private:
 

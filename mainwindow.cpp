@@ -69,7 +69,13 @@ MainWindow::MainWindow(QWidget *parent) :
                      this, SLOT(set_Result_CRC_for_custom_base()) );
 
 
-//    Prepare_Hex_calc();
+
+    QObject::connect(ui->CRC_Data_tabs, SIGNAL(currentChanged(int)),
+                     this, SLOT(calculate_CRC()) );
+
+
+
+    Prepare_Hex_calc();
     Prepare_Text_calc();
 }
 
@@ -368,6 +374,26 @@ void MainWindow::calculate_CRC_for_Text()
 
 
 
+void MainWindow::calculate_CRC()
+{
+    // start calculate CRC only for active Tab
+
+    if( ui->CRC_Data_tabs->currentWidget() == ui->Hex_tab )
+    {
+        calculate_CRC_for_Hex();
+        return;
+    }
+
+
+    if( ui->CRC_Data_tabs->currentWidget() == ui->Text_tab )
+    {
+        calculate_CRC_for_Text();
+        return;
+    }
+}
+
+
+
 void MainWindow::Prepare_Hex_calc()
 {
 
@@ -379,7 +405,7 @@ void MainWindow::Prepare_Hex_calc()
 
 
     QObject::connect(&qucrc, SIGNAL(param_changed()),
-                     this, SLOT(calculate_CRC_for_Hex()) );
+                     this, SLOT(calculate_CRC()) );
 
 
     QObject::connect(ui->Hex_tab_RevWord_checkBox, SIGNAL(stateChanged(int)),
@@ -410,7 +436,7 @@ void MainWindow::Prepare_Text_calc()
 
 
     QObject::connect(&qucrc, SIGNAL(param_changed()),
-                     this, SLOT(calculate_CRC_for_Text()) );
+                     this, SLOT(calculate_CRC()) );
 
 
     QObject::connect(ui->Text_tab_plainTextEdit, SIGNAL(textChanged()),
