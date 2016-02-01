@@ -32,6 +32,7 @@ class MainWindow : public QMainWindow
         void Hex_tab_WrapWord_checkBox_stateChanged(int state);
         void Text_tab_WrapWord_checkBox_stateChanged(int state);
 
+        // Param CRC
         void selected_index_CRC_in_comboBox(int new_index);
         void set_index_CRC_in_comboBox(uint32_t new_index);
         void CRC_Param_to_GUI();
@@ -40,15 +41,19 @@ class MainWindow : public QMainWindow
         void set_Result_CRC(uint64_t value);
         void set_Result_CRC_for_custom_base();
 
+
+        // Hex
         void textChanged_for_Hex();
         void calculate_CRC_for_Hex();
         void Hex_revers_chunk_checkBox_stateChanged(int state);
         void Hex_revers_data_checkBox_stateChanged(int state);
 
 
+        // Text
         void textChanged_for_Text();
-        void selected_encodings_in_comboBox(int new_index);
         void calculate_CRC_for_Text();
+        void selected_encodings_in_comboBox(int new_index);
+        void Text_BOM_checkBox_stateChanged(int state);
 
         void calculate_CRC();
 

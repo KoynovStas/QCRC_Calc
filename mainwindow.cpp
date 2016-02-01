@@ -366,6 +366,19 @@ void MainWindow::selected_encodings_in_comboBox(int new_index)
 
 
 
+void MainWindow::Text_BOM_checkBox_stateChanged(int state)
+{
+    if( state )
+        Text_calc.with_BOM = true;
+    else
+        Text_calc.with_BOM = false;
+
+
+    calculate_CRC_for_Text();
+}
+
+
+
 void MainWindow::calculate_CRC_for_Text()
 {
     set_GUI_mode(false);
@@ -445,4 +458,8 @@ void MainWindow::Prepare_Text_calc()
 
     QObject::connect(ui->Text_tab_Encoding_comboBox,  SIGNAL(currentIndexChanged(int)),
                      this, SLOT(selected_encodings_in_comboBox(int)) );
+
+
+    QObject::connect(ui->Text_tab_BOM_checkBox, SIGNAL(stateChanged(int)),
+                     this, SLOT(Text_BOM_checkBox_stateChanged(int)) );
 }

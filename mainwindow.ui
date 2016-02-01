@@ -391,6 +391,13 @@ QGroupBox::title {
                 <widget class="QComboBox" name="Text_tab_Encoding_comboBox"/>
                </item>
                <item>
+                <widget class="QCheckBox" name="Text_tab_BOM_checkBox">
+                 <property name="text">
+                  <string>BOM</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <spacer name="horizontalSpacer_7">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>

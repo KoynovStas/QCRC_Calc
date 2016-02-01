@@ -22,7 +22,7 @@ class CRC_Calc_for_Text : public QObject
 
 
         static const QList<QByteArray> Encodings;
-
+        bool  with_BOM;
 
         void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
 

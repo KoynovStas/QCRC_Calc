@@ -17,6 +17,7 @@ const QList<QByteArray> CRC_Calc_for_Text::Encodings = CRC_Calc_for_Text::get_En
 CRC_Calc_for_Text::CRC_Calc_for_Text(QObject *parent) :
     QObject(NULL),
 
+    with_BOM(false),
     encoding_index(0)
 {
     qRegisterMetaType<uint64_t>("uint64_t");
@@ -81,7 +82,9 @@ void CRC_Calc_for_Text::_calculate(const QString &data)
     else
     {
         QTextCodec *text_codec = QTextCodec::codecForName(Encodings[encoding_index]);
-        tmp_str = text_codec->fromUnicode(data);
+        QTextCodec::ConverterState state(with_BOM ? QTextCodec::DefaultConversion : QTextCodec::IgnoreHeader);
+
+        tmp_str = text_codec->fromUnicode(data.constData(), data.size(), &state);
     }
 
 
