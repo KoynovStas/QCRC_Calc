@@ -6,6 +6,7 @@
 #include "bitset64.h"
 #include "qucrc_t.h"
 #include "crc_calc_for_hex.h"
+#include "crc_calc_for_text.h"
 
 
 
@@ -45,6 +46,11 @@ class MainWindow : public QMainWindow
         void Hex_revers_data_checkBox_stateChanged(int state);
 
 
+        void textChanged_for_Text();
+        void selected_encodings_in_comboBox(int new_index);
+        void calculate_CRC_for_Text();
+
+
     private:
 
         Ui::MainWindow *ui;
@@ -58,9 +64,15 @@ class MainWindow : public QMainWindow
 
 
         CRC_Calc_for_Hex  Hex_calc;
+        CRC_Calc_for_Text Text_calc;
 
         void Prepare_Hex_calc();
         void Prepare_CRC_Param_comboBox();
+
+        void Prepare_Text_calc();
+        void Prepare_Text_Encoding_comboBox();
+
+
         void set_GUI_mode(bool mode);
 };
 

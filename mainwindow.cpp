@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     Prepare_CRC_Param_comboBox();
+    Prepare_Text_Encoding_comboBox();
 
     CRC_Param_to_GUI();
 
@@ -68,7 +69,8 @@ MainWindow::MainWindow(QWidget *parent) :
                      this, SLOT(set_Result_CRC_for_custom_base()) );
 
 
-    Prepare_Hex_calc();
+//    Prepare_Hex_calc();
+    Prepare_Text_calc();
 }
 
 
@@ -225,6 +227,21 @@ void MainWindow::Prepare_CRC_Param_comboBox()
 
 
 
+void MainWindow::Prepare_Text_Encoding_comboBox()
+{
+    ui->Text_tab_Encoding_comboBox->clear();
+
+
+    for( int i = 0; i < Text_calc.Encodings.size(); i++)
+    {
+        ui->Text_tab_Encoding_comboBox->addItem(Text_calc.Encodings[i]);
+    }
+
+    ui->Text_tab_Encoding_comboBox->setCurrentIndex(0); //Default ASCII
+}
+
+
+
 void MainWindow::set_GUI_mode(bool mode)
 {
     static QWidget *widget_in_focus = NULL;
@@ -314,6 +331,43 @@ void MainWindow::Hex_revers_data_checkBox_stateChanged(int state)
 
 
 
+void MainWindow::textChanged_for_Text()
+{
+    static QString old_text;
+
+
+    if( old_text == ui->Text_tab_plainTextEdit->toPlainText() )
+        return;
+
+    old_text = ui->Text_tab_plainTextEdit->toPlainText();
+
+
+    calculate_CRC_for_Text();
+}
+
+
+
+void MainWindow::selected_encodings_in_comboBox(int new_index)
+{
+
+    if(Text_calc.get_encoding_index() == (size_t)new_index)
+        return;
+
+    Text_calc.set_encoding_index(new_index);
+
+    calculate_CRC_for_Text();
+}
+
+
+
+void MainWindow::calculate_CRC_for_Text()
+{
+    set_GUI_mode(false);
+    Text_calc.calculate(ui->Text_tab_plainTextEdit->toPlainText());
+}
+
+
+
 void MainWindow::Prepare_Hex_calc()
 {
 
@@ -342,4 +396,27 @@ void MainWindow::Prepare_Hex_calc()
 
 //    QObject::connect(&Hex_calc, SIGNAL(error(QString)),
 //                     ui->statusBar,  SLOT(showMessage(QString)) );
+}
+
+
+
+void MainWindow::Prepare_Text_calc()
+{
+    Text_calc.set_ucrc(&qucrc);
+
+
+    QObject::connect(&Text_calc, SIGNAL(calculated(uint64_t)),
+                     this, SLOT(set_Result_CRC(uint64_t)) );
+
+
+    QObject::connect(&qucrc, SIGNAL(param_changed()),
+                     this, SLOT(calculate_CRC_for_Text()) );
+
+
+    QObject::connect(ui->Text_tab_plainTextEdit, SIGNAL(textChanged()),
+                     this, SLOT(textChanged_for_Text()) );
+
+
+    QObject::connect(ui->Text_tab_Encoding_comboBox,  SIGNAL(currentIndexChanged(int)),
+                     this, SLOT(selected_encodings_in_comboBox(int)) );
 }

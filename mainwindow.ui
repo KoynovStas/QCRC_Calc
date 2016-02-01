@@ -289,7 +289,6 @@ QGroupBox::title {
           </spacer>
          </item>
         </layout>
-        <zorder>CRC_Param_comboBox</zorder>
        </widget>
       </item>
       <item>
