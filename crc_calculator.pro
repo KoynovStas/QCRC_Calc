@@ -40,8 +40,9 @@ SOURCES += main.cpp \
            bitset64.cpp \
            ucrc_t.cpp \
            qucrc_t.cpp \
-    hextobytes.cpp \
-    crc_calc_for_hex.cpp
+           hextobytes.cpp \
+           crc_calc_for_hex.cpp \
+           crc_calc_for_text.cpp
 
 
 
@@ -50,9 +51,10 @@ HEADERS += mainwindow.h \
            bitset64.h \
            ucrc_t.h \
            qucrc_t.h \
-    qexecthread.h \
-    hextobytes.h \
-    crc_calc_for_hex.h
+           qexecthread.h \
+           hextobytes.h \
+           crc_calc_for_hex.h \
+           crc_calc_for_text.h
 
 
 
