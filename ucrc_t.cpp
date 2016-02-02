@@ -2,7 +2,7 @@
  * ucrc_t.cpp
  *
  *
- * version 1.1
+ * version 1.2
  *
  *
  * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
@@ -146,7 +146,7 @@ int uCRC_t::get_crc(uint64_t &crc, FILE *pfile, void *buf, size_t size_buf) cons
     }
 
 
-    crc          = init;
+    crc          = crc_init;
     long cur_pos = ftell(pfile);
     rewind(pfile);
 

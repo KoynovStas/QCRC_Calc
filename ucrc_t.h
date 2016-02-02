@@ -2,7 +2,7 @@
  * ucrc_t.h
  *
  *
- * version 1.1
+ * version 1.2
  *
  *
  * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
