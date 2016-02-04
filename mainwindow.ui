@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>910</width>
-    <height>517</height>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,15 +58,6 @@ QGroupBox::title {
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
-           </property>
-           <property name="currentText">
-            <string notr="true"/>
-           </property>
-           <property name="currentIndex">
-            <number>-1</number>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
            </property>
           </widget>
          </item>
@@ -423,12 +414,6 @@ QGroupBox::title {
               <widget class="QPlainTextEdit" name="Text_tab_plainTextEdit">
                <property name="midLineWidth">
                 <number>0</number>
-               </property>
-               <property name="horizontalScrollBarPolicy">
-                <enum>Qt::ScrollBarAsNeeded</enum>
-               </property>
-               <property name="sizeAdjustPolicy">
-                <enum>QAbstractScrollArea::AdjustIgnored</enum>
                </property>
                <property name="lineWrapMode">
                 <enum>QPlainTextEdit::NoWrap</enum>
