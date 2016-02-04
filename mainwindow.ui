@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>910</width>
+    <width>1016</width>
     <height>521</height>
    </rect>
   </property>
@@ -386,6 +386,47 @@ QGroupBox::title {
                  <property name="text">
                   <string>BOM</string>
                  </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="Text_tab_EndLine_label">
+                 <property name="text">
+                  <string>EndLine:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="Text_tab_EndLine_comboBox">
+                 <item>
+                  <property name="text">
+                   <string>LF (Unix/Mac)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>CR (old Mac)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>RS (QNX)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0x9B (Atari)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>CR+LF (Win)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>LF+CR (RISC OS)</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
                <item>

@@ -53,6 +53,7 @@ class MainWindow : public QMainWindow
         void textChanged_for_Text();
         void calculate_CRC_for_Text();
         void selected_encodings_in_comboBox(int new_index);
+        void selected_endline_in_comboBox(int new_index);
         void Text_BOM_checkBox_stateChanged(int state);
 
         void calculate_CRC();

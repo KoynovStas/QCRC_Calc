@@ -366,6 +366,18 @@ void MainWindow::selected_encodings_in_comboBox(int new_index)
 
 
 
+void MainWindow::selected_endline_in_comboBox(int new_index)
+{
+    if(Text_calc.end_line_format == new_index)
+        return;
+
+    Text_calc.end_line_format = (CRC_Calc_for_Text::EndLineFormat)new_index;
+
+    calculate_CRC_for_Text();
+}
+
+
+
 void MainWindow::Text_BOM_checkBox_stateChanged(int state)
 {
     if( state )
@@ -458,6 +470,10 @@ void MainWindow::Prepare_Text_calc()
 
     QObject::connect(ui->Text_tab_Encoding_comboBox,  SIGNAL(currentIndexChanged(int)),
                      this, SLOT(selected_encodings_in_comboBox(int)) );
+
+
+    QObject::connect(ui->Text_tab_EndLine_comboBox,  SIGNAL(currentIndexChanged(int)),
+                     this, SLOT(selected_endline_in_comboBox(int)) );
 
 
     QObject::connect(ui->Text_tab_BOM_checkBox, SIGNAL(stateChanged(int)),
