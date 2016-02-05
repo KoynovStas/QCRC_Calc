@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>963</width>
-    <height>728</height>
+    <width>889</width>
+    <height>647</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,6 @@
       <property name="styleSheet">
        <string notr="true">QGroupBox {
     border: 1px solid gray;
-    border-radius: 9px;
     margin-top: 0.5em;
 }
 
@@ -257,7 +256,6 @@ QGroupBox::title {
       <property name="styleSheet">
        <string notr="true">QGroupBox {
     border: 1px solid gray;
-    border-radius: 9px;
     margin-top: 0.5em;
 }
 
@@ -434,16 +432,21 @@ QGroupBox::title {
     </item>
     <item>
      <widget class="QGroupBox" name="CRC_Result_groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>850</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>220</height>
+        <height>200</height>
        </size>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
     border: 1px solid gray;
-    border-radius: 9px;
     margin-top: 0.5em;
 }
 
@@ -470,7 +473,7 @@ QGroupBox::title {
           <widget class="QLineEdit" name="CRC_Res_Hex_lineEdit">
            <property name="minimumSize">
             <size>
-             <width>250</width>
+             <width>200</width>
              <height>0</height>
             </size>
            </property>
@@ -493,7 +496,7 @@ QGroupBox::title {
           <widget class="QLineEdit" name="CRC_Res_Dec_lineEdit">
            <property name="minimumSize">
             <size>
-             <width>250</width>
+             <width>200</width>
              <height>0</height>
             </size>
            </property>
@@ -516,7 +519,7 @@ QGroupBox::title {
           <widget class="QLineEdit" name="CRC_Res_Oct_lineEdit">
            <property name="minimumSize">
             <size>
-             <width>250</width>
+             <width>200</width>
              <height>0</height>
             </size>
            </property>
@@ -584,19 +587,18 @@ QGroupBox::title {
          <property name="minimumSize">
           <size>
            <width>600</width>
-           <height>120</height>
+           <height>100</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>120</height>
+           <height>100</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QGroupBox {
-    border: 1px solid gray;
-    border-radius: 9px;
+    border: 1px solid rgb(196, 193, 189);
     margin-top: 0.5em;
 }
 

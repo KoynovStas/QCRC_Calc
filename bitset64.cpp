@@ -53,9 +53,9 @@ BitSet64::BitSet64(QWidget *parent) :
 
 	// main layout
 	QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(10);
+    layout->setContentsMargins(5, 10, 0, 0);
     layout->setHorizontalSpacing(20);
-    layout->setVerticalSpacing(5);
+    layout->setVerticalSpacing(4);
 
 
     bit_widgets_.reserve(64);
@@ -68,7 +68,6 @@ BitSet64::BitSet64(QWidget *parent) :
         {
             // two rows of four words
             QHBoxLayout *wordlayout = new QHBoxLayout();
-            wordlayout->setMargin(2);
             wordlayout->setSpacing(2);
             layout->addLayout(wordlayout, rows, cols);
 
@@ -76,7 +75,6 @@ BitSet64::BitSet64(QWidget *parent) :
             {
                 // layout for bit
                 QVBoxLayout *bitlayout = new QVBoxLayout();
-                bitlayout->setMargin(2);
                 bitlayout->setSpacing(2);
 
                 // BitWidget for bit
