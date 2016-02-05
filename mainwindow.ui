@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1016</width>
-    <height>521</height>
+    <width>963</width>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,23 +19,15 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_11">
-      <item>
-       <widget class="QGroupBox" name="CRC_Param_groupBox">
-        <property name="minimumSize">
-         <size>
-          <width>400</width>
-          <height>250</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>400</width>
-          <height>1000</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QGroupBox {
+     <widget class="QGroupBox" name="CRC_Param_groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
     border: 1px solid gray;
     border-radius: 9px;
     margin-top: 0.5em;
@@ -46,11 +38,13 @@ QGroupBox::title {
     left: 10px;
     padding: 0 3px 0 3px;
 }</string>
-        </property>
-        <property name="title">
-         <string>CRC:</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
+      </property>
+      <property name="title">
+       <string>CRC:</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QComboBox" name="CRC_Param_comboBox">
            <property name="sizePolicy">
@@ -62,236 +56,206 @@ QGroupBox::title {
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QLabel" name="CRC_Bits_label">
-             <property name="text">
-              <string>Bits (1..64):</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="CRC_Bits_spinBox">
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>64</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="CRC_RefIn_checkBox">
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string>RefIn:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="CRC_RefOut_checkBox">
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string>RefOut:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
+          <widget class="QLabel" name="CRC_Bits_label">
+           <property name="text">
+            <string>Bits (1..64):</string>
+           </property>
+          </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QLabel" name="CRC_Poly_label">
-             <property name="text">
-              <string>Poly (Hex):</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="CRC_Poly_lineEdit">
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QSpinBox" name="CRC_Bits_spinBox">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>64</number>
+           </property>
+          </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QLabel" name="CRC_Init_label">
-             <property name="text">
-              <string>Init (Hex):</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="CRC_Init_lineEdit">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QCheckBox" name="CRC_RefIn_checkBox">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>RefIn:</string>
+           </property>
+          </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="CRC_XorOut_label">
-             <property name="text">
-              <string>XorOut (Hex):</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="CRC_XorOut_lineEdit">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QCheckBox" name="CRC_RefOut_checkBox">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>RefOut:</string>
+           </property>
+          </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QLabel" name="CRC_Check_label">
-             <property name="text">
-              <string>Check (Hex):</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="CRC_Check_lineEdit">
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
+          <spacer name="horizontalSpacer">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>20</width>
-             <height>40</height>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
           </spacer>
          </item>
         </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="CRC_Data_groupBox">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>250</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QGroupBox {
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <property name="horizontalSpacing">
+          <number>10</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>0</number>
+         </property>
+         <item row="1" column="3" colspan="2">
+          <widget class="QLabel" name="CRC_Mask_label">
+           <property name="text">
+            <string>Mask (Hex):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7">
+          <widget class="QLineEdit" name="CRC_XorOut_lineEdit">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="7">
+          <widget class="QLineEdit" name="CRC_TopBit_lineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLabel" name="CRC_TopBit_label">
+           <property name="text">
+            <string>TopBit (Hex):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6">
+          <widget class="QLabel" name="CRC_XorOut_label">
+           <property name="text">
+            <string>XorOut (Hex):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLineEdit" name="CRC_Mask_lineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="CRC_Check_lineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="CRC_Check_label">
+           <property name="text">
+            <string>Check (Hex):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLineEdit" name="CRC_Poly_lineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QLineEdit" name="CRC_Init_lineEdit">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3" colspan="2">
+          <widget class="QLabel" name="CRC_Init_label">
+           <property name="text">
+            <string>Init (Hex):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="CRC_Poly_label">
+           <property name="text">
+            <string>Poly (Hex):</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="CRC_Data_groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
     border: 1px solid gray;
     border-radius: 9px;
     margin-top: 0.5em;
@@ -302,173 +266,171 @@ QGroupBox::title {
     left: 10px;
     padding: 0 3px 0 3px;
 }</string>
-        </property>
-        <property name="title">
-         <string>Data:</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QTabWidget" name="CRC_Data_tabs">
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="Hex_tab">
-            <attribute name="title">
-             <string>Hex</string>
-            </attribute>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
+      </property>
+      <property name="title">
+       <string>Data:</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QTabWidget" name="CRC_Data_tabs">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="Hex_tab">
+          <attribute name="title">
+           <string>Hex</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <widget class="QCheckBox" name="Hex_tab_RevWord_checkBox">
-                 <property name="text">
-                  <string>Revers word</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="Hex_tab_RevData_checkBox">
-                 <property name="text">
-                  <string>Revers data</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_6">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="Hex_tab_WrapWord_checkBox">
-                 <property name="text">
-                  <string>Wrap word</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <widget class="QCheckBox" name="Hex_tab_RevWord_checkBox">
+               <property name="text">
+                <string>Revers word</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPlainTextEdit" name="Hex_tab_plainTextEdit">
-               <property name="lineWrapMode">
-                <enum>QPlainTextEdit::NoWrap</enum>
+              <widget class="QCheckBox" name="Hex_tab_RevData_checkBox">
+               <property name="text">
+                <string>Revers data</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="Hex_tab_WrapWord_checkBox">
+               <property name="text">
+                <string>Wrap word</string>
                </property>
               </widget>
              </item>
             </layout>
-           </widget>
-           <widget class="QWidget" name="Text_tab">
-            <attribute name="title">
-             <string>Text</string>
-            </attribute>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
+           </item>
+           <item>
+            <widget class="QPlainTextEdit" name="Hex_tab_plainTextEdit">
+             <property name="lineWrapMode">
+              <enum>QPlainTextEdit::NoWrap</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Text_tab">
+          <attribute name="title">
+           <string>Text</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_8">
-               <item>
-                <widget class="QLabel" name="Text_tab_Encoding_label">
-                 <property name="text">
-                  <string>Encoding:</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="Text_tab_Encoding_comboBox"/>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="Text_tab_BOM_checkBox">
-                 <property name="text">
-                  <string>BOM</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="Text_tab_EndLine_label">
-                 <property name="text">
-                  <string>EndLine:</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="Text_tab_EndLine_comboBox">
-                 <item>
-                  <property name="text">
-                   <string>LF (Unix/Mac)</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>CR (old Mac)</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>RS (QNX)</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>0x9B (Atari)</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>CR+LF (Win)</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>LF+CR (RISC OS)</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_7">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="Text_tab_WrapWord_checkBox">
-                 <property name="text">
-                  <string>Wrap word</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <widget class="QLabel" name="Text_tab_Encoding_label">
+               <property name="text">
+                <string>Encoding:</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QPlainTextEdit" name="Text_tab_plainTextEdit">
-               <property name="midLineWidth">
-                <number>0</number>
+              <widget class="QComboBox" name="Text_tab_Encoding_comboBox"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="Text_tab_BOM_checkBox">
+               <property name="text">
+                <string>BOM</string>
                </property>
-               <property name="lineWrapMode">
-                <enum>QPlainTextEdit::NoWrap</enum>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="Text_tab_EndLine_label">
+               <property name="text">
+                <string>EndLine:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="Text_tab_EndLine_comboBox">
+               <item>
+                <property name="text">
+                 <string>LF (Unix/Mac)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CR (old Mac)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>RS (QNX)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0x9B (Atari)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CR+LF (Win)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>LF+CR (RISC OS)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="Text_tab_WrapWord_checkBox">
+               <property name="text">
+                <string>Wrap word</string>
                </property>
               </widget>
              </item>
             </layout>
-           </widget>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+           </item>
+           <item>
+            <widget class="QPlainTextEdit" name="Text_tab_plainTextEdit">
+             <property name="midLineWidth">
+              <number>0</number>
+             </property>
+             <property name="lineWrapMode">
+              <enum>QPlainTextEdit::NoWrap</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
     <item>
      <widget class="QGroupBox" name="CRC_Result_groupBox">
@@ -666,19 +628,23 @@ QGroupBox::title {
   <tabstop>CRC_Init_lineEdit</tabstop>
   <tabstop>CRC_XorOut_lineEdit</tabstop>
   <tabstop>CRC_Check_lineEdit</tabstop>
+  <tabstop>CRC_Mask_lineEdit</tabstop>
+  <tabstop>CRC_TopBit_lineEdit</tabstop>
   <tabstop>CRC_Data_tabs</tabstop>
   <tabstop>Hex_tab_RevWord_checkBox</tabstop>
   <tabstop>Hex_tab_RevData_checkBox</tabstop>
   <tabstop>Hex_tab_WrapWord_checkBox</tabstop>
   <tabstop>Hex_tab_plainTextEdit</tabstop>
-  <tabstop>Text_tab_Encoding_comboBox</tabstop>
-  <tabstop>Text_tab_WrapWord_checkBox</tabstop>
-  <tabstop>Text_tab_plainTextEdit</tabstop>
   <tabstop>CRC_Res_Hex_lineEdit</tabstop>
   <tabstop>CRC_Res_Dec_lineEdit</tabstop>
   <tabstop>CRC_Res_Oct_lineEdit</tabstop>
   <tabstop>CRC_Res_Base_lineEdit</tabstop>
   <tabstop>CRC_Res_Base_spinBox</tabstop>
+  <tabstop>Text_tab_Encoding_comboBox</tabstop>
+  <tabstop>Text_tab_BOM_checkBox</tabstop>
+  <tabstop>Text_tab_EndLine_comboBox</tabstop>
+  <tabstop>Text_tab_WrapWord_checkBox</tabstop>
+  <tabstop>Text_tab_plainTextEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>
