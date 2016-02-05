@@ -157,6 +157,8 @@ void MainWindow::CRC_Param_to_GUI()
     ui->CRC_Init_lineEdit->setText(  "0x" + QString::number(qucrc.get_init(),    16).toUpper() );
     ui->CRC_XorOut_lineEdit->setText("0x" + QString::number(qucrc.get_xor_out(), 16).toUpper() );
     ui->CRC_Check_lineEdit->setText( "0x" + QString::number(qucrc.get_check(),   16).toUpper() );
+    ui->CRC_Mask_lineEdit->setText(  "0x" + QString::number(qucrc.get_crc_mask(),16).toUpper() );
+    ui->CRC_TopBit_lineEdit->setText("0x" + QString::number(qucrc.get_top_bit(), 16).toUpper() );
 
     ui->CRC_RefIn_checkBox->setChecked(qucrc.get_ref_in());
     ui->CRC_RefOut_checkBox->setChecked(qucrc.get_ref_out());
