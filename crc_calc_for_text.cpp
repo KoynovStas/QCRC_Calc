@@ -3,7 +3,6 @@
 #include <QSet>
 #include "crc_calc_for_text.h"
 
-#include <QDebug>
 
 
 
@@ -14,7 +13,7 @@ const QList<QByteArray> CRC_Calc_for_Text::Encodings = CRC_Calc_for_Text::get_En
 
 
 
-CRC_Calc_for_Text::CRC_Calc_for_Text(QObject *parent) :
+CRC_Calc_for_Text::CRC_Calc_for_Text() :
     QObject(NULL),
 
     // public

@@ -1,10 +1,13 @@
 #ifndef CRC_CALC_FOR_HEX_H
 #define CRC_CALC_FOR_HEX_H
 
+
 #include <QObject>
+
 #include "hextobytes.h"
 #include "qucrc_t.h"
 #include "qexecthread.h"
+
 
 
 
@@ -14,12 +17,13 @@ class CRC_Calc_for_Hex : public QObject
     Q_OBJECT
 
     public:
-        explicit CRC_Calc_for_Hex(QObject *parent = 0);
+        explicit CRC_Calc_for_Hex();
         ~CRC_Calc_for_Hex();
 
 
         size_t size() { return hex_to_bytes.bytes.size(); }
         void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
+
 
 
     signals:
@@ -37,12 +41,13 @@ class CRC_Calc_for_Hex : public QObject
         void set_revers_data(bool value)  { hex_to_bytes.revers_data  = value; }
 
 
+
     protected slots:
         void _calculate(const QString & data);
 
 
-    private:
 
+    private:
         HexToBytes      hex_to_bytes;
         const QuCRC_t  *ucrc;
         QExecThread     thread;

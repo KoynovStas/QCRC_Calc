@@ -1,6 +1,7 @@
 #ifndef CRC_CALC_FOR_TEXT_H
 #define CRC_CALC_FOR_TEXT_H
 
+
 #include <QObject>
 #include <QList>
 #include <QByteArray>
@@ -32,7 +33,7 @@ class CRC_Calc_for_Text : public QObject
         };
 
 
-        explicit CRC_Calc_for_Text(QObject *parent = 0);
+        explicit CRC_Calc_for_Text();
         ~CRC_Calc_for_Text();
 
 
@@ -48,6 +49,7 @@ class CRC_Calc_for_Text : public QObject
         int    set_encoding_index(size_t new_index);
 
 
+
     signals:
         void calculated(uint64_t value);
         void error(const QString & err);
@@ -61,12 +63,13 @@ class CRC_Calc_for_Text : public QObject
         void calculate(const QString & data);
 
 
+
     protected slots:
         void _calculate(const QString & data);
 
 
-    private:
 
+    private:
         const QuCRC_t  *ucrc;
         QExecThread     thread;
         size_t          encoding_index;

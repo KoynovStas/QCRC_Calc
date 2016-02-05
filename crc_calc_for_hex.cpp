@@ -5,7 +5,7 @@
 
 
 
-CRC_Calc_for_Hex::CRC_Calc_for_Hex(QObject *parent) :
+CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
     QObject(NULL)
 {
 
