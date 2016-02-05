@@ -286,6 +286,8 @@ void MainWindow::textChanged_for_Hex()
     static QString old_text;
 
 
+    // Protection, if we disable (deactivate) widget plainTextEdit
+    // comes textChanged signal, we do not need.
     if( old_text == ui->Hex_tab_plainTextEdit->toPlainText() )
         return;
 
@@ -300,6 +302,7 @@ void MainWindow::textChanged_for_Hex()
 void MainWindow::calculate_CRC_for_Hex()
 {
     set_GUI_mode(false);
+
     Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
 }
 
@@ -310,11 +313,7 @@ void MainWindow::Hex_revers_chunk_checkBox_stateChanged(int state)
     set_GUI_mode(false);
 
 
-    if( state )
-        Hex_calc.set_revers_chunk(true);
-    else
-        Hex_calc.set_revers_chunk(false);
-
+    Hex_calc.set_revers_chunk(state == Qt::Checked);
 
     Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
 }
@@ -326,11 +325,7 @@ void MainWindow::Hex_revers_data_checkBox_stateChanged(int state)
     set_GUI_mode(false);
 
 
-    if( state )
-        Hex_calc.set_revers_data(true);
-    else
-        Hex_calc.set_revers_data(false);
-
+    Hex_calc.set_revers_data(state == Qt::Checked);
 
     Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
 }
@@ -342,6 +337,8 @@ void MainWindow::textChanged_for_Text()
     static QString old_text;
 
 
+    // Protection, if we disable (deactivate) widget plainTextEdit
+    // comes textChanged signal, we do not need.
     if( old_text == ui->Text_tab_plainTextEdit->toPlainText() )
         return;
 
@@ -380,11 +377,7 @@ void MainWindow::selected_endline_in_comboBox(int new_index)
 
 void MainWindow::Text_BOM_checkBox_stateChanged(int state)
 {
-    if( state )
-        Text_calc.with_BOM = true;
-    else
-        Text_calc.with_BOM = false;
-
+    Text_calc.with_BOM = (state == Qt::Checked);
 
     calculate_CRC_for_Text();
 }
@@ -394,6 +387,7 @@ void MainWindow::Text_BOM_checkBox_stateChanged(int state)
 void MainWindow::calculate_CRC_for_Text()
 {
     set_GUI_mode(false);
+
     Text_calc.calculate(ui->Text_tab_plainTextEdit->toPlainText());
 }
 
