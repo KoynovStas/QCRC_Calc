@@ -48,6 +48,9 @@ class CRC_Calc_for_Text : public QObject
         size_t get_encoding_index() { return encoding_index; }
         int    set_encoding_index(size_t new_index);
 
+        size_t get_num_lines() { return num_lines; }
+        size_t get_num_bytes() { return raw_str.size(); }
+
 
 
     signals:
@@ -76,6 +79,8 @@ class CRC_Calc_for_Text : public QObject
 
         QString         tmp_str;
         QByteArray      raw_str;
+
+        size_t          num_lines;
 
 
         void replace_end_line(const QString &data);

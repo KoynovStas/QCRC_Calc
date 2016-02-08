@@ -26,6 +26,8 @@ class HexToBytes : public QObject
 
         int str_to_bytes(const QString& str);
 
+        quint32 get_num_words() { return num_words; }
+
 
     signals:
         void error(const QString & err);
@@ -43,7 +45,7 @@ class HexToBytes : public QObject
         QRegExp    token_rx;
         QRegExp    hex_rx;
 
-        QString    str_error;
+        quint32    num_words;
 };
 
 

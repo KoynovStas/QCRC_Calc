@@ -12,7 +12,8 @@ HexToBytes::HexToBytes(QObject *parent) :
 
     //private
     token_rx("(\\w+)"),
-    hex_rx("^(0x)?([0-9a-f]+)$")
+    hex_rx("^(0x)?([0-9a-f]+)$"),
+    num_words(0)
 {
 }
 
@@ -22,8 +23,8 @@ int HexToBytes::str_to_bytes(const QString& str)
 {
 
     bytes.clear();
-
-    int pos = 0;
+    num_words = 0;
+    int pos   = 0;
 
     while( (pos = token_rx.indexIn(str, pos)) != -1 )
     {
@@ -53,6 +54,7 @@ int HexToBytes::token_to_bytes(const QString& token)
 
 
     token_bytes = QByteArray::fromHex(hex_rx.cap(2).toLatin1());
+    num_words++;
 
 
     if( revers_chunk )

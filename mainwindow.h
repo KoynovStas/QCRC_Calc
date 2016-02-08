@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
 
 #include "bitset64.h"
 #include "qucrc_t.h"
@@ -43,6 +44,7 @@ class MainWindow : public QMainWindow
 
 
         // Hex
+        void set_Result_CRC_for_Hex(uint64_t value);
         void textChanged_for_Hex();
         void calculate_CRC_for_Hex();
         void Hex_revers_chunk_checkBox_stateChanged(int state);
@@ -50,18 +52,24 @@ class MainWindow : public QMainWindow
 
 
         // Text
+        void set_Result_CRC_for_Text(uint64_t value);
         void textChanged_for_Text();
         void calculate_CRC_for_Text();
         void selected_encodings_in_comboBox(int new_index);
         void selected_endline_in_comboBox(int new_index);
         void Text_BOM_checkBox_stateChanged(int state);
 
+
         void calculate_CRC();
+        void show_error(const QString & err);
+        void show_stats(const QString & msg);
 
 
     private:
 
         Ui::MainWindow *ui;
+
+        QLabel *status_label;
 
         BitSet64 bit_set;
 
@@ -79,6 +87,9 @@ class MainWindow : public QMainWindow
 
         void Prepare_Text_calc();
         void Prepare_Text_Encoding_comboBox();
+
+
+        void Prepare_StatusBar();
 
 
         void set_GUI_mode(bool mode);

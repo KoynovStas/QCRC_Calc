@@ -24,6 +24,8 @@ class CRC_Calc_for_Hex : public QObject
         size_t size() { return hex_to_bytes.bytes.size(); }
         void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
 
+        quint32 get_num_words() { return hex_to_bytes.get_num_words(); }
+        quint32 get_num_bytes() { return hex_to_bytes.bytes.size(); }
 
 
     signals:

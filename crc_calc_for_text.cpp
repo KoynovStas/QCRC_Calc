@@ -21,7 +21,8 @@ CRC_Calc_for_Text::CRC_Calc_for_Text() :
     end_line_format(EndLine_LF),
 
     // private
-    encoding_index(0)
+    encoding_index(0),
+    num_lines(0)
 {
     qRegisterMetaType<uint64_t>("uint64_t");
 
@@ -69,13 +70,14 @@ void CRC_Calc_for_Text::calculate(const QString &data)
 void CRC_Calc_for_Text::_calculate(const QString &data)
 {
 
-    if(data == "")
+    if( data.isEmpty() )
     {
         emit error("String is empty");
-        emit calculated(0);
         return;
     }
 
+
+    num_lines = data.count('\n');
 
     replace_end_line(data);
     encoding_str();

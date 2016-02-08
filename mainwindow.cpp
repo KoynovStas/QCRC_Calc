@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Prepare_CRC_Param_comboBox();
     Prepare_Text_Encoding_comboBox();
+    Prepare_StatusBar();
 
     CRC_Param_to_GUI();
 
@@ -250,6 +251,16 @@ void MainWindow::Prepare_Text_Encoding_comboBox()
 
 
 
+void MainWindow::Prepare_StatusBar()
+{
+    status_label = new QLabel(this);
+    status_label->setFixedWidth(this->width()/2);
+
+    ui->statusBar->addWidget(status_label, 1);
+}
+
+
+
 void MainWindow::set_GUI_mode(bool mode)
 {
     static QWidget *widget_in_focus = NULL;
@@ -279,6 +290,17 @@ void MainWindow::set_GUI_mode(bool mode)
 void MainWindow::set_Result_CRC_for_custom_base()
 {
     ui->CRC_Res_Base_lineEdit->setText( QString::number(crc_result, ui->CRC_Res_Base_spinBox->value()) );
+}
+
+
+
+void MainWindow::set_Result_CRC_for_Hex(uint64_t value)
+{
+    set_Result_CRC(value);
+
+
+    show_stats(" Bytes: " + QString::number(Hex_calc.get_num_bytes(), 10) +
+               " Words: " + QString::number(Hex_calc.get_num_words(), 10) );
 }
 
 
@@ -330,6 +352,17 @@ void MainWindow::Hex_revers_data_checkBox_stateChanged(int state)
     Hex_calc.set_revers_data(state == Qt::Checked);
 
     Hex_calc.calculate(ui->Hex_tab_plainTextEdit->toPlainText());
+}
+
+
+
+void MainWindow::set_Result_CRC_for_Text(uint64_t value)
+{
+    set_Result_CRC(value);
+
+
+    show_stats(" Bytes: " + QString::number(Text_calc.get_num_bytes(), 10) +
+               " Lines: " + QString::number(Text_calc.get_num_lines(), 10) );
 }
 
 
@@ -386,6 +419,24 @@ void MainWindow::Text_BOM_checkBox_stateChanged(int state)
 
 
 
+void MainWindow::show_error(const QString &err)
+{
+    status_label->setStyleSheet("QLabel { color : red; }");
+    status_label->setText(err);
+
+    set_Result_CRC(0);
+}
+
+
+
+void MainWindow::show_stats(const QString &msg)
+{
+    status_label->setStyleSheet("QLabel { color : black; }");
+    status_label->setText(msg);
+}
+
+
+
 void MainWindow::calculate_CRC_for_Text()
 {
     set_GUI_mode(false);
@@ -422,7 +473,11 @@ void MainWindow::Prepare_Hex_calc()
 
 
     QObject::connect(&Hex_calc, SIGNAL(calculated(uint64_t)),
-                     this, SLOT(set_Result_CRC(uint64_t)) );
+                     this, SLOT(set_Result_CRC_for_Hex(uint64_t)) );
+
+
+    QObject::connect(&Hex_calc, SIGNAL(error(const QString &)),
+                     this, SLOT(show_error(const QString &)) );
 
 
     QObject::connect(&qucrc, SIGNAL(param_changed()),
@@ -439,10 +494,6 @@ void MainWindow::Prepare_Hex_calc()
 
     QObject::connect(ui->Hex_tab_plainTextEdit, SIGNAL(textChanged()),
                      this, SLOT(textChanged_for_Hex()) );
-
-
-//    QObject::connect(&Hex_calc, SIGNAL(error(QString)),
-//                     ui->statusBar,  SLOT(showMessage(QString)) );
 }
 
 
@@ -453,7 +504,11 @@ void MainWindow::Prepare_Text_calc()
 
 
     QObject::connect(&Text_calc, SIGNAL(calculated(uint64_t)),
-                     this, SLOT(set_Result_CRC(uint64_t)) );
+                     this, SLOT(set_Result_CRC_for_Text(uint64_t)) );
+
+
+    QObject::connect(&Text_calc, SIGNAL(error(const QString &)),
+                     this, SLOT(show_error(const QString &)) );
 
 
     QObject::connect(&qucrc, SIGNAL(param_changed()),

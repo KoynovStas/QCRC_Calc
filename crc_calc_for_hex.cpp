@@ -46,15 +46,13 @@ void CRC_Calc_for_Hex::_calculate(const QString &data)
 {
     if( hex_to_bytes.str_to_bytes(data) != 0 )
     {
-        emit calculated(0);
-        return;
+        return; // bad string
     }
 
 
     if(hex_to_bytes.bytes.size() == 0)
     {
         emit error("No Data");
-        emit calculated(0);
         return;
     }
 
