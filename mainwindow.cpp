@@ -172,9 +172,6 @@ void MainWindow::CRC_Param_from_GUI()
     if( !select_index_done )
         return;
 
-    set_GUI_mode(false);
-
-
     qucrc.set_bits( ui->CRC_Bits_spinBox->value() );
 
     qucrc.set_poly( ui->CRC_Poly_lineEdit->text().toULongLong(NULL, 16) );
