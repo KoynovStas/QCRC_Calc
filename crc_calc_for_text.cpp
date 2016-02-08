@@ -77,7 +77,7 @@ void CRC_Calc_for_Text::_calculate(const QString &data)
     }
 
 
-    num_lines = data.count('\n');
+    num_lines = data.count('\n') + 1; // +1 last string have no EndLine char
 
     replace_end_line(data);
     encoding_str();
