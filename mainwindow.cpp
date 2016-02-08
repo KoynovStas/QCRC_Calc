@@ -256,7 +256,15 @@ void MainWindow::Prepare_StatusBar()
     status_label = new QLabel(this);
     status_label->setFixedWidth(this->width()/2);
 
+    QLabel *URL_label = new QLabel(this);
+    URL_label->setText("<a href=\"https://github.com/KoynovStas/QCRC_Calc/\">Repo on GitHub</a>");
+    URL_label->setTextFormat(Qt::RichText);
+    URL_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    URL_label->setOpenExternalLinks(true);
+    URL_label->setAlignment(Qt::AlignRight);
+
     ui->statusBar->addWidget(status_label, 1);
+    ui->statusBar->addWidget(URL_label, 1);
 }
 
 
