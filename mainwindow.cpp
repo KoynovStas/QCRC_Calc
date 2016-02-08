@@ -297,7 +297,7 @@ void MainWindow::set_GUI_mode(bool mode)
 
 void MainWindow::set_Result_CRC_for_custom_base()
 {
-    ui->CRC_Res_Base_lineEdit->setText( QString::number(crc_result, ui->CRC_Res_Base_spinBox->value()) );
+    ui->CRC_Res_Base_lineEdit->setText( QString::number(crc_result, ui->CRC_Res_Base_spinBox->value()).toUpper() );
 }
 
 
