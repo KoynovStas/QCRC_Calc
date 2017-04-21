@@ -30,7 +30,7 @@ CONFIG(release, debug|release) {
 
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH = qml
+QML_IMPORT_PATH = qml controls
 
 
 
@@ -64,6 +64,7 @@ HEADERS += src/*.h
 
 
 
-RESOURCES += qtquickcontrols2.conf \
-             $$files(qml/*.qml)
+RESOURCES += qtquickcontrols2.conf         \
+             $$files(qml/*.qml)            \
+             $$files(qml/controls/*.qml)
 

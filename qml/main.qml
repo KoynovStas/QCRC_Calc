@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.1
+import QtQuick.Layouts 1.3
 
 
 
@@ -16,7 +17,20 @@ ApplicationWindow {
     title: qsTr("Hello World")
     visible: true
 
-    Rectangle {
+
+    ColumnLayout {
+        id: layout
+
         anchors.fill: parent
+        spacing: 6
+
+
+        CRCParamFrame {
+            id: crc_param
+
+            Layout.fillWidth: true
+
+            anchors.top: parent.top
+        }
     }
 }
