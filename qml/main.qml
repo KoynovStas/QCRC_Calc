@@ -39,6 +39,7 @@ ApplicationWindow {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumHeight: 200
 
             anchors.top: crc_param.bottom
         }
