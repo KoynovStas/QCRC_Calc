@@ -43,5 +43,14 @@ ApplicationWindow {
             anchors.top: crc_param.bottom
         }
 
+
+        CRCResultFrame {
+            id: crc_result
+
+            Layout.fillWidth: true
+
+            anchors.top: data_tabs.bottom
+            anchors.bottom: parent.bottom
+        }
     }
 }
