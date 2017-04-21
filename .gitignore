@@ -1,25 +1,60 @@
-# Object files
+### Qt ###
+# C++ objects and libs
+
+*.slo
+*.lo
 *.o
-*.o.*
-*.ko
-*.obj
-*.elf
-
-
-
-# Libraries
-*.lib
 *.a
 *.la
-*.lo
-
-
-
-# Shared objects (inc. Windows DLLs)
-*.dll
+*.lai
 *.so
-*.so.*
+*.dll
 *.dylib
+
+# Qt-es
+
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*build-*
+
+
+
+# QtCreator
+
+# A listing of all the files included in the project
+*.files
+
+# Include directories
+*.includes
+
+# Project configuration settings like predefined Macros
+*.config
+
+# Qt Creator settings
+*.creator
+
+# User project settings
+*.creator.user
+
+# Qt Creator backups
+*.autosave
+
+
+# QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# QtCtreator CMake
+CMakeLists.txt.user*
 
 
 
@@ -31,24 +66,6 @@ release/*
 
 # Temp files
 *.*~
-
-
-# ui forms files
-ui_*.h
-
-
-
-# Configs for QT_Creator (I use QT_Creator as IDE)
-*.config
-*.creator
-*.creator.user
-*.pro.user
-*.files
-*.includes
-
-
-# It's QT project ignoring Makefile
-Makefile*
 
 
 
