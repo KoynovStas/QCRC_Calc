@@ -32,5 +32,16 @@ ApplicationWindow {
 
             anchors.top: parent.top
         }
+
+
+        DataTabsFrame {
+            id: data_tabs
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            anchors.top: crc_param.bottom
+        }
+
     }
 }
