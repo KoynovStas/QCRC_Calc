@@ -81,7 +81,7 @@ QStringList QuCRC_t::crc_names() const
 
 
 
-int QuCRC_t::set_bits(uint8_t new_bits)
+int QuCRC_t::set_bits(quint8 new_bits)
 {
     if( new_bits == ucrc.get_bits() )
         return 0;
@@ -90,8 +90,9 @@ int QuCRC_t::set_bits(uint8_t new_bits)
     int ret = ucrc.set_bits(new_bits);
     if( ret == 0 )
     {
-        update_index();
+        emit bitsChanged(new_bits);
         emit param_changed();
+        set_index(find_index());
     }
 
     return ret;

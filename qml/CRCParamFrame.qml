@@ -56,7 +56,9 @@ Frame {
 
                 to: 64
                 from: 1
-                value: 1
+                value: uCRC.bits
+
+                onValueChanged: uCRC.bits = value
 
                 Layout.maximumWidth: 120
                 Layout.preferredWidth: 150

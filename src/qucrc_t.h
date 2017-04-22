@@ -86,6 +86,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         // for QML bindings
         Q_PROPERTY(QStringList crc_names READ crc_names CONSTANT)
         Q_PROPERTY(int index READ get_index WRITE set_index NOTIFY indexChanged)
+        Q_PROPERTY(quint8 bits READ get_bits WRITE set_bits NOTIFY bitsChanged)
 
         QStringList crc_names() const;
 
@@ -94,11 +95,12 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
         void param_changed();
         void indexChanged(int index);
+        void bitsChanged(quint8 bits);
 
 
     public slots:
         // get param CRC
-        uint8_t  get_bits()    const { return ucrc.get_bits();   }
+        quint8  get_bits()    const { return ucrc.get_bits();   }
         uint64_t get_poly()    const { return ucrc.get_poly();   }
         uint64_t get_init()    const { return ucrc.get_init();   }
         uint64_t get_xor_out() const { return ucrc.get_xor_out();}
@@ -111,7 +113,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         // set param CRC
-        int  set_bits(uint8_t new_bits);
+        int  set_bits(quint8 new_bits);
         void set_poly(uint64_t new_poly);
         void set_init(uint64_t new_init);
         void set_xor_out(uint64_t new_xor_out);
