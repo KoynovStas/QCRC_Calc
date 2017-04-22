@@ -36,13 +36,11 @@
 
 #include "qucrc_t.h"
 
-
+#include <QDebug>
 
 
 
 const std::vector<CRC_Param_Info> QuCRC_t::CRC_List = QuCRC_t::get_crc_list();
-
-
 
 
 
@@ -67,6 +65,18 @@ QuCRC_t::QuCRC_t(QObject *parent) :
     QObject(parent)
 {
     index = find_index();
+}
+
+
+
+QStringList QuCRC_t::crc_names() const
+{
+    QStringList list;
+
+    for(size_t i = 0; i < CRC_List.size(); ++i)
+        list.push_back(CRC_List[i].name);
+
+    return list;
 }
 
 

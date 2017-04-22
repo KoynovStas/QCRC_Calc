@@ -39,6 +39,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QQmlListProperty>
+
 #include <vector>
 
 #include "ucrc_t.h"
@@ -80,6 +82,11 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         static const std::vector<CRC_Param_Info> CRC_List;
+
+        // for QML bindings
+        Q_PROPERTY(QStringList crc_names READ crc_names CONSTANT)
+
+        QStringList crc_names() const;
 
 
     signals:
