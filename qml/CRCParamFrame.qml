@@ -82,7 +82,9 @@ Frame {
 
                 text: qsTr("RefOut")
 
-                onCheckedChanged: layout3.visible = !layout3.visible;
+                checked: uCRC.ref_out
+
+                onCheckedChanged: uCRC.ref_out = checked
             }
 
 

@@ -170,8 +170,9 @@ void QuCRC_t::set_ref_out(bool new_ref_out)
     ucrc.set_ref_out(new_ref_out);
 
 
-    update_index();
+    emit ref_outChanged(new_ref_out);
     emit param_changed();
+    set_index(find_index());
 }
 
 
