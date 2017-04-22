@@ -194,29 +194,17 @@ int QuCRC_t::set_index(int new_index)
 
 
     index = new_index;
-
-
-    //set crc param for new_index
-    CRC_Param_Info tmp = CRC_List[new_index];
-
-    ucrc.set_bits(tmp.bits);
-    ucrc.set_poly(tmp.poly);
-    ucrc.set_init(tmp.init);
-    ucrc.set_xor_out(tmp.xor_out);
-    ucrc.set_ref_in(tmp.ref_in);
-    ucrc.set_ref_out(tmp.ref_out);
-
-
     emit indexChanged(index);
-    emit param_changed();
 
+
+    update_param(new_index);
 
     return 0; //good job
 }
 
 
 
-uint32_t QuCRC_t::find_index()
+int QuCRC_t::find_index()
 {
 
     for(size_t i = 0; i < CRC_List.size(); ++i)
@@ -235,14 +223,14 @@ uint32_t QuCRC_t::find_index()
     }
 
 
-    return 0; //not found
+    return 0; //not found (return 0 - custom)
 }
 
 
 
 void QuCRC_t::update_index()
 {
-    uint32_t new_index = find_index();
+    int new_index = find_index();
 
     if( index == new_index )
         return;
@@ -250,6 +238,26 @@ void QuCRC_t::update_index()
 
     index = new_index;
     emit indexChanged(index);
+}
+
+
+
+void QuCRC_t::update_param(int new_index)
+{
+    if(new_index == 0)
+        return; //no action for Custom CRC
+
+
+    CRC_Param_Info tmp = CRC_List[new_index];
+
+    ucrc.set_bits(tmp.bits);
+    ucrc.set_poly(tmp.poly);
+    ucrc.set_init(tmp.init);
+    ucrc.set_xor_out(tmp.xor_out);
+    ucrc.set_ref_in(tmp.ref_in);
+    ucrc.set_ref_out(tmp.ref_out);
+
+    emit param_changed();
 }
 
 

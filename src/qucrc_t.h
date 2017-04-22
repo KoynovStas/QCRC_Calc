@@ -146,8 +146,9 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
         int index;
 
-        uint32_t find_index();
-        void     update_index();
+        int  find_index();
+        void update_index();
+        void update_param(int new_index);
 
         static const std::vector<CRC_Param_Info> get_crc_list();
 };
