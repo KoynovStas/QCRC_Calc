@@ -167,7 +167,7 @@ Frame {
                 label.text: "TopBit(Hex):"
 
                 textField.readOnly: true
-                textField.text: "0xFFFFFF"
+                textField.text: uCRC.top_bit_str
                 textField.color: "gray"
             }
         }

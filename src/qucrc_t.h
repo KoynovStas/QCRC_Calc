@@ -93,6 +93,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         //extended param (info) CRC
         Q_PROPERTY(QString check_str READ get_check_str NOTIFY paramChanged)
         Q_PROPERTY(QString crc_mask_str READ get_crc_mask_str NOTIFY paramChanged)
+        Q_PROPERTY(QString top_bit_str READ get_top_bit_str NOTIFY paramChanged)
 
 
         QStringList crc_names() const;
@@ -122,8 +123,9 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         //extended param (info) CRC
-        QString get_check_str() { return "0x" + QString::number(get_check(), 16).toUpper(); }
-        QString get_crc_mask_str() { return "0x" + QString::number(get_crc_mask(), 16).toUpper(); }
+        QString get_check_str()    { return "0x" + QString::number(get_check(), 16).toUpper();   }
+        QString get_crc_mask_str() { return "0x" + QString::number(get_crc_mask(), 16).toUpper();}
+        QString get_top_bit_str()  { return "0x" + QString::number(get_top_bit(), 16).toUpper(); }
 
 
         // set param CRC
