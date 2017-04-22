@@ -151,7 +151,7 @@ Frame {
                 label.text: "Check(Hex):"
 
                 textField.readOnly: true
-                textField.text: "0xFFFFFF"
+                textField.text: uCRC.check_str
                 textField.color: "gray"
             }
 

@@ -91,7 +91,7 @@ int QuCRC_t::set_bits(quint8 new_bits)
     if( ret == 0 )
     {
         emit bitsChanged(new_bits);
-        emit param_changed();
+        emit paramChanged();
         set_index(find_index());
     }
 
@@ -110,7 +110,7 @@ void QuCRC_t::set_poly(uint64_t new_poly)
 
 
     update_index();
-    emit param_changed();
+    emit paramChanged();
 }
 
 
@@ -125,7 +125,7 @@ void QuCRC_t::set_init(uint64_t new_init)
 
 
     update_index();
-    emit param_changed();
+    emit paramChanged();
 }
 
 
@@ -140,7 +140,7 @@ void QuCRC_t::set_xor_out(uint64_t new_xor_out)
 
 
     update_index();
-    emit param_changed();
+    emit paramChanged();
 }
 
 
@@ -155,7 +155,7 @@ void QuCRC_t::set_ref_in(bool new_ref_in)
 
 
     emit ref_inChanged(new_ref_in);
-    emit param_changed();
+    emit paramChanged();
     set_index(find_index());
 }
 
@@ -171,7 +171,7 @@ void QuCRC_t::set_ref_out(bool new_ref_out)
 
 
     emit ref_outChanged(new_ref_out);
-    emit param_changed();
+    emit paramChanged();
     set_index(find_index());
 }
 
@@ -260,7 +260,7 @@ void QuCRC_t::update_param(int new_index)
     set_ref_in(tmp.ref_in);
     set_ref_out(tmp.ref_out);
 
-    emit param_changed();
+    emit paramChanged();
 }
 
 

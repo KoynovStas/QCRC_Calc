@@ -90,12 +90,16 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         Q_PROPERTY(bool ref_in READ get_ref_in WRITE set_ref_in NOTIFY ref_inChanged)
         Q_PROPERTY(bool ref_out READ get_ref_out WRITE set_ref_out NOTIFY ref_outChanged)
 
+        //extended param (info) CRC
+        Q_PROPERTY(QString check_str READ get_check_str NOTIFY paramChanged)
+
+
         QStringList crc_names() const;
 
 
     signals:
 
-        void param_changed();
+        void paramChanged();
         void indexChanged(int index);
         void bitsChanged(quint8 bits);
         void ref_inChanged(bool ref_in);
@@ -114,6 +118,10 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         uint64_t get_crc_init()const { return ucrc.get_crc_init();} //crc_init = reflect(init, bits) if RefIn, else = init
         uint64_t get_top_bit() const { return ucrc.get_top_bit(); }
         uint64_t get_crc_mask()const { return ucrc.get_crc_mask();}
+
+
+        //extended param (info) CRC
+        QString get_check_str() { return "0x" + QString::number(get_check(), 16).toUpper(); }
 
 
         // set param CRC
