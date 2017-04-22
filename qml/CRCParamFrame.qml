@@ -159,7 +159,7 @@ Frame {
                 label.text: "Mask(Hex):"
 
                 textField.readOnly: true
-                textField.text: "0xFFFFFF"
+                textField.text: uCRC.crc_mask_str
                 textField.color: "gray"
             }
 
