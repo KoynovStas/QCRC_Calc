@@ -251,12 +251,12 @@ void QuCRC_t::update_param(int new_index)
 
     CRC_Param_Info tmp = CRC_List[new_index];
 
-    ucrc.set_bits(tmp.bits);
-    ucrc.set_poly(tmp.poly);
-    ucrc.set_init(tmp.init);
-    ucrc.set_xor_out(tmp.xor_out);
-    ucrc.set_ref_in(tmp.ref_in);
-    ucrc.set_ref_out(tmp.ref_out);
+    set_bits(tmp.bits);
+    set_poly(tmp.poly);
+    set_init(tmp.init);
+    set_xor_out(tmp.xor_out);
+    set_ref_in(tmp.ref_in);
+    set_ref_out(tmp.ref_out);
 
     emit param_changed();
 }
