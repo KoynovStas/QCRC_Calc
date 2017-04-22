@@ -183,13 +183,13 @@ uint64_t QuCRC_t::get_check()
 
 
 
-int QuCRC_t::set_index(uint32_t new_index)
+int QuCRC_t::set_index(int new_index)
 {
-    if( new_index == index)
-        return 0; //good job
+    if( new_index == index )
+        return 0; //good job (index already set - no action)
 
 
-    if( new_index >= CRC_List.size() )
+    if( (size_t)new_index >= CRC_List.size() )
         return -1; // new_index is bad
 
 
@@ -207,7 +207,7 @@ int QuCRC_t::set_index(uint32_t new_index)
     ucrc.set_ref_out(tmp.ref_out);
 
 
-    emit index_changed(index);
+    emit indexChanged(index);
     emit param_changed();
 
 
@@ -249,7 +249,7 @@ void QuCRC_t::update_index()
 
 
     index = new_index;
-    emit index_changed(index);
+    emit indexChanged(index);
 }
 
 

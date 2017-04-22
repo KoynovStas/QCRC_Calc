@@ -30,9 +30,14 @@ Frame {
             ComboBox {
                 id: crc_name_comboBox
 
-                model: uCRC.crc_names
                 implicitWidth: 150
                 Layout.minimumWidth: 200
+
+                model: uCRC.crc_names
+
+                currentIndex: uCRC.index
+
+                onCurrentIndexChanged: uCRC.index = currentIndex
             }
 
 

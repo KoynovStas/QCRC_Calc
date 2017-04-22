@@ -85,6 +85,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
         // for QML bindings
         Q_PROPERTY(QStringList crc_names READ crc_names CONSTANT)
+        Q_PROPERTY(int index READ get_index WRITE set_index NOTIFY indexChanged)
 
         QStringList crc_names() const;
 
@@ -92,7 +93,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
     signals:
 
         void param_changed();
-        void index_changed(uint32_t index);
+        void indexChanged(int index);
 
 
     public slots:
@@ -135,15 +136,15 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         uint64_t get_check();
 
 
-        uint32_t get_index() const { return index; }
-        int      set_index(uint32_t new_index);
+        int get_index() const { return index; }
+        int set_index(int new_index);
 
 
     private:
 
         uCRC_t   ucrc;
 
-        uint32_t index;
+        int index;
 
         uint32_t find_index();
         void     update_index();
