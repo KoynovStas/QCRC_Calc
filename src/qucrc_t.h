@@ -87,6 +87,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         Q_PROPERTY(QStringList crc_names READ crc_names CONSTANT)
         Q_PROPERTY(int index READ get_index WRITE set_index NOTIFY indexChanged)
         Q_PROPERTY(quint8 bits READ get_bits WRITE set_bits NOTIFY bitsChanged)
+        Q_PROPERTY(bool ref_in READ get_ref_in WRITE set_ref_in NOTIFY ref_inChanged)
 
         QStringList crc_names() const;
 
@@ -96,6 +97,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         void param_changed();
         void indexChanged(int index);
         void bitsChanged(quint8 bits);
+        void ref_inChanged(bool ref_in);
 
 
     public slots:

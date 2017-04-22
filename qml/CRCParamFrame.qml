@@ -70,6 +70,10 @@ Frame {
                 id: crc_RefIn_checkBox
 
                 text: qsTr("RefIn")
+
+                checked: uCRC.ref_in
+
+                onCheckedChanged: uCRC.ref_in = checked
             }
 
 

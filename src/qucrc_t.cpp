@@ -154,8 +154,9 @@ void QuCRC_t::set_ref_in(bool new_ref_in)
     ucrc.set_ref_in(new_ref_in);
 
 
-    update_index();
+    emit ref_inChanged(new_ref_in);
     emit param_changed();
+    set_index(find_index());
 }
 
 
