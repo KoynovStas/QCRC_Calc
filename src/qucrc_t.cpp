@@ -95,6 +95,13 @@ void QuCRC_t::set_init_str(QString &new_init)
 
 
 
+void QuCRC_t::set_xor_out_str(QString &new_xor_out)
+{
+    set_xor_out(new_xor_out.toULongLong(NULL, 16));
+}
+
+
+
 int QuCRC_t::set_bits(quint8 new_bits)
 {
     if( new_bits == ucrc.get_bits() )
@@ -155,8 +162,9 @@ void QuCRC_t::set_xor_out(uint64_t new_xor_out)
     ucrc.set_xor_out(new_xor_out);
 
 
-    update_index();
+    emit xor_outChanged();
     emit paramChanged();
+    set_index(find_index());
 }
 
 

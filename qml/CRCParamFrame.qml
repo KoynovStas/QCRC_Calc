@@ -134,7 +134,10 @@ Frame {
 
             MyTextEdit {
                 label.text: "XorOut(Hex):"
-//                Layout.fillWidth: true
+
+                textField.text: uCRC.xor_out_str
+
+                textField.onTextChanged: uCRC.xor_out_str = textField.text
             }
 
         }
