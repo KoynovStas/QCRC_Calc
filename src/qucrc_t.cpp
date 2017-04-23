@@ -88,6 +88,13 @@ void QuCRC_t::set_poly_str(QString &new_poly)
 
 
 
+void QuCRC_t::set_init_str(QString &new_init)
+{
+    set_init(new_init.toULongLong(NULL, 16));
+}
+
+
+
 int QuCRC_t::set_bits(quint8 new_bits)
 {
     if( new_bits == ucrc.get_bits() )
@@ -132,8 +139,9 @@ void QuCRC_t::set_init(uint64_t new_init)
     ucrc.set_init(new_init);
 
 
-    update_index();
+    emit initChanged();
     emit paramChanged();
+    set_index(find_index());
 }
 
 

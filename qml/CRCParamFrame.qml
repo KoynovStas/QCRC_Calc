@@ -126,7 +126,10 @@ Frame {
 
             MyTextEdit {
                 label.text: "Init(Hex):"
-//                Layout.fillWidth: true
+
+                textField.text: uCRC.init_str
+
+                textField.onTextChanged: uCRC.init_str = textField.text
             }
 
             MyTextEdit {
