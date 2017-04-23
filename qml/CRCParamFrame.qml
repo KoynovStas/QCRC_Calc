@@ -118,7 +118,10 @@ Frame {
 
             MyTextEdit {
                 label.text: "Poly(Hex):"
-//                Layout.fillWidth: true
+
+                textField.text: uCRC.poly_str
+
+                textField.onTextChanged: uCRC.poly_str = textField.text
             }
 
             MyTextEdit {

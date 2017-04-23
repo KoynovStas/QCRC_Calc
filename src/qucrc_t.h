@@ -87,6 +87,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         Q_PROPERTY(QStringList crc_names READ crc_names CONSTANT)
         Q_PROPERTY(int index READ get_index WRITE set_index NOTIFY indexChanged)
         Q_PROPERTY(quint8 bits READ get_bits WRITE set_bits NOTIFY bitsChanged)
+        Q_PROPERTY(QString poly_str READ get_poly_str  WRITE set_poly_str NOTIFY polyChanged)
         Q_PROPERTY(bool ref_in READ get_ref_in WRITE set_ref_in NOTIFY ref_inChanged)
         Q_PROPERTY(bool ref_out READ get_ref_out WRITE set_ref_out NOTIFY ref_outChanged)
 
@@ -104,6 +105,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         void paramChanged();
         void indexChanged(int index);
         void bitsChanged(quint8 bits);
+        void polyChanged();
         void ref_inChanged(bool ref_in);
         void ref_outChanged(bool ref_out);
 
@@ -122,10 +124,15 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         uint64_t get_crc_mask()const { return ucrc.get_crc_mask();}
 
 
+        QString get_poly_str() { return "0x" + QString::number(get_poly(), 16).toUpper(); }
+
         //extended param (info) CRC
         QString get_check_str()    { return "0x" + QString::number(get_check(), 16).toUpper();   }
         QString get_crc_mask_str() { return "0x" + QString::number(get_crc_mask(), 16).toUpper();}
         QString get_top_bit_str()  { return "0x" + QString::number(get_top_bit(), 16).toUpper(); }
+
+
+        void set_poly_str(QString &new_poly);
 
 
         // set param CRC

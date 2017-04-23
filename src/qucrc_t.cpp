@@ -81,6 +81,13 @@ QStringList QuCRC_t::crc_names() const
 
 
 
+void QuCRC_t::set_poly_str(QString &new_poly)
+{
+    set_poly(new_poly.toULongLong(NULL, 16));
+}
+
+
+
 int QuCRC_t::set_bits(quint8 new_bits)
 {
     if( new_bits == ucrc.get_bits() )
@@ -109,8 +116,9 @@ void QuCRC_t::set_poly(uint64_t new_poly)
     ucrc.set_poly(new_poly);
 
 
-    update_index();
+    emit polyChanged();
     emit paramChanged();
+    set_index(find_index());
 }
 
 
