@@ -80,10 +80,16 @@ Frame {
             id: comboBox1
 
             anchors.left: label1.right
-
             Layout.bottomMargin: 10
-            Layout.minimumWidth: 100
-            Layout.maximumWidth: 100
+            Layout.minimumWidth: 150
+            Layout.maximumWidth: 200
+
+
+            model: calc_text.end_line_names
+
+            currentIndex: calc_text.end_line_index
+
+            onCurrentIndexChanged: calc_text.end_line_index = currentIndex
         }
 
 
@@ -112,6 +118,9 @@ Frame {
         anchors.bottom: parent.bottom
         anchors.left:   parent.left
         anchors.right:  parent.right
+
+
+        textArea.onTextChanged: calc_text.calculate(textArea.text)
     }
 
 }

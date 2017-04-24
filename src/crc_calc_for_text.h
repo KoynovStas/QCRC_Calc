@@ -4,6 +4,7 @@
 
 #include <QObject>
 #include <QList>
+#include <QHash>
 #include <QByteArray>
 
 #include "qucrc_t.h"
@@ -13,13 +14,9 @@
 
 
 
-class CRC_Calc_for_Text : public QObject
+class EndLine
 {
-    Q_OBJECT
-
-
     public:
-
 
         enum EndLineFormat
         {
@@ -33,14 +30,47 @@ class CRC_Calc_for_Text : public QObject
         };
 
 
+        static const QHash<qint8, EndLine> end_line_map;
+
+
+
+        EndLine(): name("LF (Unix/Mac)"), value("\n") {}
+        EndLine(const char * _name, const char * _value): name(_name), value(_value) {}
+
+        QString       name;
+        QLatin1String value;
+};
+
+
+
+
+
+class CRC_Calc_for_Text : public QObject
+{
+    Q_OBJECT
+
+
+    public:
+
+        // for QML bindings
+        Q_PROPERTY(QStringList end_line_names READ end_line_names CONSTANT)
+        Q_PROPERTY(int end_line_index READ get_end_line_index WRITE set_end_line_index NOTIFY end_line_indexChanged)
+
+        QStringList end_line_names() const;
+
+        int get_end_line_index() const { return end_line_index; }
+        int set_end_line_index(int new_index);
+
+
+
         explicit CRC_Calc_for_Text();
         ~CRC_Calc_for_Text();
 
 
         static const QList<QByteArray> Encodings;
 
-        bool           with_BOM;
-        EndLineFormat  end_line_format;
+        bool with_BOM;
+        int  end_line_index;
 
 
         void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
@@ -54,6 +84,8 @@ class CRC_Calc_for_Text : public QObject
 
 
     signals:
+
+        void end_line_indexChanged();
         void calculated(uint64_t value);
         void error(const QString & err);
 
