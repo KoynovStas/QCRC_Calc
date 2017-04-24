@@ -28,6 +28,37 @@ const QHash<qint8, EndLine> EndLine::end_line_map =
 
 
 
+CRC_Calc_for_Text::CRC_Calc_for_Text() :
+    QObject(NULL),
+
+    // private
+    encoding_index(0),
+    BOM(false),
+    end_line_index(EndLine::EndLine_LF),
+    num_lines(0)
+{
+    qRegisterMetaType<uint64_t>("uint64_t");
+
+
+//    this->moveToThread(&thread);
+
+//    thread.start();
+
+
+    QObject::connect(this, SIGNAL(run_calculate(const QString &)),
+                     this, SLOT(_calculate(const QString &))  );
+}
+
+
+
+CRC_Calc_for_Text::~CRC_Calc_for_Text()
+{
+//    thread.quit();
+//    thread.wait();
+}
+
+
+
 QStringList CRC_Calc_for_Text::end_line_names() const
 {
     QStringList list;
@@ -59,35 +90,13 @@ int CRC_Calc_for_Text::set_end_line_index(int new_index)
 
 
 
-CRC_Calc_for_Text::CRC_Calc_for_Text() :
-    QObject(NULL),
-
-    // public
-    with_BOM(false),
-    end_line_index(EndLine::EndLine_LF),
-
-    // private
-    encoding_index(0),
-    num_lines(0)
+void CRC_Calc_for_Text::set_BOM(bool new_BOM)
 {
-    qRegisterMetaType<uint64_t>("uint64_t");
+    if( new_BOM == BOM )
+        return; //no action
 
-
-//    this->moveToThread(&thread);
-
-//    thread.start();
-
-
-    QObject::connect(this, SIGNAL(run_calculate(const QString &)),
-                     this, SLOT(_calculate(const QString &))  );
-}
-
-
-
-CRC_Calc_for_Text::~CRC_Calc_for_Text()
-{
-//    thread.quit();
-//    thread.wait();
+    BOM = new_BOM;
+    emit BOMChanged();
 }
 
 
@@ -157,7 +166,7 @@ void CRC_Calc_for_Text::encoding_str()
     else
     {
         QTextCodec *text_codec = QTextCodec::codecForName(Encodings[encoding_index]);
-        QTextCodec::ConverterState state(with_BOM ? QTextCodec::DefaultConversion : QTextCodec::IgnoreHeader);
+        QTextCodec::ConverterState state(BOM ? QTextCodec::DefaultConversion : QTextCodec::IgnoreHeader);
 
         raw_str = text_codec->fromUnicode(tmp_str.constData(), tmp_str.size(), &state);
     }

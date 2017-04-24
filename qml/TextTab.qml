@@ -61,6 +61,10 @@ Frame {
             anchors.left: comboBox.right
 
             leftPadding: 20
+
+            checked: calc_text.BOM
+
+            onCheckedChanged: calc_text.BOM = checked
         }
 
 

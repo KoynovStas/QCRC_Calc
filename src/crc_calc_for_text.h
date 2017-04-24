@@ -52,25 +52,26 @@ class CRC_Calc_for_Text : public QObject
 
     public:
 
+        explicit CRC_Calc_for_Text();
+        ~CRC_Calc_for_Text();
+
+
         // for QML bindings
         Q_PROPERTY(QStringList end_line_names READ end_line_names CONSTANT)
         Q_PROPERTY(int end_line_index READ get_end_line_index WRITE set_end_line_index NOTIFY end_line_indexChanged)
+        Q_PROPERTY(bool BOM READ get_BOM WRITE set_BOM NOTIFY BOMChanged)
+
 
         QStringList end_line_names() const;
 
         int get_end_line_index() const { return end_line_index; }
         int set_end_line_index(int new_index);
 
-
-
-        explicit CRC_Calc_for_Text();
-        ~CRC_Calc_for_Text();
+        bool get_BOM() const { return BOM; }
+        void set_BOM(bool new_BOM);
 
 
         static const QList<QByteArray> Encodings;
-
-        bool with_BOM;
-        int  end_line_index;
 
 
         void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
@@ -86,6 +87,7 @@ class CRC_Calc_for_Text : public QObject
     signals:
 
         void end_line_indexChanged();
+        void BOMChanged();
         void calculated(uint64_t value);
         void error(const QString & err);
 
@@ -108,6 +110,9 @@ class CRC_Calc_for_Text : public QObject
         const QuCRC_t  *ucrc;
         QExecThread     thread;
         size_t          encoding_index;
+
+        bool            BOM;
+        int             end_line_index;
 
         QString         tmp_str;
         QByteArray      raw_str;
