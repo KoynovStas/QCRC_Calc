@@ -8,7 +8,7 @@
 #include <QByteArray>
 
 #include "qucrc_t.h"
-#include "qexecthread.h"
+
 
 
 
@@ -53,16 +53,21 @@ class CRC_Calc_for_Text : public QObject
     public:
 
         explicit CRC_Calc_for_Text();
-        ~CRC_Calc_for_Text();
 
 
         // for QML bindings
         Q_PROPERTY(QStringList end_line_names READ end_line_names CONSTANT)
         Q_PROPERTY(int end_line_index READ get_end_line_index WRITE set_end_line_index NOTIFY end_line_indexChanged)
+
+        Q_PROPERTY(QStringList encodings READ encodings CONSTANT)
+        Q_PROPERTY(int encoding_index READ get_encoding_index WRITE set_encoding_index NOTIFY encoding_indexChanged)
+
         Q_PROPERTY(bool BOM READ get_BOM WRITE set_BOM NOTIFY BOMChanged)
 
 
         QStringList end_line_names() const;
+        QStringList encodings() const;
+
 
         int get_end_line_index() const { return end_line_index; }
         int set_end_line_index(int new_index);
@@ -76,8 +81,8 @@ class CRC_Calc_for_Text : public QObject
 
         void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
 
-        size_t get_encoding_index() { return encoding_index; }
-        int    set_encoding_index(size_t new_index);
+        int get_encoding_index() { return encoding_index; }
+        int set_encoding_index(int new_index);
 
         size_t get_num_lines() { return num_lines; }
         size_t get_num_bytes() { return raw_str.size(); }
@@ -87,6 +92,7 @@ class CRC_Calc_for_Text : public QObject
     signals:
 
         void end_line_indexChanged();
+        void encoding_indexChanged();
         void BOMChanged();
         void calculated(uint64_t value);
         void error(const QString & err);
@@ -108,8 +114,7 @@ class CRC_Calc_for_Text : public QObject
 
     private:
         const QuCRC_t  *ucrc;
-        QExecThread     thread;
-        size_t          encoding_index;
+        int             encoding_index;
 
         bool            BOM;
         int             end_line_index;

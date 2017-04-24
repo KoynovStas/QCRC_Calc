@@ -40,21 +40,9 @@ CRC_Calc_for_Text::CRC_Calc_for_Text() :
     qRegisterMetaType<uint64_t>("uint64_t");
 
 
-//    this->moveToThread(&thread);
-
-//    thread.start();
-
 
     QObject::connect(this, SIGNAL(run_calculate(const QString &)),
                      this, SLOT(_calculate(const QString &))  );
-}
-
-
-
-CRC_Calc_for_Text::~CRC_Calc_for_Text()
-{
-//    thread.quit();
-//    thread.wait();
 }
 
 
@@ -65,6 +53,18 @@ QStringList CRC_Calc_for_Text::end_line_names() const
 
     for(int i = 0; i < EndLine::end_line_map.size(); ++i)
         list.push_back(EndLine::end_line_map[i].name);
+
+    return list;
+}
+
+
+
+QStringList CRC_Calc_for_Text::encodings() const
+{
+    QStringList list;
+
+    for(int i = 0; i < Encodings.size(); ++i)
+        list.push_back(Encodings[i]);
 
     return list;
 }
@@ -101,13 +101,18 @@ void CRC_Calc_for_Text::set_BOM(bool new_BOM)
 
 
 
-int CRC_Calc_for_Text::set_encoding_index(size_t new_index)
+int CRC_Calc_for_Text::set_encoding_index(int new_index)
 {
-    if( new_index >= (size_t)Encodings.size() )
+    if( encoding_index == new_index )
+        return 0; //no action
+
+
+    if( new_index >= Encodings.size() )
         return -1; //error
 
 
     encoding_index = new_index;
+    emit encoding_indexChanged();
 
 
     return 0; //good job

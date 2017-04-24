@@ -45,10 +45,14 @@ Frame {
             anchors.left: label.right
 
             Layout.bottomMargin: 10
-            Layout.minimumWidth: 300
+            Layout.minimumWidth: 290
             Layout.maximumWidth: 300
 
-            model: ["First66666666666666661111111111111112222222222222222", "Second", "Third"]
+            model: calc_text.encodings
+
+            currentIndex: calc_text.encoding_index
+
+            onCurrentIndexChanged: calc_text.encoding_index = currentIndex
         }
 
 
