@@ -40,6 +40,17 @@ void CRC_Calc_for_Hex::set_revers_chunk(bool value)
 
 
 
+void CRC_Calc_for_Hex::set_revers_data(bool value)
+{
+    if( hex_to_bytes.revers_data != value )
+    {
+        hex_to_bytes.revers_data  = value;
+        emit revers_dataChanged();
+    }
+}
+
+
+
 void CRC_Calc_for_Hex::_calculate(const QString &data)
 {
     if( hex_to_bytes.str_to_bytes(data) != 0 )

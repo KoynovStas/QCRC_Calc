@@ -50,6 +50,10 @@ Frame {
             anchors.left: checkBox.right
 
             bottomPadding: 20
+
+            checked: calc_hex.revers_data
+
+            onCheckedChanged: calc_hex.revers_data = checked
         }
 
 
