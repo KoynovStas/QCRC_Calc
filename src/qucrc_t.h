@@ -51,22 +51,22 @@
 
 struct CRC_Param_Info
 {
-    QString  name;
-    uint8_t  bits;
-    uint64_t poly;
-    uint64_t init;
-    bool     ref_in;
-    bool     ref_out;
-    uint64_t xor_out;
+    QString name;
+    quint8  bits;
+    quint64 poly;
+    quint64 init;
+    bool    ref_in;
+    bool    ref_out;
+    quint64 xor_out;
 
 
-    CRC_Param_Info( QString  _name,
-                    uint8_t  _bits,
-                    uint64_t _poly,
-                    uint64_t _init,
-                    bool     _ref_in,
-                    bool     _ref_out,
-                    uint64_t _xor_out);
+    CRC_Param_Info( QString _name,
+                    quint8  _bits,
+                    quint64 _poly,
+                    quint64 _init,
+                    bool    _ref_in,
+                    bool    _ref_out,
+                    quint64 _xor_out);
 };
 
 
@@ -117,15 +117,15 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
     public slots:
         // get param CRC
         quint8  get_bits()    const { return ucrc.get_bits();   }
-        uint64_t get_poly()    const { return ucrc.get_poly();   }
-        uint64_t get_init()    const { return ucrc.get_init();   }
-        uint64_t get_xor_out() const { return ucrc.get_xor_out();}
-        bool     get_ref_in()  const { return ucrc.get_ref_in(); }
-        bool     get_ref_out() const { return ucrc.get_ref_out();}
+        quint64 get_poly()    const { return ucrc.get_poly();   }
+        quint64 get_init()    const { return ucrc.get_init();   }
+        quint64 get_xor_out() const { return ucrc.get_xor_out();}
+        bool    get_ref_in()  const { return ucrc.get_ref_in(); }
+        bool    get_ref_out() const { return ucrc.get_ref_out();}
 
-        uint64_t get_crc_init()const { return ucrc.get_crc_init();} //crc_init = reflect(init, bits) if RefIn, else = init
-        uint64_t get_top_bit() const { return ucrc.get_top_bit(); }
-        uint64_t get_crc_mask()const { return ucrc.get_crc_mask();}
+        quint64 get_crc_init()const { return ucrc.get_crc_init();} //crc_init = reflect(init, bits) if RefIn, else = init
+        quint64 get_top_bit() const { return ucrc.get_top_bit(); }
+        quint64 get_crc_mask()const { return ucrc.get_crc_mask();}
 
 
         QString get_poly_str()    { return "0x" + QString::number(get_poly(),    16).toUpper(); }
@@ -144,26 +144,26 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         // set param CRC
-        int  set_bits(quint8 new_bits);
-        void set_poly(uint64_t new_poly);
-        void set_init(uint64_t new_init);
-        void set_xor_out(uint64_t new_xor_out);
-        void set_ref_in(bool new_ref_in);
-        void set_ref_out(bool new_ref_out);
+        int  set_bits(quint8 new_bits)        { return set_bits(new_bits, true); }
+        void set_poly(quint64 new_poly)       { set_poly(new_poly, true);        }
+        void set_init(quint64 new_init)       { set_init(new_init, true);        }
+        void set_xor_out(quint64 new_xor_out) { set_xor_out(new_xor_out, true);  }
+        void set_ref_in(bool new_ref_in)      { set_ref_in(new_ref_in, true);    }
+        void set_ref_out(bool new_ref_out)    { set_ref_out(new_ref_out, true);  }
 
 
         // Calculate methods
-        uint64_t get_crc(const char* buf, size_t len)          const { return ucrc.get_crc(buf, len);      }
-        int      get_crc(uint64_t &crc, const char* file_name) const { return ucrc.get_crc(crc, file_name);}
-        int      get_crc(uint64_t &crc, FILE* pfile)           const { return ucrc.get_crc(crc, pfile);    }
+        uint64_t get_crc(const char* buf, size_t len)         const { return ucrc.get_crc(buf, len);      }
+        int      get_crc(quint64 &crc, const char* file_name) const { return ucrc.get_crc(crc, file_name);}
+        int      get_crc(quint64 &crc, FILE* pfile)           const { return ucrc.get_crc(crc, pfile);    }
 
-        int      get_crc(uint64_t &crc, const char* file_name, void* buf, size_t size_buf) const { return ucrc.get_crc(crc, file_name, buf, size_buf);}
-        int      get_crc(uint64_t &crc, FILE* pfile, void* buf, size_t size_buf)           const { return ucrc.get_crc(crc, pfile, buf, size_buf);    }
+        int      get_crc(quint64 &crc, const char* file_name, void* buf, size_t size_buf) const { return ucrc.get_crc(crc, file_name, buf, size_buf);}
+        int      get_crc(quint64 &crc, FILE* pfile, void* buf, size_t size_buf)           const { return ucrc.get_crc(crc, pfile, buf, size_buf);    }
 
 
         // Calculate for chunks of data
         uint64_t get_raw_crc(const char* buf, size_t len, uint64_t crc) const { return ucrc.get_raw_crc(buf, len, crc);}  //for first byte crc = crc_init (must be)
-        uint64_t get_final_crc(uint64_t raw_crc)                        const { return ucrc.get_final_crc(raw_crc);    }
+        uint64_t get_final_crc(quint64 raw_crc)                         const { return ucrc.get_final_crc(raw_crc);    }
 
 
         uint64_t get_check();
@@ -178,6 +178,14 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         uCRC_t   ucrc;
 
         int index;
+
+        int  set_bits(quint8 new_bits, bool single_action);
+        void set_poly(quint64 new_poly, bool single_action);
+        void set_init(quint64 new_init, bool single_action);
+        void set_xor_out(quint64 new_xor_out, bool single_action);
+        void set_ref_in(bool new_ref_in, bool single_action);
+        void set_ref_out(bool new_ref_out, bool single_action);
+
 
         int  find_index();
         void update_index();
