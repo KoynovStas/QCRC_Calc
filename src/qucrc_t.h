@@ -58,15 +58,6 @@ struct CRC_Param_Info
     bool    ref_in;
     bool    ref_out;
     quint64 xor_out;
-
-
-    CRC_Param_Info( QString _name,
-                    quint8  _bits,
-                    quint64 _poly,
-                    quint64 _init,
-                    bool    _ref_in,
-                    bool    _ref_out,
-                    quint64 _xor_out);
 };
 
 
@@ -190,8 +181,6 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         int  find_index();
         void update_index();
         void update_param(int new_index);
-
-        static const std::vector<CRC_Param_Info> get_crc_list();
 };
 
 
