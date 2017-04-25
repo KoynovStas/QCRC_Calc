@@ -1,6 +1,6 @@
 #include <QMetaType>
 #include "crc_calc_for_hex.h"
-
+#include <QDebug>
 
 
 
@@ -10,11 +10,6 @@ CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
 {
 
     qRegisterMetaType<uint64_t>("uint64_t");
-
-
-    this->moveToThread(&thread);
-
-    thread.start();
 
 
     QObject::connect(&hex_to_bytes, SIGNAL(error(QString)),
@@ -27,17 +22,20 @@ CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
 
 
 
-CRC_Calc_for_Hex::~CRC_Calc_for_Hex()
+void CRC_Calc_for_Hex::calculate(const QString & data)
 {
-    thread.quit();
-    thread.wait();
+    emit run_calculate(data);
 }
 
 
 
-void CRC_Calc_for_Hex::calculate(const QString & data)
+void CRC_Calc_for_Hex::set_revers_chunk(bool value)
 {
-    emit run_calculate(data);
+    if( hex_to_bytes.revers_chunk != value )
+    {
+        hex_to_bytes.revers_chunk = value;
+        emit revers_chunkChanged();
+    }
 }
 
 

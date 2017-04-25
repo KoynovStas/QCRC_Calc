@@ -34,6 +34,10 @@ Frame {
             anchors.top: parent.top
 
             bottomPadding: 20
+
+            checked: calc_hex.revers_chunk
+
+            onCheckedChanged: calc_hex.revers_chunk = checked
         }
 
 
