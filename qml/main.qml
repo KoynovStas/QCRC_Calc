@@ -14,7 +14,6 @@ ApplicationWindow {
 
     minimumWidth: 800
 
-    title: qsTr("Hello World")
     visible: true
 
 
