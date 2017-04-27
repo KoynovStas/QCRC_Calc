@@ -9,9 +9,6 @@ CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
     QObject(NULL)
 {
 
-    qRegisterMetaType<uint64_t>("uint64_t");
-
-
     QObject::connect(&hex_to_bytes, SIGNAL(error(QString)),
                      this, SIGNAL(error(QString)) );
 
@@ -68,4 +65,6 @@ void CRC_Calc_for_Hex::_calculate(const QString &data)
 
     if( ucrc )
         emit calculated( ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() ) );
+
+    result.set_result(ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() ));
 }

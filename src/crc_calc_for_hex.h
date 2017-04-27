@@ -6,6 +6,7 @@
 
 #include "hextobytes.h"
 #include "qucrc_t.h"
+#include "crc_result.h"
 
 
 
@@ -32,11 +33,15 @@ class CRC_Calc_for_Hex : public QObject
         // for QML bindings
         Q_PROPERTY(bool revers_chunk READ get_revers_chunk WRITE set_revers_chunk NOTIFY revers_chunkChanged)
         Q_PROPERTY(bool revers_data READ get_revers_data WRITE set_revers_data NOTIFY revers_dataChanged)
+        Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
 
+
+        CRC_Result* get_result() { return &result; }
+        CRC_Result result;
 
 
     signals:
-        void calculated(uint64_t value);
+        void calculated(quint64 value);
         void error(const QString & err);
         void revers_chunkChanged();
         void revers_dataChanged();
