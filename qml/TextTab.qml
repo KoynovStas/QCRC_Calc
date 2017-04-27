@@ -1,4 +1,4 @@
-import QtQuick 2.8
+import QtQuick 2.6
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.3
 //import QtQuick.Controls.Material 2.1
@@ -15,6 +15,10 @@ Frame {
     height: 480
 
     topPadding: 0
+
+    function calculate() {
+            calc_text.calculate(text_data.textArea.text)
+        }
 
 
     RowLayout {
@@ -52,7 +56,11 @@ Frame {
 
             currentIndex: calc_text.encoding_index
 
-            onCurrentIndexChanged: calc_text.encoding_index = currentIndex
+            onCurrentIndexChanged: {
+
+                calc_text.encoding_index = currentIndex
+                calculate()
+            }
         }
 
 
@@ -68,7 +76,11 @@ Frame {
 
             checked: calc_text.BOM
 
-            onCheckedChanged: calc_text.BOM = checked
+            onCheckedChanged: {
+
+                calc_text.BOM = checked
+                calculate()
+            }
         }
 
 
@@ -97,7 +109,11 @@ Frame {
 
             currentIndex: calc_text.end_line_index
 
-            onCurrentIndexChanged: calc_text.end_line_index = currentIndex
+            onCurrentIndexChanged: {
+
+                calc_text.end_line_index = currentIndex
+                calculate()
+            }
         }
 
 
@@ -111,24 +127,35 @@ Frame {
 
 
             onCheckedChanged: {
-                hex_text.textArea.wrapMode = checked ? TextEdit.WordWrap : TextEdit.NoWrap;
-                hex_text.textArea.width = hex_text.flickable.width;
+                text_data.textArea.wrapMode = checked ? TextEdit.WordWrap : TextEdit.NoWrap;
+                text_data.textArea.width = text_data.flickable.width;
             }
         }
 
     }
 
 
+
     ScrollTextArea {
-        id: hex_text
+        id: text_data
 
         anchors.top:    layout.bottom
-        anchors.bottom: parent.bottom
+        anchors.bottom: result_frame.top
         anchors.left:   parent.left
         anchors.right:  parent.right
 
+        anchors.bottomMargin: 10 //need for ScrollBar
 
-        textArea.onTextChanged: calc_text.calculate(textArea.text)
+        textArea.onTextChanged: calculate()
     }
 
+
+    CRCResultFrame {
+        id: result_frame
+
+        crc_result: calc_text.result
+
+        Layout.fillWidth: true
+        anchors.bottom: parent.bottom
+    }
 }
