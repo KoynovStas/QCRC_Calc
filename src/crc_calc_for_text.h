@@ -8,7 +8,7 @@
 #include <QByteArray>
 
 #include "qucrc_t.h"
-
+#include "crc_result.h"
 
 
 
@@ -63,7 +63,11 @@ class CRC_Calc_for_Text : public QObject
         Q_PROPERTY(int encoding_index READ get_encoding_index WRITE set_encoding_index NOTIFY encoding_indexChanged)
 
         Q_PROPERTY(bool BOM READ get_BOM WRITE set_BOM NOTIFY BOMChanged)
+        Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
 
+
+        CRC_Result* get_result() { return &result; }
+        CRC_Result result;
 
         QStringList end_line_names() const;
         QStringList encodings() const;

@@ -142,9 +142,11 @@ void CRC_Calc_for_Text::_calculate(const QString &data)
     replace_end_line(data);
     encoding_str();
 
-//    qDebug() << QString::number(ucrc->get_crc(raw_str.data(), raw_str.size() ), 16);
+
     if( ucrc )
         emit calculated( ucrc->get_crc(raw_str.data(), raw_str.size() ) );
+
+    result.set_result(ucrc->get_crc(raw_str.data(), raw_str.size() ));
 }
 
 
