@@ -17,6 +17,10 @@ int main(int argc, char *argv[])
                                   QString::number(MAJOR_VERSION) + '.' +
                                   QString::number(MINOR_VERSION));
 
+
+    qmlRegisterType<CRC_Result>("ModuleName", 1, 0, "CRC_Result");
+
+
     QuCRC_t uCRC;
 
     CRC_Calc_for_Text calc_text;
