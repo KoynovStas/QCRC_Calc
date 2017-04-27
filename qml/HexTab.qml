@@ -14,6 +14,13 @@ Frame {
     height: 480
 
     topPadding: 0
+    bottomPadding: 0
+
+
+    function calculate() {
+            calc_hex.calculate(text_data.textArea.text)
+        }
+
 
 
     RowLayout {
@@ -37,7 +44,11 @@ Frame {
 
             checked: calc_hex.revers_chunk
 
-            onCheckedChanged: calc_hex.revers_chunk = checked
+            onCheckedChanged: {
+
+                calc_hex.revers_chunk = checked
+                calculate()
+            }
         }
 
 
@@ -53,7 +64,11 @@ Frame {
 
             checked: calc_hex.revers_data
 
-            onCheckedChanged: calc_hex.revers_data = checked
+            onCheckedChanged: {
+
+                calc_hex.revers_data = checked
+                calculate()
+            }
         }
 
 
@@ -69,8 +84,8 @@ Frame {
 
 
             onCheckedChanged: {
-                hex_text.textArea.wrapMode = checked ? TextEdit.WordWrap : TextEdit.NoWrap;
-                hex_text.textArea.width = hex_text.flickable.width;
+                text_data.textArea.wrapMode = checked ? TextEdit.WordWrap : TextEdit.NoWrap;
+                text_data.textArea.width = text_data.flickable.width;
             }
         }
     }
@@ -78,12 +93,26 @@ Frame {
 
 
     ScrollTextArea {
-        id: hex_text
+        id: text_data
 
         anchors.top:    layout.bottom
-        anchors.bottom: parent.bottom
+        anchors.bottom: result_frame.top
         anchors.left:   parent.left
         anchors.right:  parent.right
+
+        anchors.bottomMargin: 10 //need for ScrollBar
+
+        textArea.onTextChanged: calculate()
+    }
+
+
+    CRCResultFrame {
+        id: result_frame
+
+        crc_result: calc_hex.result
+
+        Layout.fillWidth: true
+        anchors.bottom: parent.bottom
     }
 
 }

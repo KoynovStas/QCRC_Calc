@@ -38,19 +38,9 @@ ApplicationWindow {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.minimumHeight: 200
+            Layout.minimumHeight: 400
 
             anchors.top: crc_param.bottom
-        }
-
-
-        CRCResultFrame {
-            id: crc_result
-
-            Layout.fillWidth: true
-
-            anchors.top: data_tabs.bottom
-            anchors.bottom: parent.bottom
         }
     }
 }
