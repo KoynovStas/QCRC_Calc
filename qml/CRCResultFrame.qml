@@ -2,7 +2,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.3
 import "./controls"
-
+import ModuleName 1.0
 
 
 Frame {
@@ -11,6 +11,7 @@ Frame {
     anchors.right: parent.right
     bottomPadding: 0
 
+    property CRC_Result crc_result
 
     ColumnLayout {
 
@@ -35,6 +36,8 @@ Frame {
 
                 textField.readOnly: true
                 textField.implicitWidth: 210
+
+                textField.text: crc_result.result_hex
             }
 
             MyTextEdit {
@@ -43,15 +46,19 @@ Frame {
 
                 textField.readOnly: true
                 textField.implicitWidth: 210
+
+                textField.text: crc_result.result_dec
             }
 
             MyTextEdit {
                 id: oct_res
                 label.text: "Oct:"
 
-                textField.text: "1262037334654760060066"
+
                 textField.readOnly: true
                 textField.implicitWidth: 210
+
+                textField.text: crc_result.result_oct
             }
 
         }
@@ -77,8 +84,9 @@ Frame {
                 label.text: "Base:"
 
                 textField.readOnly: true
-                textField.text: "0xFFFFFF"
                 textField.implicitWidth: 600
+
+                textField.text: crc_result.result_base
             }
 
 
@@ -86,7 +94,9 @@ Frame {
 
                 to: 36
                 from: 2
-                value: 2
+                value: crc_result.base
+
+                onValueChanged: crc_result.base = value
 
                 anchors.left: base_edit.right
 
