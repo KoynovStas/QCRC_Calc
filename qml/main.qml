@@ -9,10 +9,10 @@ import QtQuick.Layouts 1.3
 ApplicationWindow {
     id: win
 
-    width: 800
+    width: 820
     height: 580
 
-    minimumWidth: 800
+    minimumWidth: 820
 
     visible: true
 

@@ -38,6 +38,7 @@ Frame {
                 id: hex_res
                 label.text: "Hex:"
 
+                width: 250
                 textField.readOnly: true
                 textField.implicitWidth: 210
 
@@ -47,7 +48,7 @@ Frame {
             MyTextEdit {
                 id: dec_res
                 label.text: "Dec:"
-
+                width: 250
                 textField.readOnly: true
                 textField.implicitWidth: 210
 
@@ -58,7 +59,7 @@ Frame {
                 id: oct_res
                 label.text: "Oct:"
 
-
+                width: 250
                 textField.readOnly: true
                 textField.implicitWidth: 210
 

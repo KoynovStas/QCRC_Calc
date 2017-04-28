@@ -8,7 +8,7 @@ import QtQuick.Layouts 1.3
 Item {
     id: root
 
-    width: 250
+    width: 255
     height: 30
 
     property int alignment: Qt.AlignLeft
@@ -45,6 +45,6 @@ Item {
 
         placeholderText: qsTr("Hex")
         selectByMouse: true
-        implicitWidth: 160
+        implicitWidth: 165
     }
 }
