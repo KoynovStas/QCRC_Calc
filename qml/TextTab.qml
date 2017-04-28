@@ -155,4 +155,10 @@ Frame {
         Layout.fillWidth: true
         anchors.bottom: parent.bottom
     }
+
+
+    Connections {
+        target: uCRC
+        onParamChanged: calculate()
+    }
 }
