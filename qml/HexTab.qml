@@ -114,4 +114,9 @@ Frame {
         anchors.bottom: parent.bottom
     }
 
+
+    Connections {
+        target: uCRC
+        onParamChanged: calculate()
+    }
 }
