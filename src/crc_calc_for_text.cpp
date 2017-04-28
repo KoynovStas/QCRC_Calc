@@ -37,9 +37,6 @@ CRC_Calc_for_Text::CRC_Calc_for_Text() :
     end_line_index(EndLine::EndLine_LF),
     num_lines(0)
 {
-    qRegisterMetaType<uint64_t>("uint64_t");
-
-
 
     QObject::connect(this, SIGNAL(run_calculate(const QString &)),
                      this, SLOT(_calculate(const QString &))  );

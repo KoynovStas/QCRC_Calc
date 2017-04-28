@@ -98,7 +98,7 @@ class CRC_Calc_for_Text : public QObject
         void end_line_indexChanged();
         void encoding_indexChanged();
         void BOMChanged();
-        void calculated(uint64_t value);
+        void calculated(quint64 value);
         void error(const QString & err);
 
         //signals for inner use
