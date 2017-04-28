@@ -64,7 +64,9 @@ void CRC_Calc_for_Hex::_calculate(const QString &data)
 
 
     if( ucrc )
-        emit calculated( ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() ) );
-
-    result.set_result(ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() ));
+    {
+        quint64 res = ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() );
+        emit calculated(res);
+        result.set_result(res);
+    }
 }

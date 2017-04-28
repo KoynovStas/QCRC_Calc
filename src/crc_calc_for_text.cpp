@@ -142,11 +142,12 @@ void CRC_Calc_for_Text::_calculate(const QString &data)
     replace_end_line(data);
     encoding_str();
 
-
     if( ucrc )
-        emit calculated( ucrc->get_crc(raw_str.data(), raw_str.size() ) );
-
-    result.set_result(ucrc->get_crc(raw_str.data(), raw_str.size() ));
+    {
+        quint64 res = ucrc->get_crc(raw_str.data(), raw_str.size() );
+        emit calculated(res);
+        result.set_result(res);
+    }
 }
 
 

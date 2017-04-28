@@ -4,12 +4,21 @@ import QtQuick.Layouts 1.3
 
 
 
+
+
 Item {
 
     width: 780
     height: 80
 
-//    color: "green"
+
+    function set_crc_result(result) {
+
+        for(var i = 0; i < byte_4_7.count; ++i) {
+            byte_0_3.itemAt(i).set_crc_result(result)
+            byte_4_7.itemAt(i).set_crc_result(result)
+        }
+    }
 
 
     RowLayout {
@@ -20,22 +29,14 @@ Item {
 
         spacing: 15
 
-        ByteItem{
-            start_bit: 56
-        }
+        Repeater {
+            id: byte_4_7
+            model: [56, 48, 40, 32]
 
-        ByteItem{
-            start_bit: 48
-        }
-
-        ByteItem{
-            start_bit: 40
-        }
-
-        ByteItem{
-            start_bit: 32
+            ByteItem{ start_bit: modelData }
         }
      }
+
 
     RowLayout {
         id: layout2
@@ -46,20 +47,11 @@ Item {
 
         spacing: 15
 
-        ByteItem{
-            start_bit: 24
-        }
+        Repeater {
+            id: byte_0_3
+            model: [24, 16, 8, 0]
 
-        ByteItem{
-            start_bit: 16
-        }
-
-        ByteItem{
-            start_bit: 8
-        }
-
-        ByteItem{
-            start_bit: 0
+            ByteItem { start_bit: modelData }
         }
      }
 

@@ -17,8 +17,8 @@ Frame {
     topPadding: 0
 
     function calculate() {
-            calc_text.calculate(text_data.textArea.text)
-        }
+        calc_text.calculate(text_data.textArea.text)
+    }
 
 
     RowLayout {
@@ -57,7 +57,6 @@ Frame {
             currentIndex: calc_text.encoding_index
 
             onCurrentIndexChanged: {
-
                 calc_text.encoding_index = currentIndex
                 calculate()
             }
@@ -77,7 +76,6 @@ Frame {
             checked: calc_text.BOM
 
             onCheckedChanged: {
-
                 calc_text.BOM = checked
                 calculate()
             }
@@ -110,7 +108,6 @@ Frame {
             currentIndex: calc_text.end_line_index
 
             onCurrentIndexChanged: {
-
                 calc_text.end_line_index = currentIndex
                 calculate()
             }

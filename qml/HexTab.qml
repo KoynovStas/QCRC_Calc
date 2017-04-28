@@ -7,6 +7,7 @@ import "./controls"
 
 
 
+
 Frame {
     id: root
 
@@ -18,8 +19,8 @@ Frame {
 
 
     function calculate() {
-            calc_hex.calculate(text_data.textArea.text)
-        }
+        calc_hex.calculate(text_data.textArea.text)
+    }
 
 
 
@@ -45,7 +46,6 @@ Frame {
             checked: calc_hex.revers_chunk
 
             onCheckedChanged: {
-
                 calc_hex.revers_chunk = checked
                 calculate()
             }
@@ -65,7 +65,6 @@ Frame {
             checked: calc_hex.revers_data
 
             onCheckedChanged: {
-
                 calc_hex.revers_data = checked
                 calculate()
             }

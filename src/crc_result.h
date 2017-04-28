@@ -7,6 +7,7 @@
 
 
 
+
 class CRC_Result : public QObject
 {
     Q_OBJECT
@@ -40,7 +41,7 @@ class CRC_Result : public QObject
 
         QString get_result(int base) { return QString::number(_result, base).toUpper(); }
 
-        bool get_result_bit(int num_bit){ return (_result & ((quint64)1 << num_bit)); }
+        bool get_result_bit(int num_bit){ return (bool)(_result & ((quint64)1 << num_bit)); }
 
 
         void set_result(quint64 value);
