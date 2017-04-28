@@ -129,6 +129,8 @@ void CRC_Calc_for_Text::calculate(const QString &data)
 
 void CRC_Calc_for_Text::_calculate(const QString &data)
 {
+    result.set_result(0); //reset old result
+
 
     if( data.isEmpty() )
     {

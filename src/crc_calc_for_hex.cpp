@@ -50,6 +50,9 @@ void CRC_Calc_for_Hex::set_revers_data(bool value)
 
 void CRC_Calc_for_Hex::_calculate(const QString &data)
 {
+    result.set_result(0); //reset old result
+
+
     if( hex_to_bytes.str_to_bytes(data) != 0 )
     {
         return; // bad string
