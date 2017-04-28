@@ -24,12 +24,11 @@ Item {
             id: textArea
 
             selectByMouse: true
+            renderType: Text.NativeRendering
 
             background: Rectangle {
-                      border.color: Material.color(Material.Grey)
-                  }
-
-            placeholderText: qsTr("Enter description")
+                border.color: Material.color(Material.Grey)
+            }
         }
 
 

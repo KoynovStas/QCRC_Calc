@@ -35,7 +35,7 @@ Item {
 
             ByteItem{ start_bit: modelData }
         }
-     }
+    }
 
 
     RowLayout {
@@ -53,6 +53,6 @@ Item {
 
             ByteItem { start_bit: modelData }
         }
-     }
+    }
 
 }

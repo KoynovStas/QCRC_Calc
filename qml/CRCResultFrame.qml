@@ -1,7 +1,7 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.3
-import ModuleName 1.0
+import CRC_Calc 1.0
 import "./controls"
 
 
@@ -118,12 +118,6 @@ Frame {
                 target: crc_result
                 onResultChanged: bitSet.set_crc_result(crc_result);
             }
-//            Layout.fillWidth: false
-//            anchors.top: layout2.bottom
-
-//            anchors.topMargin: 5
-//            anchors.left: parent.left
-//            anchors.right: parent.right
         }
     }
 
