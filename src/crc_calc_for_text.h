@@ -88,9 +88,6 @@ class CRC_Calc_for_Text : public QObject
         int get_encoding_index() { return encoding_index; }
         int set_encoding_index(int new_index);
 
-        size_t get_num_lines() { return num_lines; }
-        size_t get_num_bytes() { return raw_str.size(); }
-
 
 
     signals:
@@ -108,6 +105,9 @@ class CRC_Calc_for_Text : public QObject
 
     public slots:
         void calculate(const QString & data);
+
+        quint32 get_num_lines() { return num_lines; }
+        quint32 get_num_bytes() { return raw_str.size(); }
 
 
 
