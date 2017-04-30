@@ -95,13 +95,22 @@ Frame {
         id: text_data
 
         anchors.top:    layout.bottom
-        anchors.bottom: result_frame.top
+        anchors.bottom: statusBar.top
         anchors.left:   parent.left
         anchors.right:  parent.right
 
         anchors.bottomMargin: 10 //need for ScrollBar
 
         textArea.onTextChanged: calculate()
+    }
+
+
+    StatusBar {
+        id: statusBar
+
+        anchors.bottom: result_frame.visible ? result_frame.top : parent.bottom
+        anchors.left:   parent.left
+        anchors.right:  parent.right
     }
 
 
@@ -118,5 +127,14 @@ Frame {
     Connections {
         target: uCRC
         onParamChanged: calculate()
+    }
+
+
+    Connections {
+        target: calc_hex
+        onCalculated: statusBar.set_status(" Bytes: " + calc_hex.get_num_bytes() +
+                                           " Words: " + calc_hex.get_num_words(), false)
+
+        onError: statusBar.set_status(err, true)
     }
 }

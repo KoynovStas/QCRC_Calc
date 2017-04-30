@@ -120,7 +120,6 @@ Frame {
                 onResultChanged: bitSet.set_crc_result(crc_result);
             }
         }
+
     }
-
-
 }
