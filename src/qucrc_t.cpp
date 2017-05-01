@@ -156,6 +156,7 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-24/FLEXRAY-A",  24, 0x5D6DCB, 0xFEDCBA, false, false, 0x0     },
     { "CRC-24/FLEXRAY-B",  24, 0x5D6DCB, 0xABCDEF, false, false, 0x0     },
     { "CRC-24/INTERLAKEN", 24, 0x328B63, 0xFFFFFF, false, false, 0xFFFFFF},
+    { "CRC-24/LTE-A",      24, 0x864CFB, 0x0,      false, false, 0x0     },
 
     // CRC-31
     { "CRC-31/PHILIPS", 31, 0x04c11db7, 0x7fffffff, false, false, 0x7fffffff },
