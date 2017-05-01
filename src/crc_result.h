@@ -28,8 +28,8 @@ class CRC_Result : public QObject
 
 
     signals:
-        resultChanged();
-        baseChanged();
+        void resultChanged();
+        void baseChanged();
 
 
     public slots:

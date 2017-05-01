@@ -144,20 +144,20 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         // Calculate methods
-        uint64_t get_crc(const char* buf, size_t len)         const { return ucrc.get_crc(buf, len);      }
-        int      get_crc(quint64 &crc, const char* file_name) const { return ucrc.get_crc(crc, file_name);}
-        int      get_crc(quint64 &crc, FILE* pfile)           const { return ucrc.get_crc(crc, pfile);    }
+        quint64 get_crc(const char* buf, size_t len)         const { return ucrc.get_crc(buf, len);                  }
+        int     get_crc(quint64 &crc, const char* file_name) const { return ucrc.get_crc((uint64_t &)crc, file_name);}
+        int     get_crc(quint64 &crc, FILE* pfile)           const { return ucrc.get_crc((uint64_t &)crc, pfile);    }
 
-        int      get_crc(quint64 &crc, const char* file_name, void* buf, size_t size_buf) const { return ucrc.get_crc(crc, file_name, buf, size_buf);}
-        int      get_crc(quint64 &crc, FILE* pfile, void* buf, size_t size_buf)           const { return ucrc.get_crc(crc, pfile, buf, size_buf);    }
+        int     get_crc(quint64 &crc, const char* file_name, void* buf, size_t size_buf) const { return ucrc.get_crc((uint64_t &)crc, file_name, buf, size_buf);}
+        int     get_crc(quint64 &crc, FILE* pfile, void* buf, size_t size_buf)           const { return ucrc.get_crc((uint64_t &)crc, pfile, buf, size_buf);    }
 
 
         // Calculate for chunks of data
-        uint64_t get_raw_crc(const char* buf, size_t len, uint64_t crc) const { return ucrc.get_raw_crc(buf, len, crc);}  //for first byte crc = crc_init (must be)
-        uint64_t get_final_crc(quint64 raw_crc)                         const { return ucrc.get_final_crc(raw_crc);    }
+        quint64 get_raw_crc(const char* buf, size_t len, quint64 crc) const { return ucrc.get_raw_crc(buf, len, crc);}  //for first byte crc = crc_init (must be)
+        quint64 get_final_crc(quint64 raw_crc)                        const { return ucrc.get_final_crc(raw_crc);    }
 
 
-        uint64_t get_check();
+        quint64 get_check();
 
 
         int get_index() const { return index; }
