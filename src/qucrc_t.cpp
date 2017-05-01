@@ -178,12 +178,13 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-32/XFER",   32, 0xAF,       0x0,        false, false, 0x0        },
 
     // CRC-40
-    { "CRC-40/GSM", 40, 0x0004820009, 0x0, false, false, 0xffffffffff },
+    { "CRC-40/GSM", 40, 0x4820009, 0x0, false, false, 0xFFFFFFFFFF },
 
     // CRC-64
-    { "CRC-64",    64, 0x42f0e1eba9ea3693, 0x0000000000000000, false, false, 0x0 },
-    { "CRC-64/WE", 64, 0x42f0e1eba9ea3693, 0xffffffffffffffff, false, false, 0xffffffffffffffff },
-    { "CRC-64/XZ", 64, 0x42f0e1eba9ea3693, 0xffffffffffffffff, true,  true,  0xffffffffffffffff }
+    { "CRC-64",       64, 0x42F0E1EBA9EA3693, 0x0,                false, false, 0x0                },
+    { "CRC-64/GO-ISO",64, 0x1B,               0xFFFFFFFFFFFFFFFF, true,  true,  0xFFFFFFFFFFFFFFFF },
+    { "CRC-64/WE",    64, 0x42F0E1EBA9EA3693, 0xFFFFFFFFFFFFFFFF, false, false, 0xFFFFFFFFFFFFFFFF },
+    { "CRC-64/XZ",    64, 0x42F0E1EBA9EA3693, 0xFFFFFFFFFFFFFFFF, true,  true,  0xFFFFFFFFFFFFFFFF }
 
 };
 
