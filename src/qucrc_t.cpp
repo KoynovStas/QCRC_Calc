@@ -59,8 +59,8 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-4/INTERLAKEN", 4, 0x3, 0xF, false, false, 0xF },
 
     // CRC-5
-    { "CRC-5/EPC", 5, 0x09, 0x09, false, false, 0x0 },
-    { "CRC-5/ITU", 5, 0x15, 0x00, true,  true,  0x0 },
+    { "CRC-5/EPC", 5, 0x09, 0x09, false, false, 0x0  },
+    { "CRC-5/ITU", 5, 0x15, 0x00, true,  true,  0x0  },
     { "CRC-5/USB", 5, 0x05, 0x1f, true,  true,  0x1f },
 
     // CRC-6
@@ -68,6 +68,7 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-6/CDMA2000-B", 6, 0x07, 0x3f, false, false, 0x0 },
     { "CRC-6/DARC",       6, 0x19, 0x00, true,  true,  0x0 },
     { "CRC-6/ITU",        6, 0x03, 0x00, true,  true,  0x0 },
+    { "CRC-6/GSM",        6, 0x2F, 0x00, false, false, 0x3F},
 
     // CRC-7
     { "CRC-7",      7, 0x09, 0x0,  false, false, 0x0 },
