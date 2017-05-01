@@ -112,7 +112,8 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-13/BBC", 13, 0x1cf5, 0x0, false, false, 0x0 },
 
     // CRC-14
-    { "CRC-14/DARC", 14, 0x0805, 0x0, true, true, 0x0 },
+    { "CRC-14/DARC", 14, 0x0805, 0x0, true,  true,  0x0   },
+    { "CRC-14/GSM",  14, 0x202D, 0x0, false, false, 0x3FFF},
 
     // CRC-15
     { "CRC-15",         15, 0x4599, 0x0, false, false, 0x0 },
