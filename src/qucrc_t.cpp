@@ -159,6 +159,9 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-24/LTE-A",      24, 0x864CFB, 0x0,      false, false, 0x0     },
     { "CRC-24/LTE-B",      24, 0x800063, 0x0,      false, false, 0x0     },
 
+    // CRC-30
+    { "CRC-30/CDMA", 30, 0x2030B9C7, 0x3FFFFFFF, false, false, 0x3FFFFFFF},
+
     // CRC-31
     { "CRC-31/PHILIPS", 31, 0x04c11db7, 0x7fffffff, false, false, 0x7fffffff },
 
