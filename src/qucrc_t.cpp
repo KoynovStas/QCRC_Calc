@@ -94,8 +94,9 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-8/WCDMA",      8, 0x9b, 0x00, true,  true,  0x0  },
 
     // CRC-10
-    { "CRC-10",          10, 0x233, 0x000, false, false, 0x0 },
-    { "CRC-10/CDMA2000", 10, 0x3d9, 0x3ff, false, false, 0x0 },
+    { "CRC-10",          10, 0x233, 0x000, false, false, 0x0  },
+    { "CRC-10/CDMA2000", 10, 0x3d9, 0x3ff, false, false, 0x0  },
+    { "CRC-10/GSM",      10, 0x175, 0x0,   false, false, 0x3FF},
 
     // CRC-11
     { "CRC-11", 11, 0x385, 0x01a, false, false, 0x0 },
