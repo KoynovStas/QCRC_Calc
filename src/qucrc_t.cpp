@@ -51,7 +51,8 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
 
 
     // CRC-3
-    { "CRC-3/ROHC", 3, 0x3, 0x7, true, true, 0x0 },
+    { "CRC-3/GSM",  3, 0x3, 0x0, false, false, 0x7 },
+    { "CRC-3/ROHC", 3, 0x3, 0x7, true,  true,  0x0 },
 
     // CRC-4
     { "CRC-4/ITU", 4, 0x3, 0x0, true, true, 0x0 },
