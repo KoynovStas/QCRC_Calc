@@ -76,16 +76,17 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-7/UMTS", 7, 0x45, 0x0,  false, false, 0x0 },
 
     // CRC-8
-    { "CRC-8",          8, 0x07, 0x00, false, false, 0x0 },
-    { "CRC-8/CDMA2000", 8, 0x9b, 0xff, false, false, 0x0 },
-    { "CRC-8/DARC",     8, 0x39, 0x00, true,  true,  0x0 },
-    { "CRC-8/DVB-S2",   8, 0xd5, 0x00, false, false, 0x0 },
-    { "CRC-8/EBU",      8, 0x1d, 0xff, true,  true,  0x0 },
-    { "CRC-8/I-CODE",   8, 0x1d, 0xfd, false, false, 0x0 },
-    { "CRC-8/ITU",      8, 0x07, 0x00, false, false, 0x55 },
-    { "CRC-8/MAXIM",    8, 0x31, 0x00, true,  true,  0x0 },
-    { "CRC-8/ROHC",     8, 0x07, 0xff, true,  true,  0x0 },
-    { "CRC-8/WCDMA",    8, 0x9b, 0x00, true,  true,  0x0 },
+    { "CRC-8",            8, 0x07, 0x00, false, false, 0x0  },
+    { "CRC-8/AUTOSAR",    8, 0x2F, 0xFF, false, false, 0xFF },
+    { "CRC-8/CDMA2000",   8, 0x9b, 0xff, false, false, 0x0  },
+    { "CRC-8/DARC",       8, 0x39, 0x00, true,  true,  0x0  },
+    { "CRC-8/DVB-S2",     8, 0xd5, 0x00, false, false, 0x0  },
+    { "CRC-8/EBU",        8, 0x1d, 0xff, true,  true,  0x0  },
+    { "CRC-8/I-CODE",     8, 0x1d, 0xfd, false, false, 0x0  },
+    { "CRC-8/ITU",        8, 0x07, 0x00, false, false, 0x55 },
+    { "CRC-8/MAXIM",      8, 0x31, 0x00, true,  true,  0x0  },
+    { "CRC-8/ROHC",       8, 0x07, 0xff, true,  true,  0x0  },
+    { "CRC-8/WCDMA",      8, 0x9b, 0x00, true,  true,  0x0  },
 
     // CRC-10
     { "CRC-10",          10, 0x233, 0x000, false, false, 0x0 },
