@@ -136,6 +136,7 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-16/LJ1200",      16, 0x6F63, 0x0,    false, false, 0x0    },
     { "CRC-16/MAXIM",       16, 0x8005, 0x0000, true,  true,  0xFFFF },
     { "CRC-16/MCRF4XX",     16, 0x1021, 0xFFFF, true,  true,  0x0    },
+    { "CRC-16/OPENSAFETY-A",16, 0x5935, 0x0,    false, false, 0x0    },
     { "CRC-16/RIELLO",      16, 0x1021, 0xB2AA, true,  true,  0x0    },
     { "CRC-16/T10-DIF",     16, 0x8BB7, 0x0000, false, false, 0x0    },
     { "CRC-16/TELEDISK",    16, 0xA097, 0x0000, false, false, 0x0    },
