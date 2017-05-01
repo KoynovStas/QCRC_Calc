@@ -61,7 +61,7 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     // CRC-5
     { "CRC-5/EPC", 5, 0x09, 0x09, false, false, 0x0  },
     { "CRC-5/ITU", 5, 0x15, 0x00, true,  true,  0x0  },
-    { "CRC-5/USB", 5, 0x05, 0x1f, true,  true,  0x1f },
+    { "CRC-5/USB", 5, 0x05, 0x1F, true,  true,  0x1F },
 
     // CRC-6
     { "CRC-6/CDMA2000-A", 6, 0x27, 0x3f, false, false, 0x0 },
@@ -72,44 +72,44 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
 
     // CRC-7
     { "CRC-7",      7, 0x09, 0x0,  false, false, 0x0 },
-    { "CRC-7/ROHC", 7, 0x4f, 0x7f, true,  true,  0x0 },
+    { "CRC-7/ROHC", 7, 0x4F, 0x7F, true,  true,  0x0 },
     { "CRC-7/UMTS", 7, 0x45, 0x0,  false, false, 0x0 },
 
     // CRC-8
     { "CRC-8",            8, 0x07, 0x00, false, false, 0x0  },
     { "CRC-8/AUTOSAR",    8, 0x2F, 0xFF, false, false, 0xFF },
-    { "CRC-8/CDMA2000",   8, 0x9b, 0xff, false, false, 0x0  },
+    { "CRC-8/CDMA2000",   8, 0x9B, 0xFF, false, false, 0x0  },
     { "CRC-8/DARC",       8, 0x39, 0x00, true,  true,  0x0  },
     { "CRC-8/DVB-S2",     8, 0xd5, 0x00, false, false, 0x0  },
-    { "CRC-8/EBU",        8, 0x1d, 0xff, true,  true,  0x0  },
+    { "CRC-8/EBU",        8, 0x1D, 0xFF, true,  true,  0x0  },
     { "CRC-8/GSM-A",      8, 0x1D, 0x0,  false, false, 0x0  },
     { "CRC-8/GSM-B",      8, 0x49, 0x0,  false, false, 0xFF },
-    { "CRC-8/I-CODE",     8, 0x1d, 0xfd, false, false, 0x0  },
+    { "CRC-8/I-CODE",     8, 0x1D, 0xFD, false, false, 0x0  },
     { "CRC-8/ITU",        8, 0x07, 0x00, false, false, 0x55 },
     { "CRC-8/LTE",        8, 0x9B, 0x0,  false, false, 0x0  },
     { "CRC-8/MAXIM",      8, 0x31, 0x00, true,  true,  0x0  },
     { "CRC-8/OPENSAFETY", 8, 0x2F, 0x0,  false, false, 0x0  },
-    { "CRC-8/ROHC",       8, 0x07, 0xff, true,  true,  0x0  },
+    { "CRC-8/ROHC",       8, 0x07, 0xFF, true,  true,  0x0  },
     { "CRC-8/SAE-J1850",  8, 0x1D, 0xFF, false, false, 0xFF },
-    { "CRC-8/WCDMA",      8, 0x9b, 0x00, true,  true,  0x0  },
+    { "CRC-8/WCDMA",      8, 0x9B, 0x00, true,  true,  0x0  },
 
     // CRC-10
     { "CRC-10",          10, 0x233, 0x000, false, false, 0x0  },
-    { "CRC-10/CDMA2000", 10, 0x3d9, 0x3ff, false, false, 0x0  },
+    { "CRC-10/CDMA2000", 10, 0x3D9, 0x3FF, false, false, 0x0  },
     { "CRC-10/GSM",      10, 0x175, 0x0,   false, false, 0x3FF},
 
     // CRC-11
-    { "CRC-11",      11, 0x385, 0x01a, false, false, 0x0 },
+    { "CRC-11",      11, 0x385, 0x01A, false, false, 0x0 },
     { "CRC-11/UMTS", 11, 0x307, 0x0,   false, false, 0x0 },
 
     // CRC-12
-    { "CRC-12/3GPP",     12, 0x80f, 0x000, false, true,  0x0  },
-    { "CRC-12/CDMA2000", 12, 0xf13, 0xfff, false, false, 0x0  },
-    { "CRC-12/DECT",     12, 0x80f, 0x000, false, false, 0x0  },
+    { "CRC-12/3GPP",     12, 0x80F, 0x000, false, true,  0x0  },
+    { "CRC-12/CDMA2000", 12, 0xF13, 0xFFF, false, false, 0x0  },
+    { "CRC-12/DECT",     12, 0x80F, 0x000, false, false, 0x0  },
     { "CRC-12/GSM",      12, 0xD31, 0x0,   false, false, 0xFFF},
 
     // CRC-13
-    { "CRC-13/BBC", 13, 0x1cf5, 0x0, false, false, 0x0 },
+    { "CRC-13/BBC", 13, 0x1CF5, 0x0, false, false, 0x0 },
 
     // CRC-14
     { "CRC-14/DARC", 14, 0x0805, 0x0, true,  true,  0x0   },
@@ -121,28 +121,29 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
 
     // CRC-16
     { "CRC-16/ARC",         16, 0x8005, 0x0000, true,  true,  0x0    },
-    { "CRC-16/AUG-CCITT",   16, 0x1021, 0x1d0f, false, false, 0x0    },
+    { "CRC-16/AUG-CCITT",   16, 0x1021, 0x1D0F, false, false, 0x0    },
     { "CRC-16/BUYPASS",     16, 0x8005, 0x0000, false, false, 0x0    },
-    { "CRC-16/CCITT-FALSE", 16, 0x1021, 0xffff, false, false, 0x0    },
-    { "CRC-16/CDMA2000",    16, 0xc867, 0xffff, false, false, 0x0    },
+    { "CRC-16/CCITT-FALSE", 16, 0x1021, 0xFFFF, false, false, 0x0    },
+    { "CRC-16/CDMA2000",    16, 0xC867, 0xFFFF, false, false, 0x0    },
     { "CRC-16/CMS",         16, 0x8005, 0xFFFF, false, false, 0x0    },
-    { "CRC-16/DDS-110",     16, 0x8005, 0x800d, false, false, 0x0    },
+    { "CRC-16/DDS-110",     16, 0x8005, 0x800D, false, false, 0x0    },
     { "CRC-16/DECT-R",      16, 0x0589, 0x0000, false, false, 0x1    },
     { "CRC-16/DECT-X",      16, 0x0589, 0x0000, false, false, 0x0    },
-    { "CRC-16/DNP",         16, 0x3d65, 0x0000, true,  true,  0xffff },
-    { "CRC-16/EN-13757",    16, 0x3d65, 0x0000, false, false, 0xffff },
-    { "CRC-16/GENIBUS",     16, 0x1021, 0xffff, false, false, 0xffff },
-    { "CRC-16/MAXIM",       16, 0x8005, 0x0000, true,  true,  0xffff },
-    { "CRC-16/MCRF4XX",     16, 0x1021, 0xffff, true,  true,  0x0    },
-    { "CRC-16/RIELLO",      16, 0x1021, 0xb2aa, true,  true,  0x0    },
-    { "CRC-16/T10-DIF",     16, 0x8bb7, 0x0000, false, false, 0x0    },
-    { "CRC-16/TELEDISK",    16, 0xa097, 0x0000, false, false, 0x0    },
-    { "CRC-16/TMS37157",    16, 0x1021, 0x89ec, true,  true,  0x0    },
-    { "CRC-16/USB",         16, 0x8005, 0xffff, true,  true,  0xffff },
-    { "CRC-A",              16, 0x1021, 0xc6c6, true,  true,  0x0    },
+    { "CRC-16/DNP",         16, 0x3D65, 0x0000, true,  true,  0xFFFF },
+    { "CRC-16/EN-13757",    16, 0x3D65, 0x0000, false, false, 0xFFFF },
+    { "CRC-16/GENIBUS",     16, 0x1021, 0xFFFF, false, false, 0xFFFF },
+    { "CRC-16/GSM",         16, 0x1021, 0x0,    false, false, 0xFFFF },
+    { "CRC-16/MAXIM",       16, 0x8005, 0x0000, true,  true,  0xFFFF },
+    { "CRC-16/MCRF4XX",     16, 0x1021, 0xFFFF, true,  true,  0x0    },
+    { "CRC-16/RIELLO",      16, 0x1021, 0xB2AA, true,  true,  0x0    },
+    { "CRC-16/T10-DIF",     16, 0x8BB7, 0x0000, false, false, 0x0    },
+    { "CRC-16/TELEDISK",    16, 0xA097, 0x0000, false, false, 0x0    },
+    { "CRC-16/TMS37157",    16, 0x1021, 0x89EC, true,  true,  0x0    },
+    { "CRC-16/USB",         16, 0x8005, 0xFFFF, true,  true,  0xFFFF },
+    { "CRC-A",              16, 0x1021, 0xC6C6, true,  true,  0x0    },
     { "CRC-16/KERMIT",      16, 0x1021, 0x0000, true,  true,  0x0    },
-    { "CRC-16/MODBUS",      16, 0x8005, 0xffff, true,  true,  0x0    },
-    { "CRC-16/X-25",        16, 0x1021, 0xffff, true,  true,  0xffff },
+    { "CRC-16/MODBUS",      16, 0x8005, 0xFFFF, true,  true,  0x0    },
+    { "CRC-16/X-25",        16, 0x1021, 0xFFFF, true,  true,  0xFFFF },
     { "CRC-16/XMODEM",      16, 0x1021, 0x0000, false, false, 0x0    },
 
     // CRC-24
