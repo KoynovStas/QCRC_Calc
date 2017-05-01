@@ -166,15 +166,16 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-31/PHILIPS", 31, 0x04c11db7, 0x7fffffff, false, false, 0x7fffffff },
 
     // CRC-32
-    { "CRC-32",       32, 0x04c11db7, 0xffffffff, true,  true,  0xffffffff },
-    { "CRC-32/BZIP2", 32, 0x04c11db7, 0xffffffff, false, false, 0xffffffff },
-    { "CRC-32C",      32, 0x1edc6f41, 0xffffffff, true,  true,  0xffffffff },
-    { "CRC-32D",      32, 0xa833982b, 0xffffffff, true,  true,  0xffffffff },
-    { "CRC-32/MPEG-2",32, 0x04c11db7, 0xffffffff, false, false, 0x0 },
-    { "CRC-32/POSIX", 32, 0x04c11db7, 0x00000000, false, false, 0xffffffff },
-    { "CRC-32Q",      32, 0x814141ab, 0x00000000, false, false, 0x0 },
-    { "CRC-32/JAMCRC",32, 0x04c11db7, 0xffffffff, true,  true,  0x0 },
-    { "CRC-32/XFER",  32, 0x000000af, 0x00000000, false, false, 0x0 },
+    { "CRC-32",        32, 0x4C11DB7,  0xFFFFFFFF, true,  true,  0xFFFFFFFF },
+    { "CRC-32/AUTOSAR",32, 0xF4ACFB13, 0xFFFFFFFF, true,  true,  0xFFFFFFFF },
+    { "CRC-32/BZIP2",  32, 0x4C11DB7,  0xFFFFFFFF, false, false, 0xFFFFFFFF },
+    { "CRC-32C",       32, 0x1EDC6F41, 0xFFFFFFFF, true,  true,  0xFFFFFFFF },
+    { "CRC-32D",       32, 0xA833982B, 0xFFFFFFFF, true,  true,  0xFFFFFFFF },
+    { "CRC-32/MPEG-2", 32, 0x4C11DB7,  0xFFFFFFFF, false, false, 0x0        },
+    { "CRC-32/POSIX",  32, 0x4C11DB7,  0x0,        false, false, 0xFFFFFFFF },
+    { "CRC-32Q",       32, 0x814141AB, 0x0,        false, false, 0x0        },
+    { "CRC-32/JAMCRC", 32, 0x4C11DB7,  0xFFFFFFFF, true,  true,  0x0        },
+    { "CRC-32/XFER",   32, 0xAF,       0x0,        false, false, 0x0        },
 
     // CRC-40
     { "CRC-40/GSM", 40, 0x0004820009, 0x0, false, false, 0xffffffffff },
