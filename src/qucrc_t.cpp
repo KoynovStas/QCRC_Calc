@@ -144,16 +144,17 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-16/TELEDISK",    16, 0xA097, 0x0000, false, false, 0x0    },
     { "CRC-16/TMS37157",    16, 0x1021, 0x89EC, true,  true,  0x0    },
     { "CRC-16/USB",         16, 0x8005, 0xFFFF, true,  true,  0xFFFF },
-    { "CRC-A",              16, 0x1021, 0xC6C6, true,  true,  0x0    },
+    { "CRC-16/CRC-A",       16, 0x1021, 0xC6C6, true,  true,  0x0    },
     { "CRC-16/KERMIT",      16, 0x1021, 0x0000, true,  true,  0x0    },
     { "CRC-16/MODBUS",      16, 0x8005, 0xFFFF, true,  true,  0x0    },
     { "CRC-16/X-25",        16, 0x1021, 0xFFFF, true,  true,  0xFFFF },
     { "CRC-16/XMODEM",      16, 0x1021, 0x0000, false, false, 0x0    },
 
     // CRC-24
-    { "CRC-24",           24, 0x864cfb, 0xb704ce, false, false, 0x0 },
-    { "CRC-24/FLEXRAY-A", 24, 0x5d6dcb, 0xfedcba, false, false, 0x0 },
-    { "CRC-24/FLEXRAY-B", 24, 0x5d6dcb, 0xabcdef, false, false, 0x0 },
+    { "CRC-24",            24, 0x864CFB, 0xB704CE, false, false, 0x0     },
+    { "CRC-24/BLE",        24, 0x65B,    0x555555, true,  true,  0x0     },
+    { "CRC-24/FLEXRAY-A",  24, 0x5D6DCB, 0xFEDCBA, false, false, 0x0     },
+    { "CRC-24/FLEXRAY-B",  24, 0x5D6DCB, 0xABCDEF, false, false, 0x0     },
 
     // CRC-31
     { "CRC-31/PHILIPS", 31, 0x04c11db7, 0x7fffffff, false, false, 0x7fffffff },
