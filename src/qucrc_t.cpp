@@ -88,6 +88,7 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-8/ITU",        8, 0x07, 0x00, false, false, 0x55 },
     { "CRC-8/LTE",        8, 0x9B, 0x0,  false, false, 0x0  },
     { "CRC-8/MAXIM",      8, 0x31, 0x00, true,  true,  0x0  },
+    { "CRC-8/OPENSAFETY", 8, 0x2F, 0x0,  false, false, 0x0  },
     { "CRC-8/ROHC",       8, 0x07, 0xff, true,  true,  0x0  },
     { "CRC-8/WCDMA",      8, 0x9b, 0x00, true,  true,  0x0  },
 
