@@ -6,9 +6,11 @@
 CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/CRC_CPP_Class)** C++ class for calculation CRC sizes(width) 1-64 bits.
 
 
-![Hex_tab](./screenshots/Hex_tab.png)
+<p align="center">
+<img src="./screenshots/animation.gif" width="694"></img>
+</p>
 
-![Text_tab](./screenshots/Text_tab.png)
+
 
 
 
@@ -20,10 +22,10 @@ make
 ```
 
 
-<br/>
+
 ## License
 
-[BSD](./LICENSE).
+[BSD-3-Clause](./LICENSE).
 
 
 
