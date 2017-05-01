@@ -133,6 +133,7 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-16/EN-13757",    16, 0x3D65, 0x0000, false, false, 0xFFFF },
     { "CRC-16/GENIBUS",     16, 0x1021, 0xFFFF, false, false, 0xFFFF },
     { "CRC-16/GSM",         16, 0x1021, 0x0,    false, false, 0xFFFF },
+    { "CRC-16/LJ1200",      16, 0x6F63, 0x0,    false, false, 0x0    },
     { "CRC-16/MAXIM",       16, 0x8005, 0x0000, true,  true,  0xFFFF },
     { "CRC-16/MCRF4XX",     16, 0x1021, 0xFFFF, true,  true,  0x0    },
     { "CRC-16/RIELLO",      16, 0x1021, 0xB2AA, true,  true,  0x0    },
