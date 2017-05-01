@@ -103,9 +103,10 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
     { "CRC-11/UMTS", 11, 0x307, 0x0,   false, false, 0x0 },
 
     // CRC-12
-    { "CRC-12/3GPP",     12, 0x80f, 0x000, false, true,  0x0 },
-    { "CRC-12/CDMA2000", 12, 0xf13, 0xfff, false, false, 0x0 },
-    { "CRC-12/DECT",     12, 0x80f, 0x000, false, false, 0x0 },
+    { "CRC-12/3GPP",     12, 0x80f, 0x000, false, true,  0x0  },
+    { "CRC-12/CDMA2000", 12, 0xf13, 0xfff, false, false, 0x0  },
+    { "CRC-12/DECT",     12, 0x80f, 0x000, false, false, 0x0  },
+    { "CRC-12/GSM",      12, 0xD31, 0x0,   false, false, 0xFFF},
 
     // CRC-13
     { "CRC-13/BBC", 13, 0x1cf5, 0x0, false, false, 0x0 },
