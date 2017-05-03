@@ -244,7 +244,7 @@ int QuCRC_t::set_index(int new_index)
 
 
     index = new_index;
-    emit indexChanged(index);
+    emit indexChanged();
 
 
     update_param(new_index);
@@ -265,7 +265,7 @@ int QuCRC_t::set_bits(quint8 new_bits, bool single_action)
         return ret; //error set bits
 
 
-    emit bitsChanged(new_bits);
+    emit bitsChanged();
 
     if( single_action )
     {
@@ -343,7 +343,7 @@ void QuCRC_t::set_ref_in(bool new_ref_in, bool single_action)
 
 
     ucrc.set_ref_in(new_ref_in);
-    emit ref_inChanged(new_ref_in);
+    emit ref_inChanged();
 
 
     if( single_action )
@@ -362,7 +362,7 @@ void QuCRC_t::set_ref_out(bool new_ref_out, bool single_action)
 
 
     ucrc.set_ref_out(new_ref_out);
-    emit ref_outChanged(new_ref_out);
+    emit ref_outChanged();
 
 
     if( single_action )
@@ -407,7 +407,7 @@ void QuCRC_t::update_index()
 
 
     index = new_index;
-    emit indexChanged(index);
+    emit indexChanged();
 }
 
 

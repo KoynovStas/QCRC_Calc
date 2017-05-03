@@ -76,18 +76,19 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
         // for QML bindings
         Q_PROPERTY(QStringList crc_names READ crc_names CONSTANT)
-        Q_PROPERTY(int index READ get_index WRITE set_index NOTIFY indexChanged)
-        Q_PROPERTY(quint8 bits READ get_bits WRITE set_bits NOTIFY bitsChanged)
-        Q_PROPERTY(QString poly_str READ get_poly_str  WRITE set_poly_str NOTIFY polyChanged)
-        Q_PROPERTY(QString init_str READ get_init_str  WRITE set_init_str NOTIFY initChanged)
-        Q_PROPERTY(QString xor_out_str READ get_xor_out_str  WRITE set_xor_out_str NOTIFY xor_outChanged)
-        Q_PROPERTY(bool ref_in READ get_ref_in WRITE set_ref_in NOTIFY ref_inChanged)
-        Q_PROPERTY(bool ref_out READ get_ref_out WRITE set_ref_out NOTIFY ref_outChanged)
+
+        Q_PROPERTY(int     index       READ get_index       WRITE set_index       NOTIFY indexChanged)
+        Q_PROPERTY(quint8  bits        READ get_bits        WRITE set_bits        NOTIFY bitsChanged)
+        Q_PROPERTY(QString poly_str    READ get_poly_str    WRITE set_poly_str    NOTIFY polyChanged)
+        Q_PROPERTY(QString init_str    READ get_init_str    WRITE set_init_str    NOTIFY initChanged)
+        Q_PROPERTY(QString xor_out_str READ get_xor_out_str WRITE set_xor_out_str NOTIFY xor_outChanged)
+        Q_PROPERTY(bool    ref_in      READ get_ref_in      WRITE set_ref_in      NOTIFY ref_inChanged)
+        Q_PROPERTY(bool    ref_out     READ get_ref_out     WRITE set_ref_out     NOTIFY ref_outChanged)
 
         //extended param (info) CRC
-        Q_PROPERTY(QString check_str READ get_check_str NOTIFY paramChanged)
+        Q_PROPERTY(QString check_str    READ get_check_str    NOTIFY paramChanged)
         Q_PROPERTY(QString crc_mask_str READ get_crc_mask_str NOTIFY paramChanged)
-        Q_PROPERTY(QString top_bit_str READ get_top_bit_str NOTIFY paramChanged)
+        Q_PROPERTY(QString top_bit_str  READ get_top_bit_str  NOTIFY paramChanged)
 
 
         QStringList crc_names() const;
@@ -96,13 +97,13 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
     signals:
 
         void paramChanged();
-        void indexChanged(int index);
-        void bitsChanged(quint8 bits);
+        void indexChanged();
+        void bitsChanged();
         void polyChanged();
         void initChanged();
         void xor_outChanged();
-        void ref_inChanged(bool ref_in);
-        void ref_outChanged(bool ref_out);
+        void ref_inChanged();
+        void ref_outChanged();
 
 
     public slots:
@@ -134,14 +135,17 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         void set_init_str(QString &new_init);
         void set_xor_out_str(QString &new_xor_out);
 
+        int get_index() const { return index; }
+        int set_index(int new_index);
+
 
         // set param CRC
-        int  set_bits(quint8 new_bits)        { return set_bits(new_bits, true); }
-        void set_poly(quint64 new_poly)       { set_poly(new_poly, true);        }
-        void set_init(quint64 new_init)       { set_init(new_init, true);        }
-        void set_xor_out(quint64 new_xor_out) { set_xor_out(new_xor_out, true);  }
-        void set_ref_in(bool new_ref_in)      { set_ref_in(new_ref_in, true);    }
-        void set_ref_out(bool new_ref_out)    { set_ref_out(new_ref_out, true);  }
+        int  set_bits   (quint8  new_value) { return set_bits(new_value, true); }
+        void set_poly   (quint64 new_value) { set_poly   (new_value, true); }
+        void set_init   (quint64 new_value) { set_init   (new_value, true); }
+        void set_xor_out(quint64 new_value) { set_xor_out(new_value, true); }
+        void set_ref_in (bool    new_value) { set_ref_in (new_value, true); }
+        void set_ref_out(bool    new_value) { set_ref_out(new_value, true); }
 
 
         // Calculate methods
@@ -159,24 +163,18 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
 
-
-
-        int get_index() const { return index; }
-        int set_index(int new_index);
-
-
     private:
 
         uCRC_t   ucrc;
 
         int index;
 
-        int  set_bits(quint8 new_bits, bool single_action);
-        void set_poly(quint64 new_poly, bool single_action);
-        void set_init(quint64 new_init, bool single_action);
-        void set_xor_out(quint64 new_xor_out, bool single_action);
-        void set_ref_in(bool new_ref_in, bool single_action);
-        void set_ref_out(bool new_ref_out, bool single_action);
+        int  set_bits   (quint8  new_value, bool single_action);
+        void set_poly   (quint64 new_value, bool single_action);
+        void set_init   (quint64 new_value, bool single_action);
+        void set_xor_out(quint64 new_value, bool single_action);
+        void set_ref_in (bool    new_value, bool single_action);
+        void set_ref_out(bool    new_value, bool single_action);
 
 
         int  find_index();
