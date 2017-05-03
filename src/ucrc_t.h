@@ -2,7 +2,7 @@
  * ucrc_t.h
  *
  *
- * version 1.2
+ * version 1.3
  *
  *
  * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
@@ -53,7 +53,7 @@ class uCRC_t
 
     public:
 
-        explicit uCRC_t(const std::string Name = "CRC-32",
+        explicit uCRC_t(const std::string& Name = "CRC-32",
                         uint8_t  Bits   = 32,
                         uint64_t Poly   = 0x04c11db7,
                         uint64_t Init   = 0xffffffff,
@@ -84,19 +84,20 @@ class uCRC_t
         uint64_t get_crc_init()const { return crc_init;} //crc_init = reflect(init, bits) if RefIn, else = init
         uint64_t get_top_bit() const { return top_bit; }
         uint64_t get_crc_mask()const { return crc_mask;}
+        uint64_t get_check()   const;                    //crc for ASCII string "123456789" (i.e. 313233... (hexadecimal)).
 
 
         // set param CRC
-        int  set_bits(uint8_t new_bits);
-        void set_poly(uint64_t new_poly)       { poly    = new_poly; init_class();}
-        void set_init(uint64_t new_init)       { init    = new_init; init_class();}
-        void set_xor_out(uint64_t new_xor_out) { xor_out = new_xor_out;}
-        void set_ref_in(bool new_ref_in)       { ref_in  = new_ref_in; init_class();}
-        void set_ref_out(bool new_ref_out)     { ref_out = new_ref_out;}
+        int  set_bits(uint8_t new_value);
+        void set_poly(uint64_t new_value)    { poly    = new_value; init_class();}
+        void set_init(uint64_t new_value)    { init    = new_value; init_class();}
+        void set_ref_in(bool new_value)      { ref_in  = new_value; init_class();}
+        void set_ref_out(bool new_value)     { ref_out = new_value;}
+        void set_xor_out(uint64_t new_value) { xor_out = new_value;}
 
 
         // Calculate methods
-        uint64_t get_crc(const char* buf, size_t len) const;
+        uint64_t get_crc(const void* data, size_t len) const;
         int      get_crc(uint64_t &crc, const char* file_name) const;
         int      get_crc(uint64_t &crc, FILE* pfile) const;
         int      get_crc(uint64_t &crc, const char* file_name, void* buf, size_t size_buf) const;
@@ -104,7 +105,7 @@ class uCRC_t
 
 
         // Calculate for chunks of data
-        uint64_t get_raw_crc(const char* buf, size_t len, uint64_t crc) const; //for first byte crc = crc_init (must be)
+        uint64_t get_raw_crc(const void* data, size_t len, uint64_t crc) const; //for first byte crc = crc_init (must be)
         uint64_t get_final_crc(uint64_t raw_crc) const;
 
 

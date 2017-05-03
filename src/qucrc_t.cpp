@@ -233,15 +233,6 @@ void QuCRC_t::set_xor_out_str(QString &new_xor_out)
 
 
 
-quint64 QuCRC_t::get_check()
-{
-    const char std_check_data[] = "123456789";
-
-    return ucrc.get_crc(std_check_data, sizeof(std_check_data) - 1 ); //-1 without '\0'
-}
-
-
-
 int QuCRC_t::set_index(int new_index)
 {
     if( new_index == index )

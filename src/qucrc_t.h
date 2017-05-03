@@ -117,6 +117,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         quint64 get_crc_init()const { return ucrc.get_crc_init();} //crc_init = reflect(init, bits) if RefIn, else = init
         quint64 get_top_bit() const { return ucrc.get_top_bit(); }
         quint64 get_crc_mask()const { return ucrc.get_crc_mask();}
+        quint64 get_check()   const { return ucrc.get_check();   } //crc for ASCII string "123456789" (i.e. 313233... (hexadecimal)).
 
 
         QString get_poly_str()    { return "0x" + QString::number(get_poly(),    16).toUpper(); }
@@ -124,9 +125,9 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         QString get_xor_out_str() { return "0x" + QString::number(get_xor_out(), 16).toUpper(); }
 
         //extended param (info) CRC
-        QString get_check_str()    { return "0x" + QString::number(get_check(), 16).toUpper();   }
-        QString get_crc_mask_str() { return "0x" + QString::number(get_crc_mask(), 16).toUpper();}
-        QString get_top_bit_str()  { return "0x" + QString::number(get_top_bit(), 16).toUpper(); }
+        QString get_check_str()    { return "0x" + QString::number(get_check(),    16).toUpper(); }
+        QString get_crc_mask_str() { return "0x" + QString::number(get_crc_mask(), 16).toUpper(); }
+        QString get_top_bit_str()  { return "0x" + QString::number(get_top_bit(),  16).toUpper(); }
 
 
         void set_poly_str(QString &new_poly);
@@ -157,7 +158,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         quint64 get_final_crc(quint64 raw_crc)                        const { return ucrc.get_final_crc(raw_crc);    }
 
 
-        quint64 get_check();
+
 
 
         int get_index() const { return index; }

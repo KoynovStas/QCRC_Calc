@@ -2,7 +2,7 @@
  * ucrc_t.cpp
  *
  *
- * version 1.2
+ * version 1.3
  *
  *
  * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
@@ -41,7 +41,8 @@
 
 
 
-uCRC_t::uCRC_t(const std::string Name, uint8_t Bits, uint64_t Poly, uint64_t Init, bool RefIn, bool RefOut, uint64_t XorOut) :
+
+uCRC_t::uCRC_t(const std::string & Name, uint8_t Bits, uint64_t Poly, uint64_t Init, bool RefIn, bool RefOut, uint64_t XorOut) :
     name    (Name),
     bits    (Bits),
     poly    (Poly),
@@ -70,13 +71,22 @@ uCRC_t::uCRC_t(uint8_t Bits, uint64_t Poly, uint64_t Init, bool RefIn, bool RefO
 
 
 
-int uCRC_t::set_bits(uint8_t new_bits)
+uint64_t uCRC_t::get_check() const
 {
-    if( (new_bits < 1) || (new_bits > 64) )
+    const uint8_t data[] = {0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39};
+
+    return get_crc(data, sizeof(data));
+}
+
+
+
+int uCRC_t::set_bits(uint8_t new_value)
+{
+    if( (new_value < 1) || (new_value > 64) )
         return -1; //error
 
 
-    bits = new_bits;
+    bits = new_value;
     init_class();
 
 
@@ -85,9 +95,9 @@ int uCRC_t::set_bits(uint8_t new_bits)
 
 
 
-uint64_t uCRC_t::get_crc(const char* buf, size_t len) const
+uint64_t uCRC_t::get_crc(const void* data, size_t len) const
 {
-    uint64_t crc = get_raw_crc(buf, len, crc_init);
+    uint64_t crc = get_raw_crc(data, len, crc_init);
 
     return get_final_crc(crc);
 }
@@ -154,11 +164,11 @@ int uCRC_t::get_crc(uint64_t &crc, FILE *pfile, void *buf, size_t size_buf) cons
     while( !feof(pfile) )
     {
        size_t len = fread(buf, 1, size_buf, pfile);
-       crc = get_raw_crc((char *)buf, len, crc);
+       crc = get_raw_crc(buf, len, crc);
     }
 
 
-    fseek(pfile, cur_pos, SEEK_SET);
+    fseek(pfile, cur_pos, SEEK_SET); // restore old position in file
 
 
     crc = get_final_crc(crc);
@@ -169,8 +179,11 @@ int uCRC_t::get_crc(uint64_t &crc, FILE *pfile, void *buf, size_t size_buf) cons
 
 
 
-uint64_t uCRC_t::get_raw_crc(const char* buf, size_t len, uint64_t crc) const
+uint64_t uCRC_t::get_raw_crc(const void* data, size_t len, uint64_t crc) const
 {
+    register const uint8_t* buf = static_cast< const uint8_t* >(data);
+
+
     if(bits > 8)
     {
         if(ref_in)
@@ -228,14 +241,12 @@ uint64_t uCRC_t::reflect(uint64_t data, uint8_t num_bits) const
 
 void uCRC_t::init_crc_table()
 {
-    int i;
-    uint64_t crc;
 
-
-    for(i = 0; i < 256; i++)
+    //Calculation of the standard CRC table for byte.
+    for(int i = 0; i < 256; i++)
     {
 
-        crc = 0;
+        uint64_t crc = 0;
 
         for(uint8_t mask = 0x80; mask; mask >>= 1)
         {
