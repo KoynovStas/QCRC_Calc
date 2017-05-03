@@ -2,7 +2,7 @@
  * qucrc_t.cpp
  *
  *
- * version 1.0
+ * version 1.3
  *
  *
  * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
@@ -36,7 +36,6 @@
 
 #include "qucrc_t.h"
 
-#include <QDebug>
 
 
 
