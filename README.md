@@ -12,6 +12,22 @@ CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/CRC_CPP_C
 
 
 
+### Features
+
+- CRC for Hex:
+	- Any word size
+	- Any word separators (useful for insertion of Hex data separated by [,:;#$% ... etc])
+	- Reverse words
+	- Reverse all data
+
+- CRC for Text:
+	- Support encodings + Unicode
+	- Support [Unicode byte order mark (BOM)](https://en.wikipedia.org/wiki/Byte_order_mark)
+	- Different [format of the end of line](https://en.wikipedia.org/wiki/Newline)
+	
+- Result:
+	- Any format (Dec, Hex, Oct + any base: 2..36)
+	- A convenient graphical representation of bits
 
 
 ## Build
