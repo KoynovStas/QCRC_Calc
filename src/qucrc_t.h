@@ -131,9 +131,9 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         QString get_top_bit_str()  { return "0x" + QString::number(get_top_bit(),  16).toUpper(); }
 
 
-        void set_poly_str(QString &new_poly);
-        void set_init_str(QString &new_init);
-        void set_xor_out_str(QString &new_xor_out);
+        void set_poly_str(QString &new_value)    { set_poly   (new_value.toULongLong(NULL, 16)); }
+        void set_init_str(QString &new_value)    { set_init   (new_value.toULongLong(NULL, 16)); }
+        void set_xor_out_str(QString &new_value) { set_xor_out(new_value.toULongLong(NULL, 16)); }
 
         int get_index() const { return index; }
         int set_index(int new_index);

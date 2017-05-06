@@ -211,27 +211,6 @@ QStringList QuCRC_t::crc_names() const
 
 
 
-void QuCRC_t::set_poly_str(QString &new_poly)
-{
-    set_poly(new_poly.toULongLong(NULL, 16));
-}
-
-
-
-void QuCRC_t::set_init_str(QString &new_init)
-{
-    set_init(new_init.toULongLong(NULL, 16));
-}
-
-
-
-void QuCRC_t::set_xor_out_str(QString &new_xor_out)
-{
-    set_xor_out(new_xor_out.toULongLong(NULL, 16));
-}
-
-
-
 int QuCRC_t::set_index(int new_index)
 {
     if( new_index == index )

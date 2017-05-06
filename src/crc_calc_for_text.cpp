@@ -189,7 +189,7 @@ const QList<QByteArray> CRC_Calc_for_Text::get_Encodings()
     std::sort(list.begin(), list.end());
 
 
-    QList<QByteArray>::iterator it = std::find(list.begin(), list.end(), "ASCII");
+    auto it = std::find(list.begin(), list.end(), "ASCII");
 
     if( it != list.end() )
     {
