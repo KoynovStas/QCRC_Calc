@@ -15,6 +15,8 @@ Frame {
     height: 480
 
     topPadding: 0
+    bottomPadding: 0
+
 
     function calculate() {
         calc_text.calculate(text_data.textArea.text)
