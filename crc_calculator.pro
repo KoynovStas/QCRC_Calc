@@ -5,7 +5,7 @@ QT += quick quickcontrols2
 
 
 
-DEFINES += MAJOR_VERSION=1
+DEFINES += MAJOR_VERSION=2
 DEFINES += MINOR_VERSION=0
 
 
