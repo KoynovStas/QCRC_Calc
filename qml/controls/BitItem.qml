@@ -12,6 +12,7 @@ Item {
     property bool value
     property alias label: label
 
+
     width: rect.width
     height: rect.height + label.paintedHeight
 
@@ -28,7 +29,7 @@ Item {
         height: 16
 
         border.width: 2
-        border.color: "#3C3C3C"
+        border.color: num_bit < uCRC.bits ? "#3C3C3C" : "#9C9C9C"
 
         color: value ? "#3C3C3C" : "transparent"
     }
@@ -37,6 +38,7 @@ Item {
     Label {
         id: label
 
+        enabled: num_bit < uCRC.bits
         text: num_bit
         anchors.horizontalCenter: rect.horizontalCenter
         anchors.top: rect.bottom
