@@ -59,8 +59,8 @@ CMakeLists.txt.user*
 
 
 # Binary files
-debug/*
-release/*
+debug/
+release/
 
 
 
