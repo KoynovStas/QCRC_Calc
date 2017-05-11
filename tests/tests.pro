@@ -1,5 +1,6 @@
 TEMPLATE = subdirs
 
 
-SUBDIRS += test_qucrc_t    \
-           test_hextobytes
+SUBDIRS += test_qucrc_t            \
+           test_hextobytes         \
+           test_crc_calc_for_hex
