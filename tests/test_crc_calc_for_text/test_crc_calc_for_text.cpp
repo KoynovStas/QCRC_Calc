@@ -1,20 +1,20 @@
 #include <QString>
 #include <QtTest>
 
-#include "crc_calc_for_hex.h"
+#include "crc_calc_for_text.h"
 #include "qucrc_t.h"
 
 
 
 
 
-class Test_CRC_Calc_Hex : public QObject
+class Test_CRC_Calc_Text : public QObject
 {
     Q_OBJECT
 
     public:
 
-        Test_CRC_Calc_Hex();
+        Test_CRC_Calc_Text();
 
 
     private slots:
@@ -22,21 +22,22 @@ class Test_CRC_Calc_Hex : public QObject
 
 
     private:
-        CRC_Calc_for_Hex hex_calc;
-        QuCRC_t          qucrc;
+        CRC_Calc_for_Text text_calc;
+        QuCRC_t           qucrc;
 };
 
 
 
-Test_CRC_Calc_Hex::Test_CRC_Calc_Hex():
+Test_CRC_Calc_Text::Test_CRC_Calc_Text():
     QObject(0)
 {
-    hex_calc.set_ucrc(&qucrc);
+    text_calc.set_ucrc(&qucrc);
 }
 
 
 
-void Test_CRC_Calc_Hex::test_calculate()
+
+void Test_CRC_Calc_Text::test_calculate()
 {
     //i = 1 //without custom CRC (custom CRC have index 0)
     for(size_t i = 1; i < QuCRC_t::CRC_List.size(); ++i)
@@ -52,14 +53,14 @@ void Test_CRC_Calc_Hex::test_calculate()
 
 
 
-        hex_calc.calculate("31 32 33 34 35 36 37 38 39");
+        text_calc.calculate("123456789");
 
-        if(hex_calc.result.get_result() != info.check)
+        if(text_calc.result.get_result() != info.check)
         {
             QString msg = "For CRC: " + info.name;
 
             msg += "  std check: 0x"     + QString::number(info.check, 16);
-            msg += "  but get_check: 0x" + QString::number(hex_calc.result.get_result(), 16);
+            msg += "  but get_check: 0x" + QString::number(text_calc.result.get_result(), 16);
 
 
             QFAIL(msg.toStdString().c_str());
@@ -71,6 +72,6 @@ void Test_CRC_Calc_Hex::test_calculate()
 
 
 
-QTEST_APPLESS_MAIN(Test_CRC_Calc_Hex)
+QTEST_APPLESS_MAIN(Test_CRC_Calc_Text)
 
-#include "test_crc_calc_for_hex.moc"
+#include "test_crc_calc_for_text.moc"
