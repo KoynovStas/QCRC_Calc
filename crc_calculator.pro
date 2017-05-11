@@ -67,4 +67,3 @@ HEADERS += src/*.h
 RESOURCES += qtquickcontrols2.conf         \
              $$files(qml/*.qml)            \
              $$files(qml/controls/*.qml)
-

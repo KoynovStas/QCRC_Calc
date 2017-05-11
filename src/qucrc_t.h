@@ -58,6 +58,10 @@ struct CRC_Param_Info
     bool    ref_in;
     bool    ref_out;
     quint64 xor_out;
+
+#ifdef TEST
+    quint64 check;   //need only for unit tests
+#endif
 };
 
 
