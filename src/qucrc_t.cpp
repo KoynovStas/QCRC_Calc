@@ -273,7 +273,9 @@ int QuCRC_t::set_index(int new_index)
     emit indexChanged();
 
 
-    update_param(new_index);
+    if( new_index != 0 )                 //no action for Custom CRC
+        *this = CRC_List[new_index];
+
 
     return 0; //good job
 }
@@ -425,15 +427,4 @@ void QuCRC_t::update_index()
 
     index = new_index;
     emit indexChanged();
-}
-
-
-
-void QuCRC_t::update_param(int new_index)
-{
-    if(new_index == 0)
-        return; //no action for Custom CRC
-
-
-    *this = CRC_List[new_index];
 }

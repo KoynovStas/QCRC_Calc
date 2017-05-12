@@ -188,7 +188,6 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
         int  find_index();
         void update_index();
-        void update_param(int new_index);
 };
 
 
