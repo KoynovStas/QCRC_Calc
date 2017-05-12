@@ -223,6 +223,20 @@ QStringList QuCRC_t::crc_names() const
 
 
 
+bool QuCRC_t::operator==(const CRC_Param_Info &r) const
+{
+    return (
+        r.bits    == get_bits()    &&
+        r.poly    == get_poly()    &&
+        r.init    == get_init()    &&
+        r.xor_out == get_xor_out() &&
+        r.ref_in  == get_ref_in()  &&
+        r.ref_out == get_ref_out()
+      );
+}
+
+
+
 int QuCRC_t::set_index(int new_index)
 {
     if( new_index == index )
@@ -369,16 +383,7 @@ int QuCRC_t::find_index()
 
     for(size_t i = 0; i < CRC_List.size(); ++i)
     {
-        CRC_Param_Info tmp = CRC_List[i];
-
-        if(
-            tmp.bits    == ucrc.get_bits()    &&
-            tmp.poly    == ucrc.get_poly()    &&
-            tmp.init    == ucrc.get_init()    &&
-            tmp.xor_out == ucrc.get_xor_out() &&
-            tmp.ref_in  == ucrc.get_ref_in()  &&
-            tmp.ref_out == ucrc.get_ref_out()
-          )
+        if( *this == CRC_List[i] )
             return i; //found
     }
 

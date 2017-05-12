@@ -98,6 +98,10 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         QStringList crc_names() const;
 
 
+        bool operator== (const CRC_Param_Info & r) const;
+
+
+
     signals:
 
         void paramChanged();
