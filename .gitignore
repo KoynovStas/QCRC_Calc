@@ -27,6 +27,12 @@ Makefile*
 *build-*
 
 
+# object_script generate only in Windows
+
+object_script.*.Debug
+object_script.*.Release
+
+
 
 # QtCreator
 
