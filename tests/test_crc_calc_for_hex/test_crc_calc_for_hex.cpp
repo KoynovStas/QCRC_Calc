@@ -43,14 +43,7 @@ void Test_CRC_Calc_Hex::test_calculate()
     {
         CRC_Param_Info info = QuCRC_t::CRC_List[i];
 
-        qucrc.set_bits(info.bits);
-        qucrc.set_poly(info.poly);
-        qucrc.set_init(info.init);
-        qucrc.set_xor_out(info.xor_out);
-        qucrc.set_ref_in(info.ref_in);
-        qucrc.set_ref_out(info.ref_out);
-
-
+        qucrc = info;
 
         hex_calc.calculate("31 32 33 34 35 36 37 38 39");
 

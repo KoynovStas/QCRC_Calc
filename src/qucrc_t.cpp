@@ -232,7 +232,29 @@ bool QuCRC_t::operator==(const CRC_Param_Info &r) const
         r.xor_out == get_xor_out() &&
         r.ref_in  == get_ref_in()  &&
         r.ref_out == get_ref_out()
-      );
+    );
+}
+
+
+
+QuCRC_t &QuCRC_t::operator=(const CRC_Param_Info &r)
+{
+    if( !(*this == r) )
+    {
+        set_bits   (r.bits,    false);
+        set_poly   (r.poly,    false);
+        set_init   (r.init,    false);
+        set_xor_out(r.xor_out, false);
+        set_ref_in (r.ref_in,  false);
+        set_ref_out(r.ref_out, false);
+
+
+        emit paramChanged();
+        update_index();
+    }
+
+
+    return *this;
 }
 
 
@@ -413,14 +435,5 @@ void QuCRC_t::update_param(int new_index)
         return; //no action for Custom CRC
 
 
-    CRC_Param_Info tmp = CRC_List[new_index];
-
-    set_bits(tmp.bits, false);
-    set_poly(tmp.poly, false);
-    set_init(tmp.init, false);
-    set_xor_out(tmp.xor_out, false);
-    set_ref_in(tmp.ref_in, false);
-    set_ref_out(tmp.ref_out, false);
-
-    emit paramChanged();
+    *this = CRC_List[new_index];
 }

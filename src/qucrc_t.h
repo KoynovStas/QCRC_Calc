@@ -99,6 +99,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         bool operator== (const CRC_Param_Info & r) const;
+        QuCRC_t & operator= (const CRC_Param_Info & r);
 
 
 
