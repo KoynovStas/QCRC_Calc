@@ -1,3 +1,5 @@
+#include <QQmlEngine>
+
 #include "crc_result.h"
 
 
@@ -10,6 +12,7 @@ CRC_Result::CRC_Result(QObject *parent) :
     _result(0),
     _base(2)
 {
+    qmlRegisterType<CRC_Result>("CRC_Calc", 1, 0, "CRC_Result");
 }
 
 

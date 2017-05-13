@@ -1,10 +1,4 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
-
-#include "qucrc_t.h"
-#include "crc_calc_for_text.h"
-#include "crc_calc_for_hex.h"
+#include "application.h"
 
 
 
@@ -13,32 +7,9 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
 
-    app.setApplicationDisplayName("CRC Calculator ver " +
-                                  QString::number(MAJOR_VERSION) + '.' +
-                                  QString::number(MINOR_VERSION));
+    Application& app = Application::get_instance(argc, argv);
 
-
-    qmlRegisterType<CRC_Result>("CRC_Calc", 1, 0, "CRC_Result");
-
-
-    QuCRC_t uCRC;
-
-    CRC_Calc_for_Text calc_text;
-    CRC_Calc_for_Hex  calc_hex;
-
-    calc_text.set_ucrc(&uCRC);
-    calc_hex.set_ucrc(&uCRC);
-
-
-    QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("uCRC", &uCRC);
-    engine.rootContext()->setContextProperty("calc_text", &calc_text);
-    engine.rootContext()->setContextProperty("calc_hex", &calc_hex);
-
-
-    engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
 
     return app.exec();
 }
