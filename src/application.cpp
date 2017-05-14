@@ -76,8 +76,8 @@ static const char *help_str =
         "       --poly         [value] Set Polynom (value in hex)\n"
         "       --init         [value] Set Init    (value in hex)\n"
         "       --xor_out      [value] Set XorOut  (value in hex)\n"
-        "       --ref_in       [value] Set RefIn   ({0|flase} or {!=0|true})\n"
-        "       --ref_out      [value] Set RefOut  ({0|flase} or {!=0|true})\n"
+        "       --ref_in       [value] Set RefIn   ({0|false} or {!=0|true})\n"
+        "       --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -134,7 +134,8 @@ void Application::processing_cmd(int argc, char *argv[])
 
             case LongOpts::version:
                     std::cout << "CRC Calculator version "
-                              << MAJOR_VERSION << '.' << MINOR_VERSION << "\n";
+                                 DEF_TO_STR(MAJOR_VERSION) "."
+                                 DEF_TO_STR(MINOR_VERSION) "\n";
                     _exit(EXIT_SUCCESS);
                     break;
 
