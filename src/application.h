@@ -36,8 +36,8 @@ class Application : public QGuiApplication
         static void attach_console(void);
         void processing_cmd(int argc, char *argv[]);
 
-        quint64 str_to_uint64(const char *val, int base=10) const;
-
+        static quint64 str_to_uint64(const char *val, int base=10);
+        static bool    str_to_bool(const char *val);
 
 
         QuCRC_t uCRC;
