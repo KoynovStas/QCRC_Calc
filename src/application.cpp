@@ -74,6 +74,7 @@ static const char *help_str =
         "Options:                      description:\n\n"
         "       --poly         [value] Set Polynom (value in hex)\n"
         "       --init         [value] Set Init    (value in hex)\n"
+        "       --xor_out      [value] Set XorOut  (value in hex)\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -89,7 +90,8 @@ namespace LongOpts
 
         // Set CRC param
         poly,
-        init
+        init,
+        xor_out
     };
 }
 
@@ -104,6 +106,7 @@ static const struct option long_opts[] =
     // Set CRC param
     { "poly",         required_argument, NULL, LongOpts::poly          },
     { "init",         required_argument, NULL, LongOpts::init          },
+    { "xor_out",      required_argument, NULL, LongOpts::xor_out       },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -141,6 +144,11 @@ void Application::processing_cmd(int argc, char *argv[])
 
             case LongOpts::init:
                     uCRC.set_init(str_to_uint64(optarg));
+                    break;
+
+
+            case LongOpts::xor_out:
+                    uCRC.set_xor_out(str_to_uint64(optarg));
                     break;
 
 
