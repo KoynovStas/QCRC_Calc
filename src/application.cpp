@@ -73,6 +73,7 @@ static const char *help_str =
         " Build  time:  " __TIME__ "\n\n"
         "Options:                      description:\n\n"
         "       --poly         [value] Set Polynom (value in hex)\n"
+        "       --init         [value] Set Init    (value in hex)\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -87,7 +88,8 @@ namespace LongOpts
         help,
 
         // Set CRC param
-        poly
+        poly,
+        init
     };
 }
 
@@ -101,6 +103,7 @@ static const struct option long_opts[] =
 
     // Set CRC param
     { "poly",         required_argument, NULL, LongOpts::poly          },
+    { "init",         required_argument, NULL, LongOpts::init          },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -133,6 +136,11 @@ void Application::processing_cmd(int argc, char *argv[])
             // Set CRC param
             case LongOpts::poly:
                     uCRC.set_poly(str_to_uint64(optarg));
+                    break;
+
+
+            case LongOpts::init:
+                    uCRC.set_init(str_to_uint64(optarg));
                     break;
 
 
