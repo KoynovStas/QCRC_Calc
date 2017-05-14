@@ -79,6 +79,7 @@ static const char *help_str =
         "       --ref_in       [value] Set RefIn   ({0|false} or {!=0|true})\n"
         "       --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n\n"
         "       --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
+        "       --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -101,7 +102,8 @@ namespace LongOpts
         ref_out,
 
         //Hex
-        revers_word
+        revers_word,
+        revers_data
     };
 }
 
@@ -123,6 +125,7 @@ static const struct option long_opts[] =
 
     // CRC for Hex
     { "revers_word",  required_argument, NULL, LongOpts::revers_word   },
+    { "revers_data",  required_argument, NULL, LongOpts::revers_data   },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -191,6 +194,10 @@ void Application::processing_cmd(int argc, char *argv[])
             // CRC for Hex
             case LongOpts::revers_word:
                     calc_hex.set_revers_chunk(str_to_bool(optarg));
+                    break;
+
+            case LongOpts::revers_data:
+                    calc_hex.set_revers_data(str_to_bool(optarg));
                     break;
 
 
