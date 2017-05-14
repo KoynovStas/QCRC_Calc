@@ -72,6 +72,7 @@ static const char *help_str =
         " Build  date:  " __DATE__ "\n"
         " Build  time:  " __TIME__ "\n\n"
         "Options:                      description:\n\n"
+        "       --bits         [value] Set Bits    (value 1..64)\n"
         "       --poly         [value] Set Polynom (value in hex)\n"
         "       --init         [value] Set Init    (value in hex)\n"
         "       --xor_out      [value] Set XorOut  (value in hex)\n"
@@ -89,6 +90,7 @@ namespace LongOpts
         help,
 
         // Set CRC param
+        bits,
         poly,
         init,
         xor_out
@@ -104,6 +106,7 @@ static const struct option long_opts[] =
     { "help",         no_argument,       NULL, LongOpts::help          },
 
     // Set CRC param
+    { "bits",         required_argument, NULL, LongOpts::bits          },
     { "poly",         required_argument, NULL, LongOpts::poly          },
     { "init",         required_argument, NULL, LongOpts::init          },
     { "xor_out",      required_argument, NULL, LongOpts::xor_out       },
@@ -137,18 +140,27 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
             // Set CRC param
+            case LongOpts::bits:
+                    if( uCRC.set_bits(str_to_uint64(optarg)) != 0 )
+                    {
+                        std::cout << "Cant set bits from val: " << optarg << "\n";
+                        _exit(EXIT_FAILURE);
+                    }
+                    break;
+
+
             case LongOpts::poly:
-                    uCRC.set_poly(str_to_uint64(optarg));
+                    uCRC.set_poly(str_to_uint64(optarg, 16));
                     break;
 
 
             case LongOpts::init:
-                    uCRC.set_init(str_to_uint64(optarg));
+                    uCRC.set_init(str_to_uint64(optarg, 16));
                     break;
 
 
             case LongOpts::xor_out:
-                    uCRC.set_xor_out(str_to_uint64(optarg));
+                    uCRC.set_xor_out(str_to_uint64(optarg, 16));
                     break;
 
 
@@ -163,12 +175,12 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
 
-quint64 Application::str_to_uint64(const char *val)
+quint64 Application::str_to_uint64(const char *val, int base) const
 {
     bool ok;
     QString tmp(val);
 
-    quint64 res = tmp.toULongLong(&ok, 16);
+    quint64 res = tmp.toULongLong(&ok, base);
 
     if(!ok)
     {

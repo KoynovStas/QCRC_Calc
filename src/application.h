@@ -36,7 +36,7 @@ class Application : public QGuiApplication
         static void attach_console(void);
         void processing_cmd(int argc, char *argv[]);
 
-        quint64 str_to_uint64(const char *val);
+        quint64 str_to_uint64(const char *val, int base=10) const;
 
 
 
