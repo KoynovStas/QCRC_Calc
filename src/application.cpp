@@ -76,7 +76,8 @@ static const char *help_str =
         "       --poly         [value] Set Polynom (value in hex)\n"
         "       --init         [value] Set Init    (value in hex)\n"
         "       --xor_out      [value] Set XorOut  (value in hex)\n"
-        "       --ref_in       [value] Set RefIn   (value in hex)\n"
+        "       --ref_in       [value] Set RefIn   ({0|flase} or {!=0|true})\n"
+        "       --ref_out      [value] Set RefOut  ({0|flase} or {!=0|true})\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -95,7 +96,8 @@ namespace LongOpts
         poly,
         init,
         xor_out,
-        ref_in
+        ref_in,
+        ref_out
     };
 }
 
@@ -113,6 +115,7 @@ static const struct option long_opts[] =
     { "init",         required_argument, NULL, LongOpts::init          },
     { "xor_out",      required_argument, NULL, LongOpts::xor_out       },
     { "ref_in",       required_argument, NULL, LongOpts::ref_in        },
+    { "ref_out",      required_argument, NULL, LongOpts::ref_out       },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -169,6 +172,11 @@ void Application::processing_cmd(int argc, char *argv[])
 
             case LongOpts::ref_in:
                     uCRC.set_ref_in(str_to_bool(optarg));
+                    break;
+
+
+            case LongOpts::ref_out:
+                    uCRC.set_ref_out(str_to_bool(optarg));
                     break;
 
 
