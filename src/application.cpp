@@ -72,6 +72,7 @@ static const char *help_str =
         " Build  date:  " __DATE__ "\n"
         " Build  time:  " __TIME__ "\n\n"
         "Options:                      description:\n\n"
+        "       --poly         [value] Set Polynom (value in hex)\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -83,7 +84,10 @@ namespace LongOpts
     enum
     {
         version = 0,
-        help
+        help,
+
+        // Set CRC param
+        poly
     };
 }
 
@@ -95,6 +99,8 @@ static const struct option long_opts[] =
     { "version",      no_argument,       NULL, LongOpts::version       },
     { "help",         no_argument,       NULL, LongOpts::help          },
 
+    // Set CRC param
+    { "poly",         required_argument, NULL, LongOpts::poly          },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -124,6 +130,12 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
+            // Set CRC param
+            case LongOpts::poly:
+                    uCRC.set_poly(str_to_uint64(optarg));
+                    break;
+
+
             default:
                     // getopt_long function itself prints an error message
                     std::cout << "for more detail see help\n\n";
@@ -131,4 +143,23 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
         }
     }
+}
+
+
+
+quint64 Application::str_to_uint64(const char *val)
+{
+    bool ok;
+    QString tmp(val);
+
+    quint64 res = tmp.toULongLong(&ok, 16);
+
+    if(!ok)
+    {
+        std::cout << "Cant convert: " << val << " to hex\n";
+        _exit(EXIT_FAILURE);
+    }
+
+
+    return res; //good job
 }
