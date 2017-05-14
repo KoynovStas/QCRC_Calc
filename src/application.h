@@ -34,6 +34,7 @@ class Application : public QGuiApplication
 
 
         static void attach_console(void);
+        void processing_cmd(int argc, char *argv[]);
 
 
         QuCRC_t uCRC;
