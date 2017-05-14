@@ -77,7 +77,8 @@ static const char *help_str =
         "       --init         [value] Set Init    (value in hex)\n"
         "       --xor_out      [value] Set XorOut  (value in hex)\n"
         "       --ref_in       [value] Set RefIn   ({0|false} or {!=0|true})\n"
-        "       --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n"
+        "       --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n\n"
+        "       --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
         "  -v   --version              Display version information\n"
         "  -h,  --help                 Display this information\n\n";
 
@@ -97,7 +98,10 @@ namespace LongOpts
         init,
         xor_out,
         ref_in,
-        ref_out
+        ref_out,
+
+        //Hex
+        revers_word
     };
 }
 
@@ -116,6 +120,9 @@ static const struct option long_opts[] =
     { "xor_out",      required_argument, NULL, LongOpts::xor_out       },
     { "ref_in",       required_argument, NULL, LongOpts::ref_in        },
     { "ref_out",      required_argument, NULL, LongOpts::ref_out       },
+
+    // CRC for Hex
+    { "revers_word",  required_argument, NULL, LongOpts::revers_word   },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -178,6 +185,12 @@ void Application::processing_cmd(int argc, char *argv[])
 
             case LongOpts::ref_out:
                     uCRC.set_ref_out(str_to_bool(optarg));
+                    break;
+
+
+            // CRC for Hex
+            case LongOpts::revers_word:
+                    calc_hex.set_revers_chunk(str_to_bool(optarg));
                     break;
 
 
