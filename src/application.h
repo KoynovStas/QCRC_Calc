@@ -33,6 +33,9 @@ class Application : public QGuiApplication
         Q_DISABLE_COPY(Application)
 
 
+        static void attach_console(void);
+
+
         QuCRC_t uCRC;
 
         CRC_Calc_for_Text calc_text;
