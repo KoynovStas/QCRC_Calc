@@ -80,7 +80,8 @@ static const char *help_str =
         " --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n\n"
         " --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
         " --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
-        " --hex          [value] Get CRC for HEX (value in hex format)\n"
+        " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
+        " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
 
@@ -105,7 +106,10 @@ namespace LongOpts
         //Hex
         revers_word,
         revers_data,
-        hex
+        hex,
+
+        //Text
+        BOM
     };
 }
 
@@ -129,6 +133,9 @@ static const struct option long_opts[] =
     { "revers_word",  required_argument, NULL, LongOpts::revers_word   },
     { "revers_data",  required_argument, NULL, LongOpts::revers_data   },
     { "hex",          required_argument, NULL, LongOpts::hex           },
+
+    // CRC for Text
+    { "BOM",          required_argument, NULL, LongOpts::BOM           },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -215,6 +222,12 @@ void Application::processing_cmd(int argc, char *argv[])
 
                     std::cout << calc_hex.result.get_result_hex().toStdString();
                     _exit(EXIT_SUCCESS);
+                    break;
+
+
+            // CRC for Text
+            case LongOpts::BOM:
+                    calc_text.set_BOM(str_to_bool(optarg));
                     break;
 
 
