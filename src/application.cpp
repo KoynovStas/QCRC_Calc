@@ -50,10 +50,10 @@ void Application::attach_console()
     // attach the new console to this application's process
     AttachConsole(ATTACH_PARENT_PROCESS);
 
-   // reopen the std I/O streams to redirect I/O to the new console
-   freopen("CON", "w", stdout);
-   freopen("CON", "w", stderr);
-   freopen("CON", "r", stdin);
+    // reopen the std I/O streams to redirect I/O to the new console
+    freopen("CON", "w", stdout);
+    freopen("CON", "w", stderr);
+    freopen("CON", "r", stdin);
 
 #endif
 
