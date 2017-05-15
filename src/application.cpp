@@ -84,6 +84,7 @@ static const char *help_str =
         " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
         " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
         " --end_line     [value] Set index of End Line\n"
+        " --encoding     [value] Set index of Encoding\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
         " --version              Display version information\n"
@@ -115,6 +116,7 @@ namespace LongOpts
         //Text
         BOM,
         end_line,
+        encoding,
         list_endl,
         list_enc
     };
@@ -144,6 +146,7 @@ static const struct option long_opts[] =
     // CRC for Text
     { "BOM",          required_argument, NULL, LongOpts::BOM           },
     { "end_line",     required_argument, NULL, LongOpts::end_line      },
+    { "encoding",     required_argument, NULL, LongOpts::encoding      },
     { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
     { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
 
@@ -245,6 +248,15 @@ void Application::processing_cmd(int argc, char *argv[])
                     if( calc_text.set_end_line_index(str_to_uint64(optarg)) != 0 )
                     {
                         std::cout << "Cant set end line index from val: " << optarg << "\n";
+                        _exit(EXIT_FAILURE);
+                    }
+                    break;
+
+
+            case LongOpts::encoding:
+                    if( calc_text.set_encoding_index(str_to_uint64(optarg)) != 0 )
+                    {
+                        std::cout << "Cant set encoding index from val: " << optarg << "\n";
                         _exit(EXIT_FAILURE);
                     }
                     break;
