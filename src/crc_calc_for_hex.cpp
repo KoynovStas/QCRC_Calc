@@ -9,19 +9,8 @@ CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
     QObject(NULL)
 {
 
-    QObject::connect(&hex_to_bytes, SIGNAL(error(QString)),
-                     this, SIGNAL(error(QString)) );
-
-
-    QObject::connect(this, SIGNAL(run_calculate(const QString &)),
-                     this, SLOT(_calculate(const QString &))  );
-}
-
-
-
-void CRC_Calc_for_Hex::calculate(const QString & data)
-{
-    emit run_calculate(data);
+    QObject::connect(&hex_to_bytes, SIGNAL(error(const QString &)),
+                     this, SLOT(_set_error(const QString &)) );
 }
 
 
@@ -48,21 +37,21 @@ void CRC_Calc_for_Hex::set_revers_data(bool value)
 
 
 
-void CRC_Calc_for_Hex::_calculate(const QString &data)
+int CRC_Calc_for_Hex::_calculate(const QString &data)
 {
     result.set_result(0); //reset old result
 
 
     if( hex_to_bytes.str_to_bytes(data) != 0 )
     {
-        return; // bad string
+        return -1; // bad string
     }
 
 
-    if(hex_to_bytes.bytes.size() == 0)
+    if( hex_to_bytes.bytes.size() == 0 )
     {
-        emit error("No Data");
-        return;
+        _set_error("No Data");
+        return -1;
     }
 
 
@@ -71,5 +60,18 @@ void CRC_Calc_for_Hex::_calculate(const QString &data)
         quint64 res = ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() );
         emit calculated(res);
         result.set_result(res);
+        return 0; //good job
     }
+
+
+    _set_error("Dont set uCRC");
+    return -1;
+}
+
+
+
+void CRC_Calc_for_Hex::_set_error(const QString &err)
+{
+    str_error = err;
+    emit error(err);
 }

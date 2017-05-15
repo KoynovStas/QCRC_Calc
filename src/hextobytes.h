@@ -33,10 +33,6 @@ class HexToBytes : public QObject
         void error(const QString & err);
 
 
-
-//    public slots:
-
-
     private:
 
         int token_to_bytes(const QString& token);

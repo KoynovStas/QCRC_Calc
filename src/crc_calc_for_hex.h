@@ -33,6 +33,8 @@ class CRC_Calc_for_Hex : public QObject
         CRC_Result* get_result() { return &result; }
         CRC_Result result;
 
+        QString get_str_error() { return str_error; }
+
 
     signals:
         void calculated(quint64 value);
@@ -40,13 +42,9 @@ class CRC_Calc_for_Hex : public QObject
         void revers_chunkChanged();
         void revers_dataChanged();
 
-        //signals for inner use
-        void run_calculate(const QString & data);
-
-
 
     public slots:
-        void calculate(const QString & data);
+        int  calculate(const QString & data) { return _calculate(data); }
         void set_revers_chunk(bool value);
         void set_revers_data(bool value);
 
@@ -59,13 +57,15 @@ class CRC_Calc_for_Hex : public QObject
 
 
     protected slots:
-        void _calculate(const QString & data);
+        int  _calculate(const QString & data);
+        void _set_error(const QString & err);
 
 
 
     private:
         HexToBytes      hex_to_bytes;
         const QuCRC_t  *ucrc;
+        QString         str_error;
 };
 
 

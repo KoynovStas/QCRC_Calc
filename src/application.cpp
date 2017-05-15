@@ -23,12 +23,12 @@ Application::Application(int &argc, char **argv) :
                               DEF_TO_STR(MAJOR_VERSION) "."
                               DEF_TO_STR(MINOR_VERSION));
 
-    attach_console();
-    processing_cmd(argc, argv);
-
-
     calc_text.set_ucrc(&uCRC);
     calc_hex.set_ucrc(&uCRC);
+
+
+    attach_console();
+    processing_cmd(argc, argv);
 
 
     // GUI
@@ -71,17 +71,18 @@ static const char *help_str =
 #endif
         " Build  date:  " __DATE__ "\n"
         " Build  time:  " __TIME__ "\n\n"
-        "Options:                      description:\n\n"
-        "       --bits         [value] Set Bits    (value 1..64)\n"
-        "       --poly         [value] Set Polynom (value in hex)\n"
-        "       --init         [value] Set Init    (value in hex)\n"
-        "       --xor_out      [value] Set XorOut  (value in hex)\n"
-        "       --ref_in       [value] Set RefIn   ({0|false} or {!=0|true})\n"
-        "       --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n\n"
-        "       --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
-        "       --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
-        "  -v   --version              Display version information\n"
-        "  -h,  --help                 Display this information\n\n";
+        "Options:        Description:\n\n"
+        " --bits         [value] Set Bits    (value 1..64)\n"
+        " --poly         [value] Set Polynom (value in hex)\n"
+        " --init         [value] Set Init    (value in hex)\n"
+        " --xor_out      [value] Set XorOut  (value in hex)\n"
+        " --ref_in       [value] Set RefIn   ({0|false} or {!=0|true})\n"
+        " --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n\n"
+        " --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
+        " --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
+        " --hex          [value] Get CRC for HEX (value in hex format)\n"
+        " --version              Display version information\n"
+        " --help                 Display this information\n\n";
 
 
 
@@ -103,7 +104,8 @@ namespace LongOpts
 
         //Hex
         revers_word,
-        revers_data
+        revers_data,
+        hex
     };
 }
 
@@ -126,6 +128,7 @@ static const struct option long_opts[] =
     // CRC for Hex
     { "revers_word",  required_argument, NULL, LongOpts::revers_word   },
     { "revers_data",  required_argument, NULL, LongOpts::revers_data   },
+    { "hex",          required_argument, NULL, LongOpts::hex           },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -196,8 +199,22 @@ void Application::processing_cmd(int argc, char *argv[])
                     calc_hex.set_revers_chunk(str_to_bool(optarg));
                     break;
 
+
             case LongOpts::revers_data:
                     calc_hex.set_revers_data(str_to_bool(optarg));
+                    break;
+
+
+            case LongOpts::hex:
+                    if( calc_hex.calculate(optarg) != 0 )
+                    {
+                        std::cout << "Cant get CRC for hex error: "
+                                  << calc_hex.get_str_error().toStdString() << "\n";
+                        _exit(EXIT_FAILURE);
+                    }
+
+                    std::cout << calc_hex.result.get_result_hex().toStdString();
+                    _exit(EXIT_SUCCESS);
                     break;
 
 
