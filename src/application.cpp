@@ -85,6 +85,7 @@ static const char *help_str =
         " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
         " --end_line     [value] Set index of End Line\n"
         " --list_endl            Show List of End Line with indexes\n"
+        " --list_enc             Show List of Encodings with indexes\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
 
@@ -114,7 +115,8 @@ namespace LongOpts
         //Text
         BOM,
         end_line,
-        list_endl
+        list_endl,
+        list_enc
     };
 }
 
@@ -143,6 +145,7 @@ static const struct option long_opts[] =
     { "BOM",          required_argument, NULL, LongOpts::BOM           },
     { "end_line",     required_argument, NULL, LongOpts::end_line      },
     { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
+    { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -253,6 +256,12 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
+            case LongOpts::list_enc:
+                    show_list_enc();
+                    _exit(EXIT_SUCCESS);
+                    break;
+
+
             default:
                     // getopt_long function itself prints an error message
                     std::cout << "for more detail see help\n\n";
@@ -273,7 +282,7 @@ quint64 Application::str_to_uint64(const char *val, int base)
 
     if(!ok)
     {
-        std::cout << "Cant convert: " << val << " to hex\n";
+        std::cout << "Cant convert: " << val << " to uint64\n";
         _exit(EXIT_FAILURE);
     }
 
@@ -297,6 +306,18 @@ void Application::show_list_endl() const
     std::cout << "Index:   Name:\n";
 
     QStringList list = calc_text.end_line_names();
+
+    for(int i = 0; i < list.size(); ++i)
+        std::cout << i << "  " << list[i].toStdString() << "\n";
+}
+
+
+
+void Application::show_list_enc() const
+{
+    std::cout << "Index:   Name:\n";
+
+    QStringList list = calc_text.encodings();
 
     for(int i = 0; i < list.size(); ++i)
         std::cout << i << "  " << list[i].toStdString() << "\n";

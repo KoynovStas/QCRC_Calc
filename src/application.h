@@ -40,6 +40,7 @@ class Application : public QGuiApplication
         static bool    str_to_bool(const char *val);
 
         void show_list_endl() const;
+        void show_list_enc() const;
 
 
         QuCRC_t uCRC;
