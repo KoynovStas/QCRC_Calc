@@ -41,6 +41,8 @@ class Application : public QGuiApplication
 
         void show_list_endl() const;
         void show_list_enc() const;
+        void set_encoding_index(int index);
+        void set_encoding_name(const char *name);
 
 
         QuCRC_t uCRC;

@@ -104,7 +104,7 @@ int CRC_Calc_for_Text::set_encoding_index(int new_index)
         return 0; //no action
 
 
-    if( new_index >= Encodings.size() )
+    if( (new_index < 0) || (new_index >= Encodings.size()) )
         return -1; //error
 
 

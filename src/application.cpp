@@ -84,7 +84,8 @@ static const char *help_str =
         " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
         " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
         " --end_line     [value] Set index of End Line\n"
-        " --encoding     [value] Set index of Encoding\n"
+        " --enc_index    [value] Set Encoding (value is index see --list_enc)\n"
+        " --enc_name     [value] Set Encoding (value is name see --list_enc)\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
         " --version              Display version information\n"
@@ -116,7 +117,8 @@ namespace LongOpts
         //Text
         BOM,
         end_line,
-        encoding,
+        enc_index,
+        enc_name,
         list_endl,
         list_enc
     };
@@ -146,7 +148,8 @@ static const struct option long_opts[] =
     // CRC for Text
     { "BOM",          required_argument, NULL, LongOpts::BOM           },
     { "end_line",     required_argument, NULL, LongOpts::end_line      },
-    { "encoding",     required_argument, NULL, LongOpts::encoding      },
+    { "enc_index",    required_argument, NULL, LongOpts::enc_index     },
+    { "enc_name",     required_argument, NULL, LongOpts::enc_name      },
     { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
     { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
 
@@ -253,12 +256,13 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
-            case LongOpts::encoding:
-                    if( calc_text.set_encoding_index(str_to_uint64(optarg)) != 0 )
-                    {
-                        std::cout << "Cant set encoding index from val: " << optarg << "\n";
-                        _exit(EXIT_FAILURE);
-                    }
+            case LongOpts::enc_index:
+                    set_encoding_index(str_to_uint64(optarg));
+                    break;
+
+
+            case LongOpts::enc_name:
+                    set_encoding_name(optarg);
                     break;
 
 
@@ -333,4 +337,23 @@ void Application::show_list_enc() const
 
     for(int i = 0; i < list.size(); ++i)
         std::cout << i << "  " << list[i].toStdString() << "\n";
+}
+
+
+
+void Application::set_encoding_index(int index)
+{
+    if( calc_text.set_encoding_index(index) != 0 )
+    {
+        std::cout << "Cant set encoding\n";
+        _exit(EXIT_FAILURE);
+    }
+}
+
+
+
+void Application::set_encoding_name(const char *name)
+{
+    int index = calc_text.encodings().indexOf(QRegExp(name, Qt::CaseInsensitive));
+    set_encoding_index(index);
 }
