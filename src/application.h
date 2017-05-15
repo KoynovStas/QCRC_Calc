@@ -39,6 +39,8 @@ class Application : public QGuiApplication
         static quint64 str_to_uint64(const char *val, int base=10);
         static bool    str_to_bool(const char *val);
 
+        void show_list_endl() const;
+
 
         QuCRC_t uCRC;
 

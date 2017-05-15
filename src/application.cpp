@@ -5,6 +5,7 @@
 #endif
 
 #include <iostream>
+#include <iomanip>      // std::setw
 #include <getopt.h>
 
 
@@ -82,6 +83,8 @@ static const char *help_str =
         " --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
         " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
         " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
+        " --end_line     [value] Set index of End Line\n"
+        " --list_endl            Show List of End Line with indexes\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
 
@@ -109,7 +112,9 @@ namespace LongOpts
         hex,
 
         //Text
-        BOM
+        BOM,
+        end_line,
+        list_endl
     };
 }
 
@@ -136,6 +141,8 @@ static const struct option long_opts[] =
 
     // CRC for Text
     { "BOM",          required_argument, NULL, LongOpts::BOM           },
+    { "end_line",     required_argument, NULL, LongOpts::end_line      },
+    { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -231,6 +238,21 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
+            case LongOpts::end_line:
+                    if( calc_text.set_end_line_index(str_to_uint64(optarg)) != 0 )
+                    {
+                        std::cout << "Cant set end line index from val: " << optarg << "\n";
+                        _exit(EXIT_FAILURE);
+                    }
+                    break;
+
+
+            case LongOpts::list_endl:
+                    show_list_endl();
+                    _exit(EXIT_SUCCESS);
+                    break;
+
+
             default:
                     // getopt_long function itself prints an error message
                     std::cout << "for more detail see help\n\n";
@@ -266,4 +288,16 @@ bool Application::str_to_bool(const char *val)
     QString tmp(val);
 
     return (tmp.compare("true", Qt::CaseInsensitive) == 0) || (atoi(val) != 0);
+}
+
+
+
+void Application::show_list_endl() const
+{
+    std::cout << "Index:   Name:\n";
+
+    QStringList list = calc_text.end_line_names();
+
+    for(int i = 0; i < list.size(); ++i)
+        std::cout << i << "  " << list[i].toStdString() << "\n";
 }
