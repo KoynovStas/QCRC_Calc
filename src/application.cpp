@@ -4,6 +4,7 @@
     #include <windows.h>  //need for support console (It's Windows baby)
 #endif
 
+#include <unistd.h>     // _exit
 #include <iostream>
 #include <iomanip>      // std::setw
 #include <getopt.h>
@@ -12,6 +13,8 @@
 
 #define STRINGIFY(x) #x
 #define DEF_TO_STR(x) STRINGIFY(x)
+
+
 
 
 
@@ -236,7 +239,7 @@ void Application::processing_cmd(int argc, char *argv[])
                         _exit(EXIT_FAILURE);
                     }
 
-                    std::cout << calc_hex.result.get_result_hex().toStdString();
+                    std::cout << calc_hex.result.get_result_hex().toStdString()<< "\n";
                     _exit(EXIT_SUCCESS);
                     break;
 
