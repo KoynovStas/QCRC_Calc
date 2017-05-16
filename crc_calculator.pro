@@ -24,6 +24,8 @@ CONFIG(debug, debug|release) {
 CONFIG(release, debug|release) {
     TARGETDIR = release
     DESTDIR   = release
+
+    CONFIG -= qml_debug
 }
 
 
