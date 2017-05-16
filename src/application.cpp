@@ -81,7 +81,9 @@ static const char *help_str =
         " --init         [value] Set Init    (value in hex)\n"
         " --xor_out      [value] Set XorOut  (value in hex)\n"
         " --ref_in       [value] Set RefIn   ({0|false} or {!=0|true})\n"
-        " --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n\n"
+        " --ref_out      [value] Set RefOut  ({0|false} or {!=0|true})\n"
+        " --crc_index    [value] Set CRC     (value is index see --list_crc)\n"
+        " --crc_name     [value] Set CRC     (value is name see --list_crc)\n\n"
         " --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
         " --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
         " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
@@ -91,7 +93,7 @@ static const char *help_str =
         " --enc_name     [value] Set Encoding (value is name see --list_enc)\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
-        " --list_crc             Show List of std CRC with indexes\n"
+        " --list_crc             Show List of std CRC with indexes\n\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
 
@@ -112,6 +114,8 @@ namespace LongOpts
         xor_out,
         ref_in,
         ref_out,
+        crc_index,
+        crc_name,
 
         // CRC for Hex
         revers_word,
@@ -146,6 +150,8 @@ static const struct option long_opts[] =
     { "xor_out",      required_argument, NULL, LongOpts::xor_out       },
     { "ref_in",       required_argument, NULL, LongOpts::ref_in        },
     { "ref_out",      required_argument, NULL, LongOpts::ref_out       },
+    { "crc_index",    required_argument, NULL, LongOpts::crc_index     },
+    { "crc_name",     required_argument, NULL, LongOpts::crc_name      },
 
     // CRC for Hex
     { "revers_word",  required_argument, NULL, LongOpts::revers_word   },
@@ -227,6 +233,16 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
+            case LongOpts::crc_index:
+                    set_crc_index(str_to_uint64(optarg));
+                    break;
+
+
+            case LongOpts::crc_name:
+                    set_crc_name(optarg);
+                    break;
+
+
             // CRC for Hex
             case LongOpts::revers_word:
                     calc_hex.set_revers_chunk(str_to_bool(optarg));
@@ -288,10 +304,10 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
-        case LongOpts::list_crc:
-                show_list(uCRC.crc_names());
-                _exit(EXIT_SUCCESS);
-                break;
+            case LongOpts::list_crc:
+                    show_list(uCRC.crc_names());
+                    _exit(EXIT_SUCCESS);
+                    break;
 
 
             default:
@@ -358,4 +374,23 @@ void Application::set_encoding_name(const char *name)
 {
     int index = calc_text.encodings().indexOf(QRegExp(name, Qt::CaseInsensitive));
     set_encoding_index(index);
+}
+
+
+
+void Application::set_crc_index(int index)
+{
+    if( uCRC.set_index(index) != 0 )
+    {
+        std::cout << "Cant set CRC\n";
+        _exit(EXIT_FAILURE);
+    }
+}
+
+
+
+void Application::set_crc_name(const char *name)
+{
+    int index = uCRC.crc_names().indexOf(QRegExp(".*" + QString(name) + ".*", Qt::CaseInsensitive));
+    set_crc_index(index);
 }

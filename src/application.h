@@ -46,6 +46,9 @@ class Application : public QGuiApplication
         void set_encoding_index(int index);
         void set_encoding_name(const char *name);
 
+        void set_crc_index(int index);
+        void set_crc_name(const char *name);
+
 
         QuCRC_t uCRC;
 
