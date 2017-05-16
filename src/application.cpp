@@ -91,6 +91,7 @@ static const char *help_str =
         " --enc_name     [value] Set Encoding (value is name see --list_enc)\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
+        " --list_crc             Show List of std CRC with indexes\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
 
@@ -112,18 +113,21 @@ namespace LongOpts
         ref_in,
         ref_out,
 
-        //Hex
+        // CRC for Hex
         revers_word,
         revers_data,
         hex,
 
-        //Text
+        // CRC for Text
         BOM,
         end_line,
         enc_index,
         enc_name,
         list_endl,
-        list_enc
+        list_enc,
+
+        // Common
+        list_crc
     };
 }
 
@@ -155,6 +159,9 @@ static const struct option long_opts[] =
     { "enc_name",     required_argument, NULL, LongOpts::enc_name      },
     { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
     { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
+
+    // Common
+    { "list_crc",     no_argument,       NULL, LongOpts::list_crc      },
 
     { NULL,           no_argument,       NULL,  0                      }
 };
@@ -270,15 +277,21 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
             case LongOpts::list_endl:
-                    show_list_endl();
+                    show_list(calc_text.end_line_names());
                     _exit(EXIT_SUCCESS);
                     break;
 
 
             case LongOpts::list_enc:
-                    show_list_enc();
+                    show_list(calc_text.encodings());
                     _exit(EXIT_SUCCESS);
                     break;
+
+
+        case LongOpts::list_crc:
+                show_list(uCRC.crc_names());
+                _exit(EXIT_SUCCESS);
+                break;
 
 
             default:
@@ -320,23 +333,9 @@ bool Application::str_to_bool(const char *val)
 
 
 
-void Application::show_list_endl() const
+void Application::show_list(const QStringList &list)
 {
     std::cout << "Index:   Name:\n";
-
-    QStringList list = calc_text.end_line_names();
-
-    for(int i = 0; i < list.size(); ++i)
-        std::cout << i << "  " << list[i].toStdString() << "\n";
-}
-
-
-
-void Application::show_list_enc() const
-{
-    std::cout << "Index:   Name:\n";
-
-    QStringList list = calc_text.encodings();
 
     for(int i = 0; i < list.size(); ++i)
         std::cout << i << "  " << list[i].toStdString() << "\n";

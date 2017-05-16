@@ -34,13 +34,15 @@ class Application : public QGuiApplication
 
 
         static void attach_console(void);
+
         void processing_cmd(int argc, char *argv[]);
 
         static quint64 str_to_uint64(const char *val, int base=10);
         static bool    str_to_bool(const char *val);
 
-        void show_list_endl() const;
-        void show_list_enc() const;
+        static void show_list(const QStringList & list);
+
+
         void set_encoding_index(int index);
         void set_encoding_name(const char *name);
 
