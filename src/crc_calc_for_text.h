@@ -89,6 +89,9 @@ class CRC_Calc_for_Text : public QObject
         int set_encoding_index(int new_index);
 
 
+        QString get_str_error() { return str_error; }
+
+
 
     signals:
 
@@ -98,13 +101,10 @@ class CRC_Calc_for_Text : public QObject
         void calculated(quint64 value);
         void error(const QString & err);
 
-        //signals for inner use
-        void run_calculate(const QString & data);
-
 
 
     public slots:
-        void calculate(const QString & data);
+        int  calculate(const QString & data) { return _calculate(data); }
 
         quint32 get_num_lines() { return num_lines; }
         quint32 get_num_bytes() { return raw_str.size(); }
@@ -112,7 +112,8 @@ class CRC_Calc_for_Text : public QObject
 
 
     protected slots:
-        void _calculate(const QString & data);
+        int  _calculate(const QString & data);
+        void _set_error(const QString & err);
 
 
 
@@ -127,6 +128,8 @@ class CRC_Calc_for_Text : public QObject
         QByteArray      raw_str;
 
         size_t          num_lines;
+
+        QString         str_error;
 
 
         void replace_end_line(const QString &data);

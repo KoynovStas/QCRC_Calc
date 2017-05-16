@@ -93,6 +93,7 @@ static const char *help_str =
         " --enc_name     [value] Set Encoding (value is name see --list_enc)\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
+        " --text         [value] Get CRC for Text (value is text)\n\n"
         " --list_crc             Show List of std CRC with indexes\n\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
@@ -129,6 +130,7 @@ namespace LongOpts
         enc_name,
         list_endl,
         list_enc,
+        text,
 
         // Common
         list_crc
@@ -165,6 +167,7 @@ static const struct option long_opts[] =
     { "enc_name",     required_argument, NULL, LongOpts::enc_name      },
     { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
     { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
+    { "text",         required_argument, NULL, LongOpts::text          },
 
     // Common
     { "list_crc",     no_argument,       NULL, LongOpts::list_crc      },
@@ -302,6 +305,20 @@ void Application::processing_cmd(int argc, char *argv[])
                     show_list(calc_text.encodings());
                     _exit(EXIT_SUCCESS);
                     break;
+
+
+            case LongOpts::text:
+                    if( calc_text.calculate(optarg) != 0 )
+                    {
+                        std::cout << "Cant get CRC for hex error: "
+                                  << calc_text.get_str_error().toStdString() << "\n";
+                        _exit(EXIT_FAILURE);
+                    }
+
+                    std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
+                    _exit(EXIT_SUCCESS);
+                    break;
+
 
 
             case LongOpts::list_crc:

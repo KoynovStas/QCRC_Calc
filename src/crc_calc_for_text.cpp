@@ -38,8 +38,6 @@ CRC_Calc_for_Text::CRC_Calc_for_Text() :
     num_lines(0)
 {
 
-    QObject::connect(this, SIGNAL(run_calculate(const QString &)),
-                     this, SLOT(_calculate(const QString &))  );
 }
 
 
@@ -117,14 +115,15 @@ int CRC_Calc_for_Text::set_encoding_index(int new_index)
 
 
 
-void CRC_Calc_for_Text::calculate(const QString &data)
+void CRC_Calc_for_Text::_set_error(const QString &err)
 {
-    emit run_calculate(data);
+    str_error = err;
+    emit error(err);
 }
 
 
 
-void CRC_Calc_for_Text::_calculate(const QString &data)
+int CRC_Calc_for_Text::_calculate(const QString &data)
 {
     result.set_result(0); //reset old result
 
@@ -136,8 +135,8 @@ void CRC_Calc_for_Text::_calculate(const QString &data)
 
     if( raw_str.isEmpty() )
     {
-        emit error("String is empty");
-        return;
+        _set_error("String is empty");
+        return -1;
     }
 
 
@@ -146,7 +145,12 @@ void CRC_Calc_for_Text::_calculate(const QString &data)
         quint64 res = ucrc->get_crc(raw_str.data(), raw_str.size() );
         emit calculated(res);
         result.set_result(res);
+        return 0; //good job
     }
+
+
+    _set_error("Dont set uCRC");
+    return -1;
 }
 
 
