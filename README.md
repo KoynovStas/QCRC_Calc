@@ -30,11 +30,29 @@ CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/CRC_CPP_C
 	- A convenient graphical representation of bits
 
 
+
 ## Build
 
+#### To build only bin (debug and release) use crc_calculator.pro:
+
 ```console
-qmake
+qmake crc_calculator.pro
 make
+```
+
+
+#### To build bin and tests use crc_calculator_and_tests.pro:
+
+```console
+qmake crc_calculator_and_tests.pro
+make
+```
+
+
+#### To run tests:
+
+```console
+make check
 ```
 
 
