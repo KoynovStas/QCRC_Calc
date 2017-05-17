@@ -1,6 +1,13 @@
 ## [Unreleased](https://github.com/KoynovStas/QCRC_Calc)
 
 
+### What's New
+
+ - Add support CMD (more details see --help)
+ - BitItem: not active bits is disabled (other color)
+ - Add unit tests
+
+
 [...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.0...HEAD)
 
 
