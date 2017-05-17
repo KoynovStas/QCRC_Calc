@@ -33,7 +33,7 @@ CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/CRC_CPP_C
 
 ## Build
 
-#### To build only bin (debug and release) use crc_calculator.pro:
+To build only bin (debug and release) use `crc_calculator.pro`:
 
 ```console
 qmake crc_calculator.pro
@@ -41,7 +41,7 @@ make
 ```
 
 
-#### To build bin and tests use crc_calculator_and_tests.pro:
+To build bin and tests use `crc_calculator_and_tests.pro`:
 
 ```console
 qmake crc_calculator_and_tests.pro
@@ -49,7 +49,7 @@ make
 ```
 
 
-#### To run tests:
+To run tests:
 
 ```console
 make check
