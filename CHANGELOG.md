@@ -1,5 +1,13 @@
 ## [Unreleased](https://github.com/KoynovStas/QCRC_Calc)
 
+### What's New
+
+[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.0...HEAD)
+
+
+
+
+## [Ver 2.1](https://github.com/KoynovStas/QCRC_Calc/releases/tag/v2.1) (2017-05-18)
 
 ### What's New
 
@@ -8,7 +16,7 @@
  - Add unit tests
 
 
-[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.0...HEAD)
+[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.0...v2.1)
 
 
 
