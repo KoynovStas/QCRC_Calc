@@ -27,6 +27,14 @@ Makefile*
 *build-*
 
 
+
+# auto generate files for static build
+
+*_plugin_import.cpp
+*_qml_plugin_import.cpp
+
+
+
 # object_script generate only in Windows
 
 object_script.*.Debug
