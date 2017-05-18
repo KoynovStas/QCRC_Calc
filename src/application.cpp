@@ -4,10 +4,10 @@
     #include <windows.h>  //need for support console (It's Windows baby)
 #endif
 
-#include <unistd.h>     // _exit
 #include <iostream>
-#include <iomanip>      // std::setw
 #include <getopt.h>
+
+
 
 
 
@@ -15,6 +15,13 @@
 #define DEF_TO_STR(x) STRINGIFY(x)
 
 
+
+
+
+
+#ifdef TEST
+    int Application::app_exitcode;  //In TEST not exit from app, but save exitcode in this var
+#endif
 
 
 
@@ -31,6 +38,9 @@ Application::Application(int &argc, char **argv) :
     calc_hex.set_ucrc(&uCRC);
 
 
+
+#ifndef TEST
+
     attach_console();
     processing_cmd(argc, argv);
 
@@ -41,6 +51,8 @@ Application::Application(int &argc, char **argv) :
     engine.rootContext()->setContextProperty("calc_hex", &calc_hex);
 
     engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
+
+#endif
 }
 
 
@@ -191,13 +203,13 @@ void Application::processing_cmd(int argc, char *argv[])
                     std::cout << "CRC Calculator version "
                                  DEF_TO_STR(MAJOR_VERSION) "."
                                  DEF_TO_STR(MINOR_VERSION) "\n";
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
             case LongOpts::help:
                     std::cout << help_str;
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
@@ -206,7 +218,7 @@ void Application::processing_cmd(int argc, char *argv[])
                     if( uCRC.set_bits(str_to_uint64(optarg)) != 0 )
                     {
                         std::cout << "Cant set bits from val: " << optarg << "\n";
-                        _exit(EXIT_FAILURE);
+                        app_exit(EXIT_FAILURE);
                     }
                     break;
 
@@ -262,11 +274,11 @@ void Application::processing_cmd(int argc, char *argv[])
                     {
                         std::cout << "Cant get CRC for hex error: "
                                   << calc_hex.get_str_error().toStdString() << "\n";
-                        _exit(EXIT_FAILURE);
+                        app_exit(EXIT_FAILURE);
                     }
 
                     std::cout << calc_hex.result.get_result_hex().toStdString()<< "\n";
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
@@ -280,7 +292,7 @@ void Application::processing_cmd(int argc, char *argv[])
                     if( calc_text.set_end_line_index(str_to_uint64(optarg)) != 0 )
                     {
                         std::cout << "Cant set end line index from val: " << optarg << "\n";
-                        _exit(EXIT_FAILURE);
+                        app_exit(EXIT_FAILURE);
                     }
                     break;
 
@@ -297,13 +309,13 @@ void Application::processing_cmd(int argc, char *argv[])
 
             case LongOpts::list_endl:
                     show_list(calc_text.end_line_names());
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
             case LongOpts::list_enc:
                     show_list(calc_text.encodings());
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
@@ -312,25 +324,25 @@ void Application::processing_cmd(int argc, char *argv[])
                     {
                         std::cout << "Cant get CRC for hex error: "
                                   << calc_text.get_str_error().toStdString() << "\n";
-                        _exit(EXIT_FAILURE);
+                        app_exit(EXIT_FAILURE);
                     }
 
                     std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
 
             case LongOpts::list_crc:
                     show_list(uCRC.crc_names());
-                    _exit(EXIT_SUCCESS);
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
             default:
                     // getopt_long function itself prints an error message
                     std::cout << "for more detail see help\n\n";
-                    _exit(EXIT_FAILURE);
+                    app_exit(EXIT_FAILURE);
                     break;
         }
     }
@@ -348,7 +360,7 @@ quint64 Application::str_to_uint64(const char *val, int base)
     if(!ok)
     {
         std::cout << "Cant convert: " << val << " to uint64\n";
-        _exit(EXIT_FAILURE);
+        app_exit(EXIT_FAILURE);
     }
 
 
@@ -381,7 +393,7 @@ void Application::set_encoding_index(int index)
     if( calc_text.set_encoding_index(index) != 0 )
     {
         std::cout << "Cant set encoding\n";
-        _exit(EXIT_FAILURE);
+        app_exit(EXIT_FAILURE);
     }
 }
 
@@ -400,7 +412,7 @@ void Application::set_crc_index(int index)
     if( uCRC.set_index(index) != 0 )
     {
         std::cout << "Cant set CRC\n";
-        _exit(EXIT_FAILURE);
+        app_exit(EXIT_FAILURE);
     }
 }
 

@@ -6,6 +6,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <unistd.h>     // _exit
 
 #include "qucrc_t.h"
 #include "crc_calc_for_text.h"
@@ -27,12 +28,14 @@ class Application : public QGuiApplication
         }
 
 
+
     private:
 
         Application(int &argc, char **argv);
         Q_DISABLE_COPY(Application)
 
 
+        static void app_exit(int exitcode);
         static void attach_console(void);
 
         void processing_cmd(int argc, char *argv[]);
@@ -58,7 +61,29 @@ class Application : public QGuiApplication
 
         QQmlApplicationEngine engine;  //must be last field (must be destroyed first
                                        //(it's GUI) only next destroyed data)
+
+
+
+        #ifdef TEST
+            static int app_exitcode;  //In TEST not exit from app, but save exitcode in this var
+
+
+            friend class Test_Application;
+        #endif
 };
+
+
+
+
+
+inline void Application::app_exit(int exitcode)
+{
+#ifdef TEST
+    app_exitcode = exitcode;
+#else
+    _exit(exitcode);
+#endif
+}
 
 
 
