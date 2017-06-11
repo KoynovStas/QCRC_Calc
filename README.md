@@ -3,7 +3,7 @@
 
 ## Description
 
-CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/CRC_CPP_Class)** C++ class for calculation CRC sizes(width) 1-64 bits.
+CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/uCRC_t)** C++ class for calculation CRC sizes(width) 1-64 bits.
 
 
 <p align="center">
