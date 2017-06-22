@@ -11,10 +11,22 @@ import "./controls"
 Frame {
 
     property CRC_Result crc_result
+    property alias statusBar: statusBar
+
 
     anchors.left: parent.left
     anchors.right: parent.right
-    bottomPadding: 0
+    topPadding: 0
+
+
+    background: Rectangle {
+        anchors.fill: parent
+        anchors.topMargin: 20
+
+        color: "transparent"
+        border.color: "darkgray"
+    }
+
 
 
     ColumnLayout {
@@ -25,11 +37,24 @@ Frame {
 
 
         RowLayout {
-            id: layout1
-
-            anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
+            Layout.leftMargin: 0
+
+            spacing: 10
+
+            StatusBar {
+                id: statusBar
+            }
+        }
+
+
+
+        RowLayout {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            Layout.topMargin: 10
+
 
             spacing: 10
 
@@ -71,7 +96,6 @@ Frame {
 
 
         RowLayout {
-
             anchors.left: parent.left
             anchors.right: parent.right
 
@@ -113,13 +137,15 @@ Frame {
         }
 
 
+
         BitSet64 {
             id: bitSet
+
             Connections {
                 target: crc_result
                 onResultChanged: bitSet.set_crc_result(crc_result);
             }
         }
 
-    }
+    } //ColumnLayout
 }

@@ -9,7 +9,7 @@ import QtQuick.Layouts 1.3
 Item {
 
     width: 780
-    height: 80
+    height: 65
 
 
     function set_crc_result(result) {

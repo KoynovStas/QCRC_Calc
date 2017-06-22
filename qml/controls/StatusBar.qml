@@ -19,8 +19,6 @@ Item {
 
     height: 16
 
-    anchors.bottomMargin: 5
-
 
     Label {
         id: label

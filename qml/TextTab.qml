@@ -139,7 +139,7 @@ Frame {
         id: text_data
 
         anchors.top:    layout.bottom
-        anchors.bottom: statusBar.top
+        anchors.bottom: result_frame.top
         anchors.left:   parent.left
         anchors.right:  parent.right
 
@@ -149,21 +149,14 @@ Frame {
     }
 
 
-    StatusBar {
-        id: statusBar
-
-        anchors.bottom: result_frame.visible ? result_frame.top : parent.bottom
-        anchors.left:   parent.left
-        anchors.right:  parent.right
-    }
-
 
     CRCResultFrame {
         id: result_frame
 
-        crc_result: calc_text.result
+        crc_result: calc_hex.result
 
         Layout.fillWidth: true
+
         anchors.bottom: parent.bottom
     }
 
@@ -176,9 +169,9 @@ Frame {
 
     Connections {
         target: calc_text
-        onCalculated: statusBar.set_status(" Bytes: " + calc_text.get_num_bytes() +
-                                           " Lines: " + calc_text.get_num_lines(), false)
+        onCalculated: result_frame.statusBar.set_status("Bytes: " + calc_text.get_num_bytes() +
+                                                        " Lines: " + calc_text.get_num_lines(), false)
 
-        onError: statusBar.set_status(err, true)
+        onError: result_frame.statusBar.set_status(err, true)
     }
 }
