@@ -21,6 +21,7 @@ Page {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
+
         Repeater {
             model: listTabs
 

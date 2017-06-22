@@ -153,7 +153,7 @@ Frame {
     CRCResultFrame {
         id: result_frame
 
-        crc_result: calc_hex.result
+        crc_result: calc_text.result
 
         Layout.fillWidth: true
 

@@ -17,11 +17,15 @@ Frame {
     anchors.left: parent.left
     anchors.right: parent.right
     topPadding: 0
+    bottomPadding: 0
 
 
     background: Rectangle {
         anchors.fill: parent
-        anchors.topMargin: 20
+        anchors.topMargin: 26
+        anchors.bottomMargin: 5
+
+        visible: (hexBtn.checked || baseBtn.checked || bitsBtn.checked)
 
         color: "transparent"
         border.color: "darkgray"
@@ -30,21 +34,54 @@ Frame {
 
 
     ColumnLayout {
-
         anchors.fill: parent
-
-        spacing: 1
 
 
         RowLayout {
             anchors.left: parent.left
             anchors.right: parent.right
-            Layout.leftMargin: 0
 
-            spacing: 10
 
             StatusBar {
                 id: statusBar
+            }
+
+
+            RowLayout {
+                anchors.right: parent.right
+
+                Button {
+                    id: hexBtn
+
+                    implicitHeight: 35
+                    implicitWidth: 55
+
+                    text: qsTr("Hex")
+                    checkable: true
+                    checked: true
+                }
+
+
+                Button {
+                    id: baseBtn
+
+                    implicitHeight: 35
+                    implicitWidth: 55
+
+                    text: qsTr("Base")
+                    checkable: true
+                }
+
+
+                Button {
+                    id: bitsBtn
+
+                    implicitHeight: 35
+                    implicitWidth: 55
+
+                    text: qsTr("Bits")
+                    checkable: true
+                }
             }
         }
 
@@ -53,7 +90,9 @@ Frame {
         RowLayout {
             anchors.left: parent.left
             anchors.right: parent.right
-            Layout.topMargin: 10
+            Layout.bottomMargin: 8
+
+            visible: hexBtn.checked
 
 
             spacing: 10
@@ -99,7 +138,7 @@ Frame {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            anchors.bottomMargin: 0
+            visible: baseBtn.checked
 
 
             MyTextEdit {
@@ -120,18 +159,17 @@ Frame {
 
 
             SpinBox2d {
+                anchors.left: base_edit.right
+
+                Layout.preferredWidth: 140
+                Layout.minimumWidth: 140
+                Layout.leftMargin: 10
 
                 to: 36
                 from: 2
                 value: crc_result.base
 
                 onValueChanged: crc_result.base = value
-
-                anchors.left: base_edit.right
-
-                Layout.preferredWidth: 140
-                Layout.minimumWidth: 140
-                Layout.leftMargin: 10
             }
 
         }
@@ -140,6 +178,8 @@ Frame {
 
         BitSet64 {
             id: bitSet
+
+            visible: bitsBtn.checked
 
             Connections {
                 target: crc_result
