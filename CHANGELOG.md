@@ -2,7 +2,12 @@
 
 ### What's New
 
-[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.0...HEAD)
+ - add buttons for hide/show extParam/extInfo
+ - add checkable buttons Hex,Base,Bits
+
+
+[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.1...HEAD)
+
 
 
 
