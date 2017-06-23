@@ -6,20 +6,18 @@ import "./controls"
 
 
 
+
+
 Frame {
 
     topPadding: 5
 
 
     ColumnLayout {
-        id: layout_col
-
         anchors.fill: parent
 
 
         RowLayout {
-            id: layout
-
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
@@ -89,6 +87,35 @@ Frame {
 
 
             Button {
+                id: extParamBtn
+
+                Layout.leftMargin: 80
+
+                implicitHeight: 30
+                implicitWidth: 20
+
+                text: qsTr("\u21E9")
+                font.bold: true
+                font.pixelSize: 18
+                checkable: true
+                checked: true
+            }
+
+
+            Button {
+                id: extInfoBtn
+
+                implicitHeight: 30
+                implicitWidth: 20
+
+                text: qsTr("\u21E9")
+                font.bold: true
+                font.pixelSize: 18
+                checkable: true
+            }
+
+
+            Button {
 
                 anchors.right: parent.right
                 anchors.rightMargin: -60
@@ -104,16 +131,14 @@ Frame {
         }
 
 
-        RowLayout {
-            id: layout2
 
-            anchors.top: layout.top
+        RowLayout {
             anchors.left: parent.left
             anchors.right: parent.right
 
             spacing: 10
 
-            anchors.topMargin: 50
+            visible: extParamBtn.checked
 
 
             MyTextEdit {
@@ -139,21 +164,17 @@ Frame {
 
                 textField.onTextChanged: uCRC.xor_out_str = textField.text
             }
-
         }
 
 
 
         RowLayout {
-            id: layout3
-
-            anchors.top: layout2.top
             anchors.left: parent.left
             anchors.right: parent.right
 
             spacing: 10
 
-            anchors.topMargin: 35
+            visible: extInfoBtn.checked
 
 
             MyTextEdit {
@@ -180,7 +201,7 @@ Frame {
                 textField.color: "gray"
             }
         }
-    }
 
+    } //ColumnLayout
 
 }
