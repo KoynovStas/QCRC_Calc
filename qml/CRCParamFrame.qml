@@ -86,37 +86,21 @@ Frame {
             }
 
 
-            Button {
+            ArrowButton {
                 id: extParamBtn
 
                 Layout.leftMargin: 80
 
-                implicitHeight: 30
-                implicitWidth: 20
-
-                text: qsTr("\u21E9")
-                font.bold: true
-                font.pixelSize: 18
-                checkable: true
                 checked: true
             }
 
 
-            Button {
+            ArrowButton {
                 id: extInfoBtn
-
-                implicitHeight: 30
-                implicitWidth: 20
-
-                text: qsTr("\u21E9")
-                font.bold: true
-                font.pixelSize: 18
-                checkable: true
             }
 
 
             Button {
-
                 anchors.right: parent.right
                 anchors.rightMargin: -60
 
