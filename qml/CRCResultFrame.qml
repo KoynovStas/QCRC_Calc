@@ -50,37 +50,20 @@ Frame {
             RowLayout {
                 anchors.right: parent.right
 
-                Button {
+                CheckableButton {
                     id: hexBtn
-
-                    implicitHeight: 35
-                    implicitWidth: 55
-
                     text: qsTr("Hex")
-                    checkable: true
                     checked: true
                 }
 
-
-                Button {
+                CheckableButton {
                     id: baseBtn
-
-                    implicitHeight: 35
-                    implicitWidth: 55
-
                     text: qsTr("Base")
-                    checkable: true
                 }
 
-
-                Button {
+                CheckableButton {
                     id: bitsBtn
-
-                    implicitHeight: 35
-                    implicitWidth: 55
-
                     text: qsTr("Bits")
-                    checkable: true
                 }
             }
         }
