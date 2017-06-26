@@ -29,7 +29,7 @@ const QHash<qint8, EndLine> EndLine::end_line_map =
 
 
 CRC_Calc_for_Text::CRC_Calc_for_Text() :
-    QObject(NULL),
+    Abstract_CRC_Calc(NULL),
 
     // private
     encoding_index(0),
@@ -111,14 +111,6 @@ int CRC_Calc_for_Text::set_encoding_index(int new_index)
 
 
     return 0; //good job
-}
-
-
-
-void CRC_Calc_for_Text::_set_error(const QString &err)
-{
-    str_error = err;
-    emit error(err);
 }
 
 

@@ -7,8 +7,7 @@
 #include <QHash>
 #include <QByteArray>
 
-#include "qucrc_t.h"
-#include "crc_result.h"
+#include "abstract_crc_calc.h"
 
 
 
@@ -45,7 +44,7 @@ class EndLine
 
 
 
-class CRC_Calc_for_Text : public QObject
+class CRC_Calc_for_Text : public Abstract_CRC_Calc
 {
     Q_OBJECT
 
@@ -63,11 +62,8 @@ class CRC_Calc_for_Text : public QObject
         Q_PROPERTY(int encoding_index READ get_encoding_index WRITE set_encoding_index NOTIFY encoding_indexChanged)
 
         Q_PROPERTY(bool BOM READ get_BOM WRITE set_BOM NOTIFY BOMChanged)
-        Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
 
 
-        CRC_Result* get_result() { return &result; }
-        CRC_Result result;
 
         QStringList end_line_names() const;
         QStringList encodings() const;
@@ -83,13 +79,8 @@ class CRC_Calc_for_Text : public QObject
         static const QList<QByteArray> Encodings;
 
 
-        void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
-
         int get_encoding_index() { return encoding_index; }
         int set_encoding_index(int new_index);
-
-
-        QString get_str_error() { return str_error; }
 
 
 
@@ -97,8 +88,6 @@ class CRC_Calc_for_Text : public QObject
         void end_line_indexChanged();
         void encoding_indexChanged();
         void BOMChanged();
-        void calculated(quint64 value);
-        void error(const QString & err);
 
 
 
@@ -112,23 +101,19 @@ class CRC_Calc_for_Text : public QObject
 
     protected slots:
         int  _calculate(const QString & data);
-        void _set_error(const QString & err);
 
 
 
     private:
-        const QuCRC_t  *ucrc;
-        int             encoding_index;
+        int         encoding_index;
 
-        bool            BOM;
-        int             end_line_index;
+        bool        BOM;
+        int         end_line_index;
 
-        QString         tmp_str;
-        QByteArray      raw_str;
+        QString     tmp_str;
+        QByteArray  raw_str;
 
-        size_t          num_lines;
-
-        QString         str_error;
+        size_t      num_lines;
 
 
         void replace_end_line(const QString &data);
