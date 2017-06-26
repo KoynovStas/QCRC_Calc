@@ -4,15 +4,14 @@
 
 #include <QObject>
 
+#include "abstract_crc_calc.h"
 #include "hextobytes.h"
-#include "qucrc_t.h"
-#include "crc_result.h"
 
 
 
 
 
-class CRC_Calc_for_Hex : public QObject
+class CRC_Calc_for_Hex : public Abstract_CRC_Calc
 {
     Q_OBJECT
 
@@ -21,26 +20,18 @@ class CRC_Calc_for_Hex : public QObject
 
 
         size_t size() { return hex_to_bytes.bytes.size(); }
-        void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
 
 
         // for QML bindings
         Q_PROPERTY(bool revers_chunk READ get_revers_chunk WRITE set_revers_chunk NOTIFY revers_chunkChanged)
         Q_PROPERTY(bool revers_data READ get_revers_data WRITE set_revers_data NOTIFY revers_dataChanged)
-        Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
 
-
-        CRC_Result* get_result() { return &result; }
-        CRC_Result result;
-
-        QString get_str_error() { return str_error; }
 
 
     signals:
-        void calculated(quint64 value);
-        void error(const QString & err);
         void revers_chunkChanged();
         void revers_dataChanged();
+
 
 
     public slots:
@@ -58,14 +49,11 @@ class CRC_Calc_for_Hex : public QObject
 
     protected slots:
         int  _calculate(const QString & data);
-        void _set_error(const QString & err);
 
 
 
     private:
         HexToBytes      hex_to_bytes;
-        const QuCRC_t  *ucrc;
-        QString         str_error;
 };
 
 

@@ -6,7 +6,7 @@
 
 
 CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
-    QObject(NULL)
+    Abstract_CRC_Calc(NULL)
 {
 
     QObject::connect(&hex_to_bytes, SIGNAL(error(const QString &)),
@@ -66,12 +66,4 @@ int CRC_Calc_for_Hex::_calculate(const QString &data)
 
     _set_error("Dont set uCRC");
     return -1;
-}
-
-
-
-void CRC_Calc_for_Hex::_set_error(const QString &err)
-{
-    str_error = err;
-    emit error(err);
 }

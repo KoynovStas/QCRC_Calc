@@ -15,7 +15,7 @@ class Abstract_CRC_Calc : public QObject
     Q_OBJECT
 
     public:
-        explicit Abstract_CRC_Calc(QObject *parent = nullptr);
+        explicit Abstract_CRC_Calc(QObject *parent = NULL);
 
 
         CRC_Result* get_result() { return &result; }
