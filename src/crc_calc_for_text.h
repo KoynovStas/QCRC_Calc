@@ -94,7 +94,6 @@ class CRC_Calc_for_Text : public QObject
 
 
     signals:
-
         void end_line_indexChanged();
         void encoding_indexChanged();
         void BOMChanged();

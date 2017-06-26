@@ -13,7 +13,7 @@ class CRC_Result : public QObject
     Q_OBJECT
 
     public:
-        explicit CRC_Result(QObject *parent = 0);
+        explicit CRC_Result(QObject *parent = nullptr);
 
 
         // for QML bindings
