@@ -6,7 +6,7 @@
 
 
 CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
-    Abstract_CRC_Calc(NULL)
+    Abstract_CRC_Calc(Q_NULLPTR)
 {
 
     QObject::connect(&hex_to_bytes, SIGNAL(error(const QString &)),
