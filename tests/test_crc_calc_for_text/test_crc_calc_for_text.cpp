@@ -46,7 +46,7 @@ void Test_CRC_Calc_Text::test_calculate()
 
         qucrc = info;
 
-        text_calc.calculate("123456789");
+        text_calc.calculate("123456789", true);
 
         if(text_calc.result.get_result() != info.check)
         {

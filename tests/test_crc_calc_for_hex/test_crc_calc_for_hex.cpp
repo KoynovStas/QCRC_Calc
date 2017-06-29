@@ -45,7 +45,7 @@ void Test_CRC_Calc_Hex::test_calculate()
 
         qucrc = info;
 
-        hex_calc.calculate("31 32 33 34 35 36 37 38 39");
+        hex_calc.calculate("31 32 33 34 35 36 37 38 39", true);
 
         if(hex_calc.result.get_result() != info.check)
         {

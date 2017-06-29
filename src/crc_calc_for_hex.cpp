@@ -2,11 +2,11 @@
 #include "crc_calc_for_hex.h"
 #include <QDebug>
 
+#include <QThreadPool>
 
 
-
-CRC_Calc_for_Hex::CRC_Calc_for_Hex() :
-    Abstract_CRC_Calc(Q_NULLPTR)
+CRC_Calc_for_Hex::CRC_Calc_for_Hex(QObject *parent) :
+    Abstract_CRC_Calc(parent)
 {
 
     QObject::connect(&hex_to_bytes, SIGNAL(error(const QString &)),

@@ -16,7 +16,7 @@ class CRC_Calc_for_Hex : public Abstract_CRC_Calc
     Q_OBJECT
 
     public:
-        explicit CRC_Calc_for_Hex();
+        explicit CRC_Calc_for_Hex(QObject *parent = Q_NULLPTR);
 
 
         size_t size() { return hex_to_bytes.bytes.size(); }
@@ -35,7 +35,6 @@ class CRC_Calc_for_Hex : public Abstract_CRC_Calc
 
 
     public slots:
-        int  calculate(const QString & data) { return _calculate(data); }
         void set_revers_chunk(bool value);
         void set_revers_data(bool value);
 
@@ -48,7 +47,7 @@ class CRC_Calc_for_Hex : public Abstract_CRC_Calc
 
 
     protected slots:
-        int  _calculate(const QString & data);
+       virtual  int _calculate(const QString & data);
 
 
 

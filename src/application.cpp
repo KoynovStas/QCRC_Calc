@@ -37,7 +37,8 @@ Application::Application(int &argc, char **argv) :
     calc_text.set_ucrc(&uCRC);
     calc_hex.set_ucrc(&uCRC);
 
-
+//    uCRC_t uCRC2;
+//    uCRC_t uCRC3(uCRC2);
 
 #ifndef TEST
 
@@ -270,7 +271,7 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
             case LongOpts::hex:
-                    if( calc_hex.calculate(optarg) != 0 )
+                    if( calc_hex.calculate(optarg, true) != 0 )
                     {
                         std::cout << "Cant get CRC for hex error: "
                                   << calc_hex.get_str_error().toStdString() << "\n";
@@ -320,7 +321,7 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
             case LongOpts::text:
-                    if( calc_text.calculate(optarg) != 0 )
+                    if( calc_text.calculate(optarg, true) != 0 )
                     {
                         std::cout << "Cant get CRC for hex error: "
                                   << calc_text.get_str_error().toStdString() << "\n";

@@ -51,7 +51,7 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
 
     public:
 
-        explicit CRC_Calc_for_Text();
+        explicit CRC_Calc_for_Text(QObject *parent = Q_NULLPTR);
 
 
         // for QML bindings
@@ -92,15 +92,13 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
 
 
     public slots:
-        int  calculate(const QString & data) { return _calculate(data); }
-
         quint32 get_num_lines() { return num_lines; }
         quint32 get_num_bytes() { return raw_str.size(); }
 
 
 
     protected slots:
-        int  _calculate(const QString & data);
+        virtual int _calculate(const QString & data);
 
 
 
