@@ -56,6 +56,9 @@ class Abstract_CRC_Calc : public QObject
         virtual ~Abstract_CRC_Calc();
 
 
+        static const int CHUNK_SIZE;
+
+
         CRC_Result result;
 
         void set_ucrc(const QuCRC_t *crc) {  stop_worker(); ucrc = crc; }
@@ -97,6 +100,7 @@ class Abstract_CRC_Calc : public QObject
 
 
         void stop_worker();
+        int  get_crc(const char *data, int size);
 
 
 

@@ -57,15 +57,5 @@ int CRC_Calc_for_Hex::_calculate(const QString &data)
     }
 
 
-    if( ucrc )
-    {
-        quint64 res = ucrc->get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size() );
-        emit calculated(res);
-        result.set_result(res);
-        return 0; //good job
-    }
-
-
-    _set_error("Dont set uCRC");
-    return -1;
+    return get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size());
 }

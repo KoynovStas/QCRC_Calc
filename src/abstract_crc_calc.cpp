@@ -4,6 +4,11 @@
 
 
 
+const int Abstract_CRC_Calc::CHUNK_SIZE = 4096;
+
+
+
+
 Abstract_CRC_Calc::Abstract_CRC_Calc(QObject *parent) :
     QObject(parent),
 
@@ -38,6 +43,39 @@ void Abstract_CRC_Calc::stop_worker()
 
 
     stoped = false;
+}
+
+
+
+int Abstract_CRC_Calc::get_crc(const char *data, int size)
+{
+    if( !ucrc )
+    {
+        _set_error("Dont set uCRC");
+        return -1;
+    }
+
+
+    quint64 res = ucrc->get_crc_init();
+    int i = 0;
+    int chunk_size = std::min(size, CHUNK_SIZE);
+
+
+    while( !stoped  && chunk_size )
+    {
+        res = ucrc->get_raw_crc(&data[i], chunk_size, res);  //crc for chunk
+
+        i += chunk_size;
+        chunk_size = std::min(size-i, CHUNK_SIZE);
+    }
+
+
+    res = ucrc->get_final_crc(res);
+
+
+    emit calculated(res);
+    result.set_result(res);
+    return 0;               //good job
 }
 
 
