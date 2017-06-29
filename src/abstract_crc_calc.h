@@ -56,16 +56,16 @@ class Abstract_CRC_Calc : public QObject
         virtual ~Abstract_CRC_Calc();
 
 
-        CRC_Result* get_result() { return &result; }
         CRC_Result result;
 
-        void set_ucrc(const QuCRC_t *crc) { ucrc = crc; }
+        void set_ucrc(const QuCRC_t *crc) {  stop_worker(); ucrc = crc; }
 
         QString get_str_error() { return str_error; }
 
 
         // for QML bindings
         Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
+
 
 
 
@@ -97,6 +97,11 @@ class Abstract_CRC_Calc : public QObject
 
 
         void stop_worker();
+
+
+
+    private:
+        CRC_Result* get_result() { return &result; } //for QML bindings
 };
 
 

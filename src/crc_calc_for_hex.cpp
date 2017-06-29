@@ -19,6 +19,7 @@ void CRC_Calc_for_Hex::set_revers_chunk(bool value)
 {
     if( hex_to_bytes.revers_chunk != value )
     {
+        stop_worker();
         hex_to_bytes.revers_chunk = value;
         emit revers_chunkChanged();
     }
@@ -30,6 +31,7 @@ void CRC_Calc_for_Hex::set_revers_data(bool value)
 {
     if( hex_to_bytes.revers_data != value )
     {
+        stop_worker();
         hex_to_bytes.revers_data  = value;
         emit revers_dataChanged();
     }

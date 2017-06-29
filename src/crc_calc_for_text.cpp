@@ -76,6 +76,7 @@ int CRC_Calc_for_Text::set_end_line_index(int new_index)
         return -1; // new_index is bad
 
 
+    stop_worker();
     end_line_index = new_index;
     emit end_line_indexChanged();
 
@@ -90,6 +91,7 @@ void CRC_Calc_for_Text::set_BOM(bool new_BOM)
     if( new_BOM == BOM )
         return; //no action
 
+    stop_worker();
     BOM = new_BOM;
     emit BOMChanged();
 }
@@ -106,6 +108,7 @@ int CRC_Calc_for_Text::set_encoding_index(int new_index)
         return -1; //error
 
 
+    stop_worker();
     encoding_index = new_index;
     emit encoding_indexChanged();
 
