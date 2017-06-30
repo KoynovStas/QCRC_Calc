@@ -53,6 +53,9 @@ class Application : public QGuiApplication
         void set_crc_name(const char *name);
 
 
+        void check_and_print_res(int res, Abstract_CRC_Calc & calc);
+
+
         QuCRC_t uCRC;
 
         CRC_Calc_for_Text calc_text;

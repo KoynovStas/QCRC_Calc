@@ -275,28 +275,12 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
             case LongOpts::hex_file:
-                    if( calc_hex.get_crc_data_from_file(optarg) != 0 )
-                    {
-                        std::cout << "Cant get CRC for hex error: "
-                                  << calc_hex.get_str_error().toStdString() << "\n";
-                        app_exit(EXIT_FAILURE);
-                    }
-
-                    std::cout << calc_hex.result.get_result_hex().toStdString()<< "\n";
-                    app_exit(EXIT_SUCCESS);
+                    check_and_print_res(calc_hex.get_crc_data_from_file(optarg), calc_hex);
                     break;
 
 
             case LongOpts::hex:
-                    if( calc_hex.calculate(optarg, true) != 0 )
-                    {
-                        std::cout << "Cant get CRC for hex error: "
-                                  << calc_hex.get_str_error().toStdString() << "\n";
-                        app_exit(EXIT_FAILURE);
-                    }
-
-                    std::cout << calc_hex.result.get_result_hex().toStdString()<< "\n";
-                    app_exit(EXIT_SUCCESS);
+                    check_and_print_res(calc_hex.calculate(optarg, true), calc_hex);
                     break;
 
 
@@ -326,28 +310,12 @@ void Application::processing_cmd(int argc, char *argv[])
 
 
             case LongOpts::text_file:
-                    if( calc_text.get_crc_data_from_file(optarg) != 0 )
-                    {
-                        std::cout << "Cant get CRC for text error: "
-                                  << calc_text.get_str_error().toStdString() << "\n";
-                        app_exit(EXIT_FAILURE);
-                    }
-
-                    std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
-                    app_exit(EXIT_SUCCESS);
+                    check_and_print_res(calc_text.get_crc_data_from_file(optarg), calc_text);
                     break;
 
 
             case LongOpts::text:
-                    if( calc_text.calculate(optarg, true) != 0 )
-                    {
-                        std::cout << "Cant get CRC for text error: "
-                                  << calc_text.get_str_error().toStdString() << "\n";
-                        app_exit(EXIT_FAILURE);
-                    }
-
-                    std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
-                    app_exit(EXIT_SUCCESS);
+                    check_and_print_res(calc_text.calculate(optarg, true), calc_text);
                     break;
 
 
@@ -454,4 +422,19 @@ void Application::set_crc_name(const char *name)
 {
     int index = uCRC.crc_names().indexOf(QRegExp(".*" + QString(name) + ".*", Qt::CaseInsensitive));
     set_crc_index(index);
+}
+
+
+
+void Application::check_and_print_res(int res, Abstract_CRC_Calc & calc)
+{
+    if( res != 0 )
+    {
+        std::cout << "Cant get CRC error: "
+                  << calc.get_str_error().toStdString() << "\n";
+        app_exit(EXIT_FAILURE);
+    }
+
+    std::cout << calc.result.get_result_hex().toStdString()<< "\n";
+    app_exit(EXIT_SUCCESS);
 }
