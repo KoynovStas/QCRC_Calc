@@ -19,6 +19,7 @@ class Test_CRC_Calc_Hex : public QObject
 
     private slots:
         void test_calculate();
+        void test_get_crc_data_from_file();
 
 
     private:
@@ -46,6 +47,32 @@ void Test_CRC_Calc_Hex::test_calculate()
         qucrc = info;
 
         hex_calc.calculate("31 32 33 34 35 36 37 38 39", true);
+
+        if(hex_calc.result.get_result() != info.check)
+        {
+            QString msg = "For CRC: " + info.name;
+
+            msg += "  std check: 0x"     + QString::number(info.check, 16);
+            msg += "  but get_check: 0x" + QString::number(hex_calc.result.get_result(), 16);
+
+
+            QFAIL(msg.toStdString().c_str());
+        }
+    }
+}
+
+
+
+void Test_CRC_Calc_Hex::test_get_crc_data_from_file()
+{
+    //i = 1 //without custom CRC (custom CRC have index 0)
+    for(size_t i = 1; i < QuCRC_t::CRC_List.size(); ++i)
+    {
+        CRC_Param_Info info = QuCRC_t::CRC_List[i];
+
+        qucrc = info;
+
+        hex_calc.get_crc_data_from_file(QFINDTESTDATA("std_check_hex"));
 
         if(hex_calc.result.get_result() != info.check)
         {
