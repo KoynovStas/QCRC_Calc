@@ -37,8 +37,6 @@ Application::Application(int &argc, char **argv) :
     calc_text.set_ucrc(&uCRC);
     calc_hex.set_ucrc(&uCRC);
 
-//    uCRC_t uCRC2;
-//    uCRC_t uCRC3(uCRC2);
 
 #ifndef TEST
 
@@ -99,6 +97,7 @@ static const char *help_str =
         " --crc_name     [value] Set CRC     (value is name see --list_crc)\n\n"
         " --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
         " --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
+        " --hex_file     [value] Get CRC for HEX from file (value is path for file)\n"
         " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
         " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
         " --end_line     [value] Set index of End Line\n"
@@ -134,6 +133,7 @@ namespace LongOpts
         // CRC for Hex
         revers_word,
         revers_data,
+        hex_file,
         hex,
 
         // CRC for Text
@@ -171,6 +171,7 @@ static const struct option long_opts[] =
     // CRC for Hex
     { "revers_word",  required_argument, NULL, LongOpts::revers_word   },
     { "revers_data",  required_argument, NULL, LongOpts::revers_data   },
+    { "hex_file",     required_argument, NULL, LongOpts::hex_file      },
     { "hex",          required_argument, NULL, LongOpts::hex           },
 
     // CRC for Text
@@ -267,6 +268,19 @@ void Application::processing_cmd(int argc, char *argv[])
 
             case LongOpts::revers_data:
                     calc_hex.set_revers_data(str_to_bool(optarg));
+                    break;
+
+
+            case LongOpts::hex_file:
+                    if( calc_hex.get_crc_data_from_file(optarg) != 0 )
+                    {
+                        std::cout << "Cant get CRC for hex error: "
+                                  << calc_hex.get_str_error().toStdString() << "\n";
+                        app_exit(EXIT_FAILURE);
+                    }
+
+                    std::cout << calc_hex.result.get_result_hex().toStdString()<< "\n";
+                    app_exit(EXIT_SUCCESS);
                     break;
 
 
