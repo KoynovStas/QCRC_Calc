@@ -108,7 +108,6 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
         bool        BOM;
         int         end_line_index;
 
-        QString     tmp_str;
         QByteArray  raw_str;
 
         size_t      num_lines;

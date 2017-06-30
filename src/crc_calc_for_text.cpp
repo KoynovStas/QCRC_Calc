@@ -1,6 +1,6 @@
 #include <QMetaType>
 #include <QTextCodec>
-#include <QSet>
+
 #include "crc_calc_for_text.h"
 #include <QDebug>
 
@@ -142,12 +142,12 @@ int CRC_Calc_for_Text::_calculate(const QString &data)
 
 void CRC_Calc_for_Text::replace_end_line(const QString &data)
 {
-    tmp_str = data;
+    m_data = data;
 
     EndLine end_line = EndLine::end_line_map.value(end_line_index);
 
 
-    tmp_str.replace('\n', end_line.value);
+    m_data.replace('\n', end_line.value);
 }
 
 
@@ -157,14 +157,14 @@ void CRC_Calc_for_Text::encoding_str()
 
     if( encoding_index == 0 ) //ASCII
     {
-        raw_str = tmp_str.toLatin1();
+        raw_str = m_data.toLatin1();
     }
     else
     {
         QTextCodec *text_codec = QTextCodec::codecForName(Encodings[encoding_index]);
         QTextCodec::ConverterState state(BOM ? QTextCodec::DefaultConversion : QTextCodec::IgnoreHeader);
 
-        raw_str = text_codec->fromUnicode(tmp_str.constData(), tmp_str.size(), &state);
+        raw_str = text_codec->fromUnicode(m_data.constData(), m_data.size(), &state);
     }
 }
 
