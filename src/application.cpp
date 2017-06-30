@@ -97,15 +97,16 @@ static const char *help_str =
         " --crc_name     [value] Set CRC     (value is name see --list_crc)\n\n"
         " --revers_word  [value] Set revers word for HEX ({0|false} or {!=0|true})\n"
         " --revers_data  [value] Set revers data for HEX ({0|false} or {!=0|true})\n"
-        " --hex_file     [value] Get CRC for HEX from file (value is path for file)\n"
+        " --hex_file     [value] Get CRC for HEX from file (value is path of file)\n"
         " --hex          [value] Get CRC for HEX (value in hex format)\n\n"
         " --BOM          [value] Set BOM for Text ({0|false} or {!=0|true})\n"
-        " --end_line     [value] Set index of End Line\n"
+        " --end_line     [value] Set format End Line (value is index see --list_endl)\n"
         " --enc_index    [value] Set Encoding (value is index see --list_enc)\n"
         " --enc_name     [value] Set Encoding (value is name see --list_enc)\n"
+        " --text_file    [value] Get CRC for Text from file (value is path of file)\n"
+        " --text         [value] Get CRC for Text (value is text)\n\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
-        " --text         [value] Get CRC for Text (value is text)\n\n"
         " --list_crc             Show List of std CRC with indexes\n\n"
         " --version              Display version information\n"
         " --help                 Display this information\n\n";
@@ -141,11 +142,12 @@ namespace LongOpts
         end_line,
         enc_index,
         enc_name,
-        list_endl,
-        list_enc,
+        text_file,
         text,
 
         // Common
+        list_endl,
+        list_enc,
         list_crc
     };
 }
@@ -179,11 +181,12 @@ static const struct option long_opts[] =
     { "end_line",     required_argument, NULL, LongOpts::end_line      },
     { "enc_index",    required_argument, NULL, LongOpts::enc_index     },
     { "enc_name",     required_argument, NULL, LongOpts::enc_name      },
-    { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
-    { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
+    { "text_file",    required_argument, NULL, LongOpts::text_file     },
     { "text",         required_argument, NULL, LongOpts::text          },
 
     // Common
+    { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
+    { "list_enc",     no_argument,       NULL, LongOpts::list_enc      },
     { "list_crc",     no_argument,       NULL, LongOpts::list_crc      },
 
     { NULL,           no_argument,       NULL,  0                      }
@@ -322,6 +325,34 @@ void Application::processing_cmd(int argc, char *argv[])
                     break;
 
 
+            case LongOpts::text_file:
+                    if( calc_text.get_crc_data_from_file(optarg) != 0 )
+                    {
+                        std::cout << "Cant get CRC for text error: "
+                                  << calc_text.get_str_error().toStdString() << "\n";
+                        app_exit(EXIT_FAILURE);
+                    }
+
+                    std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
+                    app_exit(EXIT_SUCCESS);
+                    break;
+
+
+            case LongOpts::text:
+                    if( calc_text.calculate(optarg, true) != 0 )
+                    {
+                        std::cout << "Cant get CRC for text error: "
+                                  << calc_text.get_str_error().toStdString() << "\n";
+                        app_exit(EXIT_FAILURE);
+                    }
+
+                    std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
+                    app_exit(EXIT_SUCCESS);
+                    break;
+
+
+
+            // Common
             case LongOpts::list_endl:
                     show_list(calc_text.end_line_names());
                     app_exit(EXIT_SUCCESS);
@@ -332,20 +363,6 @@ void Application::processing_cmd(int argc, char *argv[])
                     show_list(calc_text.encodings());
                     app_exit(EXIT_SUCCESS);
                     break;
-
-
-            case LongOpts::text:
-                    if( calc_text.calculate(optarg, true) != 0 )
-                    {
-                        std::cout << "Cant get CRC for hex error: "
-                                  << calc_text.get_str_error().toStdString() << "\n";
-                        app_exit(EXIT_FAILURE);
-                    }
-
-                    std::cout << calc_text.result.get_result_hex().toStdString()<< "\n";
-                    app_exit(EXIT_SUCCESS);
-                    break;
-
 
 
             case LongOpts::list_crc:
