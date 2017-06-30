@@ -2,6 +2,9 @@
 
 ### What's New
 
+ - add cmd text_file (for read text from file)
+ - add cmd hex_file  (for read hex from file)
+ - add support process in thread
  - add buttons for hide/show extParam/extInfo
  - add checkable buttons Hex,Base,Bits
 
