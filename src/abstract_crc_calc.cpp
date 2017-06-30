@@ -1,3 +1,5 @@
+#include <QFile>
+
 #include "abstract_crc_calc.h"
 
 
@@ -21,6 +23,23 @@ Abstract_CRC_Calc::Abstract_CRC_Calc(QObject *parent) :
 Abstract_CRC_Calc::~Abstract_CRC_Calc()
 {
     stoped = true;
+}
+
+
+
+int Abstract_CRC_Calc::get_crc_data_from_file(const QString &file_name)
+{
+    QFile file(file_name);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        _set_error("Can't open file: " + file_name + " - " + file.errorString());
+        return -1;
+    }
+
+
+    QTextStream in(&file);
+
+    return _calculate(in.readAll());      //start calculation in current thread.
 }
 
 

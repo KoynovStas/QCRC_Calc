@@ -66,6 +66,9 @@ class Abstract_CRC_Calc : public QObject
         QString get_str_error() { return str_error; }
 
 
+        int get_crc_data_from_file(const QString & file_name); //for cmd --xxx_file (synchonous mode)
+
+
         // for QML bindings
         Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
 
