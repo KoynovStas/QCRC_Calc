@@ -8,6 +8,33 @@
 
 
 
+#include <iostream>
+#include <fstream>
+
+
+
+class StreamRedirect
+{
+    public:
+        StreamRedirect(std::ostream & in_original, std::ostream & in_redirect) :
+            m_original(in_original),
+            m_old_buf(in_original.rdbuf(in_redirect.rdbuf()))
+        { }
+
+        ~StreamRedirect()
+        {
+            m_original.rdbuf(m_old_buf);
+        }
+
+    private:
+        Q_DISABLE_COPY(ScopedRedirect)
+
+        std::ostream   &m_original;
+        std::streambuf *m_old_buf;
+};
+
+
+
 
 
 class Test_Application : public QObject
