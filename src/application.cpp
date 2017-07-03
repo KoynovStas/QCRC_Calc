@@ -36,6 +36,7 @@ Application::Application(int &argc, char **argv) :
 
     calc_text.set_ucrc(&uCRC);
     calc_hex.set_ucrc(&uCRC);
+    calc_file.set_ucrc(&uCRC);
 
 
 #ifndef TEST
@@ -105,6 +106,7 @@ static const char *help_str =
         " --enc_name     [value] Set Encoding (value is name see --list_enc)\n"
         " --text_file    [value] Get CRC for Text from file (value is path of file)\n"
         " --text         [value] Get CRC for Text (value is text)\n\n"
+        " --file         [value] Get CRC for File (value is path of file)\n\n"
         " --list_endl            Show List of End Line with indexes\n"
         " --list_enc             Show List of Encodings with indexes\n"
         " --list_crc             Show List of std CRC with indexes\n\n"
@@ -145,6 +147,9 @@ namespace LongOpts
         text_file,
         text,
 
+        // CRC for File
+        file,
+
         // Common
         list_endl,
         list_enc,
@@ -183,6 +188,9 @@ static const struct option long_opts[] =
     { "enc_name",     required_argument, NULL, LongOpts::enc_name      },
     { "text_file",    required_argument, NULL, LongOpts::text_file     },
     { "text",         required_argument, NULL, LongOpts::text          },
+
+    // CRC for File
+    { "file",         required_argument, NULL, LongOpts::file          },
 
     // Common
     { "list_endl",    no_argument,       NULL, LongOpts::list_endl     },
@@ -318,6 +326,11 @@ void Application::processing_cmd(int argc, char *argv[])
                     check_and_print_res(calc_text.calculate(optarg, true), calc_text);
                     break;
 
+
+            // CRC for File
+            case LongOpts::file:
+                    check_and_print_res(calc_file.calculate(optarg, true), calc_file);
+                    break;
 
 
             // Common

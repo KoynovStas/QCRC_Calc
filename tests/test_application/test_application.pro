@@ -16,6 +16,7 @@ SOURCES += test_application.cpp             \
            $$SRC_PATH/application.cpp       \
            $$SRC_PATH/crc_calc_for_hex.cpp  \
            $$SRC_PATH/crc_calc_for_text.cpp \
+           $$SRC_PATH/crc_calc_for_file.cpp \
            $$SRC_PATH/crc_result.cpp        \
            $$SRC_PATH/hextobytes.cpp        \
            $$SRC_PATH/qucrc_t.cpp           \
@@ -24,6 +25,7 @@ SOURCES += test_application.cpp             \
 
 HEADERS += $$SRC_PATH/abstract_crc_calc.h \
            $$SRC_PATH/crc_calc_for_text.h \
+           $$SRC_PATH/crc_calc_for_file.h \
            $$SRC_PATH/crc_calc_for_hex.h  \
            $$SRC_PATH/application.h       \
            $$SRC_PATH/crc_result.h        \

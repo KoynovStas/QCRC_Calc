@@ -11,6 +11,7 @@
 #include "qucrc_t.h"
 #include "crc_calc_for_text.h"
 #include "crc_calc_for_hex.h"
+#include "crc_calc_for_file.h"
 
 
 
@@ -60,6 +61,7 @@ class Application : public QGuiApplication
 
         CRC_Calc_for_Text calc_text;
         CRC_Calc_for_Hex  calc_hex;
+        CRC_Calc_for_File calc_file;
 
 
         QQmlApplicationEngine engine;  //must be last field (must be destroyed first

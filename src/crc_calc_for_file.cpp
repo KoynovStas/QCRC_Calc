@@ -27,5 +27,31 @@ int CRC_Calc_for_File::_calculate(const QString &file_name)
     }
 
 
-    return 0;
+
+    quint64 res = ucrc->get_crc_init();
+    qint64 i = 0;
+    qint64 chunk_size = qMin(file.size(), (qint64)CHUNK_SIZE);
+
+
+    char buf[CHUNK_SIZE];
+
+
+    while( !stoped  && chunk_size )
+    {
+
+        file.read(buf, chunk_size);
+
+        res = ucrc->get_raw_crc(buf, chunk_size, res);  //crc for chunk
+
+        i += chunk_size;
+        chunk_size = qMin(file.size()-i, (qint64)CHUNK_SIZE);
+    }
+
+
+    res = ucrc->get_final_crc(res);
+
+
+    emit calculated(res);
+    result.set_result(res);
+    return 0;               //good job
 }
