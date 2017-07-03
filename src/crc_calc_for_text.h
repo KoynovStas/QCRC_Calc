@@ -2,7 +2,6 @@
 #define CRC_CALC_FOR_TEXT_H
 
 
-#include <QObject>
 #include <QList>
 #include <QHash>
 #include <QByteArray>

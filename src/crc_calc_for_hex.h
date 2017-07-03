@@ -2,8 +2,6 @@
 #define CRC_CALC_FOR_HEX_H
 
 
-#include <QObject>
-
 #include "abstract_crc_calc.h"
 #include "hextobytes.h"
 
