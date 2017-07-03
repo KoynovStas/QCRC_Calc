@@ -23,6 +23,11 @@ class Test_Application : public QObject
         void test_process_cmd();
         void test_crc_index_cmd();
         void test_crc_name_cmd();
+
+    private:
+        void prepare_report(QuCRC_t & uCRC);
+
+        QString report;
 };
 
 
@@ -46,7 +51,7 @@ void Test_Application::test_process_cmd()
     {
         CRC_Param_Info info = QuCRC_t::CRC_List[i];
 
-        QString msg = "For CRC: " + info.name + "\n cmd: ";
+        report = "For CRC: " + info.name + "\n cmd: ";
 
         std::vector<std::string> cmd = {
             "--bits"    , QString::number(info.bits,    10).toStdString(),
@@ -64,8 +69,8 @@ void Test_Application::test_process_cmd()
 
         for(size_t j = 1; j <= cmd.size(); j++) {
             argv[j] = (char *)cmd[j-1].c_str();
-            msg += cmd[j-1].c_str();
-            msg += "  ";
+            report += cmd[j-1].c_str();
+            report += "  ";
         }
 
 
@@ -78,16 +83,8 @@ void Test_Application::test_process_cmd()
 
         if( !(app.uCRC == info) )
         {
-
-            msg += "\n but get:";
-            msg += " bits  "    + QString::number(app.uCRC.get_bits(),    10);
-            msg += " poly  "    + QString::number(app.uCRC.get_poly(),    16);
-            msg += " init  "    + QString::number(app.uCRC.get_init(),    16);
-            msg += " xor_out  " + QString::number(app.uCRC.get_xor_out(), 16);
-            msg += " ref_in  "  + QString::number(app.uCRC.get_ref_in(),  10);
-            msg += " ref_out  " + QString::number(app.uCRC.get_ref_out(), 10);
-
-            QFAIL(msg.toStdString().c_str());
+            prepare_report(app.uCRC);
+            QFAIL(report.toStdString().c_str());
         }
     }
 }
@@ -105,7 +102,7 @@ void Test_Application::test_crc_index_cmd()
     {
         CRC_Param_Info info = QuCRC_t::CRC_List[i];
 
-        QString msg = "For CRC: " + info.name + "\n cmd: ";
+        report = "For CRC: " + info.name + "\n cmd: ";
 
         std::vector<std::string> cmd = {
             "--crc_index"  , QString::number(i).toStdString(),
@@ -118,8 +115,8 @@ void Test_Application::test_crc_index_cmd()
 
         for(size_t j = 1; j <= cmd.size(); j++) {
             argv[j] = (char *)cmd[j-1].c_str();
-            msg += cmd[j-1].c_str();
-            msg += "  ";
+            report += cmd[j-1].c_str();
+            report += "  ";
         }
 
 
@@ -132,16 +129,8 @@ void Test_Application::test_crc_index_cmd()
 
         if( !(app.uCRC == info) )
         {
-
-            msg += "\n but get:";
-            msg += " bits  "    + QString::number(app.uCRC.get_bits(),    10);
-            msg += " poly  "    + QString::number(app.uCRC.get_poly(),    16);
-            msg += " init  "    + QString::number(app.uCRC.get_init(),    16);
-            msg += " xor_out  " + QString::number(app.uCRC.get_xor_out(), 16);
-            msg += " ref_in  "  + QString::number(app.uCRC.get_ref_in(),  10);
-            msg += " ref_out  " + QString::number(app.uCRC.get_ref_out(), 10);
-
-            QFAIL(msg.toStdString().c_str());
+            prepare_report(app.uCRC);
+            QFAIL(report.toStdString().c_str());
         }
     }
 }
@@ -159,7 +148,7 @@ void Test_Application::test_crc_name_cmd()
     {
         CRC_Param_Info info = QuCRC_t::CRC_List[i];
 
-        QString msg = "For CRC: " + info.name + "\n cmd: ";
+        report = "For CRC: " + info.name + "\n cmd: ";
 
         std::vector<std::string> cmd = {
             "--crc_name"  , info.name.toStdString(),
@@ -172,8 +161,8 @@ void Test_Application::test_crc_name_cmd()
 
         for(size_t j = 1; j <= cmd.size(); j++) {
             argv[j] = (char *)cmd[j-1].c_str();
-            msg += cmd[j-1].c_str();
-            msg += "  ";
+            report += cmd[j-1].c_str();
+            report += "  ";
         }
 
 
@@ -186,18 +175,23 @@ void Test_Application::test_crc_name_cmd()
 
         if( !(app.uCRC == info) )
         {
-
-            msg += "\n but get:";
-            msg += " bits  "    + QString::number(app.uCRC.get_bits(),    10);
-            msg += " poly  "    + QString::number(app.uCRC.get_poly(),    16);
-            msg += " init  "    + QString::number(app.uCRC.get_init(),    16);
-            msg += " xor_out  " + QString::number(app.uCRC.get_xor_out(), 16);
-            msg += " ref_in  "  + QString::number(app.uCRC.get_ref_in(),  10);
-            msg += " ref_out  " + QString::number(app.uCRC.get_ref_out(), 10);
-
-            QFAIL(msg.toStdString().c_str());
+            prepare_report(app.uCRC);
+            QFAIL(report.toStdString().c_str());
         }
     }
+}
+
+
+
+void Test_Application::prepare_report(QuCRC_t & uCRC)
+{
+    report += "\n but get:";
+    report += " bits  "    + QString::number(uCRC.get_bits(),    10);
+    report += " poly  "    + QString::number(uCRC.get_poly(),    16);
+    report += " init  "    + QString::number(uCRC.get_init(),    16);
+    report += " xor_out  " + QString::number(uCRC.get_xor_out(), 16);
+    report += " ref_in  "  + QString::number(uCRC.get_ref_in(),  10);
+    report += " ref_out  " + QString::number(uCRC.get_ref_out(), 10);
 }
 
 
