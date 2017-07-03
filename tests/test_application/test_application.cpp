@@ -53,6 +53,7 @@ class Test_Application : public QObject
         void test_crc_index_cmd();
         void test_crc_name_cmd();
         void test_crc_hex_cmd();
+        void test_crc_text_cmd();
 
 
     private:
@@ -173,7 +174,6 @@ void Test_Application::test_crc_name_cmd()
 
 
 
-
 void Test_Application::test_crc_hex_cmd()
 {
     std::stringstream ss;
@@ -188,6 +188,47 @@ void Test_Application::test_crc_hex_cmd()
         std::vector<std::string> cmd = {
             "--crc_index"  , QString::number(i).toStdString(),
             "--hex",         "\"31 32 33 34 35 36 37 38 39\""
+        };
+
+
+        //clear ss
+        ss.str("");
+        ss.clear();
+
+        //process
+        prepare_argv(cmd);
+        app.processing_cmd(argc, argv);
+
+
+        QString res(ss.str().c_str());
+        QString right_res = QString::number(app.uCRC.get_check(), 16) + "\n";
+
+
+        if( ( right_res.toUpper() != res) ) //Result in Upper format
+        {
+            prepare_report0(info.name);
+            report += " right_res: " + right_res + " but get: " + res;
+            QFAIL(report.toStdString().c_str());
+        }
+    }
+}
+
+
+
+void Test_Application::test_crc_text_cmd()
+{
+    std::stringstream ss;
+    StreamRedirect redirect(std::cout, ss);
+
+
+    //i = 1 //without custom CRC (custom CRC have index 0)
+    for(size_t i = 1; i < QuCRC_t::CRC_List.size(); ++i)
+    {
+        info = QuCRC_t::CRC_List[i];
+
+        std::vector<std::string> cmd = {
+            "--crc_index",  QString::number(i).toStdString(),
+            "--text",       "123456789"
         };
 
 
