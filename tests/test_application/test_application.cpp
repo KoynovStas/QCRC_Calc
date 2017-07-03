@@ -10,6 +10,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>      // std::stringstream, std::stringbuf
+
+
 
 
 
@@ -27,7 +30,7 @@ class StreamRedirect
         }
 
     private:
-        Q_DISABLE_COPY(ScopedRedirect)
+        Q_DISABLE_COPY(StreamRedirect)
 
         std::ostream   &m_original;
         std::streambuf *m_old_buf;
@@ -49,10 +52,14 @@ class Test_Application : public QObject
         void test_process_cmd();
         void test_crc_index_cmd();
         void test_crc_name_cmd();
+        void test_crc_hex_cmd();
 
 
     private:
-        void prepare_report(QuCRC_t & uCRC);
+        void prepare_report(const QString & name);
+        void prepare_report0(const QString & name);
+        void prepare_report1();
+
         void prepare_argv(std::vector<std::string> &cmd);
 
 
@@ -104,7 +111,7 @@ void Test_Application::test_process_cmd()
 
         if( !(app.uCRC == info) )
         {
-            prepare_report(app.uCRC);
+            prepare_report(info.name);
             QFAIL(report.toStdString().c_str());
         }
     }
@@ -131,7 +138,7 @@ void Test_Application::test_crc_index_cmd()
 
         if( !(app.uCRC == info) )
         {
-            prepare_report(app.uCRC);
+            prepare_report(info.name);
             QFAIL(report.toStdString().c_str());
         }
     }
@@ -158,7 +165,7 @@ void Test_Application::test_crc_name_cmd()
 
         if( !(app.uCRC == info) )
         {
-            prepare_report(app.uCRC);
+            prepare_report(info.name);
             QFAIL(report.toStdString().c_str());
         }
     }
@@ -166,9 +173,59 @@ void Test_Application::test_crc_name_cmd()
 
 
 
-void Test_Application::prepare_report(QuCRC_t & uCRC)
+
+void Test_Application::test_crc_hex_cmd()
 {
-    report = "For CRC: " + info.name + "\n cmd: ";
+    std::stringstream ss;
+    StreamRedirect redirect(std::cout, ss);
+
+
+    //i = 1 //without custom CRC (custom CRC have index 0)
+    for(size_t i = 1; i < QuCRC_t::CRC_List.size(); ++i)
+    {
+        info = QuCRC_t::CRC_List[i];
+
+        std::vector<std::string> cmd = {
+            "--crc_index"  , QString::number(i).toStdString(),
+            "--hex",         "\"31 32 33 34 35 36 37 38 39\""
+        };
+
+
+        //clear ss
+        ss.str("");
+        ss.clear();
+
+        //process
+        prepare_argv(cmd);
+        app.processing_cmd(argc, argv);
+
+
+        QString res(ss.str().c_str());
+        QString right_res = QString::number(app.uCRC.get_check(), 16) + "\n";
+
+
+        if( ( right_res.toUpper() != res) ) //Result in Upper format
+        {
+            prepare_report0(info.name);
+            report += " right_res: " + right_res + " but get: " + res;
+            QFAIL(report.toStdString().c_str());
+        }
+    }
+}
+
+
+
+void Test_Application::prepare_report(const QString &name)
+{
+   prepare_report0(name);
+   prepare_report1();
+}
+
+
+
+void Test_Application::prepare_report0(const QString & name)
+{
+    report = "For CRC: " + name + "\n cmd: ";
 
 
     for(int j = 1; j < argc; j++)
@@ -176,15 +233,19 @@ void Test_Application::prepare_report(QuCRC_t & uCRC)
         report += argv[j];
         report += "  ";
     }
+}
 
 
+
+void Test_Application::prepare_report1()
+{
     report += "\n but get:";
-    report += " bits  "    + QString::number(uCRC.get_bits(),    10);
-    report += " poly  "    + QString::number(uCRC.get_poly(),    16);
-    report += " init  "    + QString::number(uCRC.get_init(),    16);
-    report += " xor_out  " + QString::number(uCRC.get_xor_out(), 16);
-    report += " ref_in  "  + QString::number(uCRC.get_ref_in(),  10);
-    report += " ref_out  " + QString::number(uCRC.get_ref_out(), 10);
+    report += " bits  "    + QString::number(app.uCRC.get_bits(),    10);
+    report += " poly  "    + QString::number(app.uCRC.get_poly(),    16);
+    report += " init  "    + QString::number(app.uCRC.get_init(),    16);
+    report += " xor_out  " + QString::number(app.uCRC.get_xor_out(), 16);
+    report += " ref_in  "  + QString::number(app.uCRC.get_ref_in(),  10);
+    report += " ref_out  " + QString::number(app.uCRC.get_ref_out(), 10);
 }
 
 
