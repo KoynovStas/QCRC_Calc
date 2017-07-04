@@ -77,7 +77,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
     Q_OBJECT
 
     public:
-        explicit QuCRC_t(QObject *parent = 0);
+        explicit QuCRC_t(QObject *parent = Q_NULLPTR);
 
 
         static const std::vector<CRC_Param_Info> CRC_List;
