@@ -1,3 +1,6 @@
+[![Version](https://img.shields.io/github/release/KoynovStas/QCRC_Calc.svg?style=plastic)](https://github.com/KoynovStas/QCRC_Calc/releases)
+
+
 # CRC Calculator on Qt
 
 
