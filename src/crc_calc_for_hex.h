@@ -14,7 +14,7 @@ class CRC_Calc_for_Hex : public Abstract_CRC_Calc
     Q_OBJECT
 
     public:
-        explicit CRC_Calc_for_Hex(QObject *parent = Q_NULLPTR);
+        explicit CRC_Calc_for_Hex(const QuCRC_t &crc, QObject *parent = Q_NULLPTR);
 
 
         size_t size() { return hex_to_bytes.bytes.size(); }

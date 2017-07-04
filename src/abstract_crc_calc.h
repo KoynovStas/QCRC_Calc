@@ -47,12 +47,11 @@ class Abstract_CRC_Calc : public QObject
 {
     Q_OBJECT
 
-
     friend class CRC_Calc_Worker;
 
 
     public:
-        explicit Abstract_CRC_Calc(QObject *parent = Q_NULLPTR);
+        explicit Abstract_CRC_Calc(const QuCRC_t &crc, QObject *parent = Q_NULLPTR);
         virtual ~Abstract_CRC_Calc();
 
 
@@ -61,7 +60,6 @@ class Abstract_CRC_Calc : public QObject
 
         CRC_Result result;
 
-        void set_ucrc(const QuCRC_t *crc) {  stop_worker(); ucrc = crc; }
 
         QString get_str_error() { return str_error; }
 
@@ -71,7 +69,6 @@ class Abstract_CRC_Calc : public QObject
 
         // for QML bindings
         Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
-
 
 
 
@@ -93,7 +90,7 @@ class Abstract_CRC_Calc : public QObject
 
 
     protected:
-        const QuCRC_t  *ucrc;
+        const QuCRC_t  &ucrc;
         QString         str_error;
 
 

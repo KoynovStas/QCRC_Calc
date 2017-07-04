@@ -15,16 +15,11 @@ class CRC_Calc_for_File : public Abstract_CRC_Calc
 
 
     public:
-        explicit CRC_Calc_for_File(QObject *parent = Q_NULLPTR);
+        explicit CRC_Calc_for_File(const QuCRC_t &crc, QObject *parent = Q_NULLPTR);
 
 
     protected slots:
         virtual int _calculate(const QString & file_name);
-
-
-
-//    protected:
-
 };
 
 

@@ -30,9 +30,10 @@ class Test_CRC_Calc_Hex : public QObject
 
 
 Test_CRC_Calc_Hex::Test_CRC_Calc_Hex():
-    QObject(0)
+    QObject(Q_NULLPTR),
+
+    hex_calc(qucrc)
 {
-    hex_calc.set_ucrc(&qucrc);
 }
 
 

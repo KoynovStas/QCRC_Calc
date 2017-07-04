@@ -28,8 +28,8 @@ const QHash<qint8, EndLine> EndLine::end_line_map =
 
 
 
-CRC_Calc_for_Text::CRC_Calc_for_Text(QObject *parent) :
-    Abstract_CRC_Calc(parent),
+CRC_Calc_for_Text::CRC_Calc_for_Text(const QuCRC_t &crc, QObject *parent) :
+    Abstract_CRC_Calc(crc, parent),
 
     // private
     encoding_index(0),

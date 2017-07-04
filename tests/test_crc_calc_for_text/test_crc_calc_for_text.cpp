@@ -30,9 +30,10 @@ class Test_CRC_Calc_Text : public QObject
 
 
 Test_CRC_Calc_Text::Test_CRC_Calc_Text():
-    QObject(0)
+    QObject(Q_NULLPTR),
+
+    text_calc(qucrc)
 {
-    text_calc.set_ucrc(&qucrc);
 }
 
 

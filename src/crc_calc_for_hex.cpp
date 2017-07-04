@@ -5,8 +5,8 @@
 #include <QThreadPool>
 
 
-CRC_Calc_for_Hex::CRC_Calc_for_Hex(QObject *parent) :
-    Abstract_CRC_Calc(parent)
+CRC_Calc_for_Hex::CRC_Calc_for_Hex(const QuCRC_t &crc, QObject *parent) :
+    Abstract_CRC_Calc(crc, parent)
 {
 
     QObject::connect(&hex_to_bytes, SIGNAL(error(const QString &)),

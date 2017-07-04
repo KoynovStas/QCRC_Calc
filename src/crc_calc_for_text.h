@@ -50,7 +50,7 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
 
     public:
 
-        explicit CRC_Calc_for_Text(QObject *parent = Q_NULLPTR);
+        explicit CRC_Calc_for_Text(const QuCRC_t &crc, QObject *parent = Q_NULLPTR);
 
 
         // for QML bindings

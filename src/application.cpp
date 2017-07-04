@@ -28,16 +28,16 @@
 
 
 Application::Application(int &argc, char **argv) :
-    QGuiApplication(argc, argv)
+    QGuiApplication(argc, argv),
+
+    //private
+    calc_text(uCRC),
+    calc_hex(uCRC),
+    calc_file(uCRC)
 {
     setApplicationDisplayName("CRC Calculator ver "
                               DEF_TO_STR(MAJOR_VERSION) "."
                               DEF_TO_STR(MINOR_VERSION));
-
-    calc_text.set_ucrc(&uCRC);
-    calc_hex.set_ucrc(&uCRC);
-    calc_file.set_ucrc(&uCRC);
-
 
 #ifndef TEST
 
