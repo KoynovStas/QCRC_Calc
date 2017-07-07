@@ -245,15 +245,15 @@ QuCRC_t &QuCRC_t::operator=(const CRC_Param_Info &r)
 {
     if( !(*this == r) )
     {
-        set_bits   (r.bits,    false);
-        set_poly   (r.poly,    false);
-        set_init   (r.init,    false);
-        set_xor_out(r.xor_out, false);
-        set_ref_in (r.ref_in,  false);
-        set_ref_out(r.ref_out, false);
+        _set_bits   (r.bits);
+        _set_poly   (r.poly);
+        _set_init   (r.init);
+        _set_xor_out(r.xor_out);
+        _set_ref_in (r.ref_in);
+        _set_ref_out(r.ref_out);
 
 
-        emit paramChanged();
+        emit paramChanged();  //one signal for all change
         update_index();
     }
 
@@ -286,7 +286,7 @@ int QuCRC_t::set_index(int new_index)
 
 
 
-int QuCRC_t::set_bits(quint8 new_bits, bool single_action)
+int QuCRC_t::_set_bits(quint8 new_bits)
 {
     if( new_bits == ucrc.get_bits() )
         return 0; //no action
@@ -298,20 +298,12 @@ int QuCRC_t::set_bits(quint8 new_bits, bool single_action)
 
 
     emit bitsChanged();
-
-    if( single_action )
-    {
-        emit paramChanged();
-        update_index();
-    }
-
-
     return 0; //good job
 }
 
 
 
-void QuCRC_t::set_poly(quint64 new_poly, bool single_action)
+void QuCRC_t::_set_poly(quint64 new_poly)
 {
     if( new_poly == ucrc.get_poly() )
         return;
@@ -319,18 +311,11 @@ void QuCRC_t::set_poly(quint64 new_poly, bool single_action)
 
     ucrc.set_poly(new_poly);
     emit polyChanged();
-
-
-    if( single_action )
-    {
-        emit paramChanged();
-        update_index();
-    }
 }
 
 
 
-void QuCRC_t::set_init(quint64 new_init, bool single_action)
+void QuCRC_t::_set_init(quint64 new_init)
 {
     if( new_init == ucrc.get_init() )
         return;
@@ -338,18 +323,11 @@ void QuCRC_t::set_init(quint64 new_init, bool single_action)
 
     ucrc.set_init(new_init);
     emit initChanged();
-
-
-    if( single_action )
-    {
-        emit paramChanged();
-        update_index();
-    }
 }
 
 
 
-void QuCRC_t::set_xor_out(quint64 new_xor_out, bool single_action)
+void QuCRC_t::_set_xor_out(quint64 new_xor_out)
 {
     if( new_xor_out == ucrc.get_xor_out() )
         return;
@@ -357,18 +335,11 @@ void QuCRC_t::set_xor_out(quint64 new_xor_out, bool single_action)
 
     ucrc.set_xor_out(new_xor_out);
     emit xor_outChanged();
-
-
-    if( single_action )
-    {
-        emit paramChanged();
-        update_index();
-    }
 }
 
 
 
-void QuCRC_t::set_ref_in(bool new_ref_in, bool single_action)
+void QuCRC_t::_set_ref_in(bool new_ref_in)
 {
     if( new_ref_in == ucrc.get_ref_in() )
         return;
@@ -376,18 +347,11 @@ void QuCRC_t::set_ref_in(bool new_ref_in, bool single_action)
 
     ucrc.set_ref_in(new_ref_in);
     emit ref_inChanged();
-
-
-    if( single_action )
-    {
-        emit paramChanged();
-        update_index();
-    }
 }
 
 
 
-void QuCRC_t::set_ref_out(bool new_ref_out, bool single_action)
+void QuCRC_t::_set_ref_out(bool new_ref_out)
 {
     if( new_ref_out == ucrc.get_ref_out() )
         return;
@@ -395,13 +359,6 @@ void QuCRC_t::set_ref_out(bool new_ref_out, bool single_action)
 
     ucrc.set_ref_out(new_ref_out);
     emit ref_outChanged();
-
-
-    if( single_action )
-    {
-        emit paramChanged();
-        update_index();
-    }
 }
 
 

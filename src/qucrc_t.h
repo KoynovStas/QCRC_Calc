@@ -153,12 +153,12 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
 
         // set param CRC
-        int  set_bits   (quint8  new_value) { return set_bits(new_value, true); }
-        void set_poly   (quint64 new_value) { set_poly   (new_value, true); }
-        void set_init   (quint64 new_value) { set_init   (new_value, true); }
-        void set_xor_out(quint64 new_value) { set_xor_out(new_value, true); }
-        void set_ref_in (bool    new_value) { set_ref_in (new_value, true); }
-        void set_ref_out(bool    new_value) { set_ref_out(new_value, true); }
+        int  set_bits   (quint8  new_value) { return _set_bits(new_value); emit paramChanged(); update_index();}
+        void set_poly   (quint64 new_value) { _set_poly   (new_value);     emit paramChanged(); update_index();}
+        void set_init   (quint64 new_value) { _set_init   (new_value);     emit paramChanged(); update_index();}
+        void set_xor_out(quint64 new_value) { _set_xor_out(new_value);     emit paramChanged(); update_index();}
+        void set_ref_in (bool    new_value) { _set_ref_in (new_value);     emit paramChanged(); update_index();}
+        void set_ref_out(bool    new_value) { _set_ref_out(new_value);     emit paramChanged(); update_index();}
 
 
         // Calculate methods
@@ -182,12 +182,12 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
 
         int index;
 
-        int  set_bits   (quint8  new_value, bool single_action);
-        void set_poly   (quint64 new_value, bool single_action);
-        void set_init   (quint64 new_value, bool single_action);
-        void set_xor_out(quint64 new_value, bool single_action);
-        void set_ref_in (bool    new_value, bool single_action);
-        void set_ref_out(bool    new_value, bool single_action);
+        int  _set_bits   (quint8  new_value);
+        void _set_poly   (quint64 new_value);
+        void _set_init   (quint64 new_value);
+        void _set_xor_out(quint64 new_value);
+        void _set_ref_in (bool    new_value);
+        void _set_ref_out(bool    new_value);
 
 
         int  find_index();
