@@ -286,6 +286,24 @@ int QuCRC_t::set_index(int new_index)
 
 
 
+int QuCRC_t::set_bits(quint8 new_value)
+{
+    if( new_value == ucrc.get_bits() )
+        return 0; //no action
+
+    int res = _set_bits(new_value);
+
+    if( res == 0 )
+    {
+        emit paramChanged();
+        update_index();
+    }
+
+    return res;
+}
+
+
+
 int QuCRC_t::_set_bits(quint8 new_bits)
 {
     if( new_bits == ucrc.get_bits() )
