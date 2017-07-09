@@ -1,7 +1,6 @@
-[![Version](https://img.shields.io/github/release/KoynovStas/QCRC_Calc.svg?style=plastic)](https://github.com/KoynovStas/QCRC_Calc/releases)
-
-
 # CRC Calculator on Qt
+
+[![Version](https://img.shields.io/github/release/KoynovStas/QCRC_Calc.svg?style=plastic)](https://github.com/KoynovStas/QCRC_Calc/releases)
 
 
 ## Description
@@ -19,8 +18,8 @@ CRC Calculator on Qt based of **[uCRC_t](https://github.com/KoynovStas/uCRC_t)**
 
 - **Common:**
 	- Support GUI and console mode (see cmd --help)
-	- Support more 80 std CRC
-	- Support custom CRC
+	- Support more 80 std CRC see [Catalogue CRC algorithms](http://reveng.sourceforge.net/crc-catalogue/)
+	- Support custom CRC, according to the [Ross N. Williams specification](http://www.ross.net/crc/download/crc_v3.txt)
 
 - **CRC for Hex:**
 	- Any word size
