@@ -1,7 +1,14 @@
 ## [Unreleased](https://github.com/KoynovStas/QCRC_Calc)
 
+
+
+
+
+## [Ver 2.2](https://github.com/KoynovStas/QCRC_Calc/releases/tag/v2.2) (2017-07-16)
+
 ### What's New
 
+ - add cmd --file (calculate crc of file. only in console mode)
  - add cmd text_file (for read text from file)
  - add cmd hex_file  (for read hex from file)
  - add support process in thread
@@ -9,7 +16,7 @@
  - add checkable buttons Hex,Base,Bits
 
 
-[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.1...HEAD)
+[...full changes](https://github.com/KoynovStas/QCRC_Calc/compare/v2.1...v2.2)
 
 
 
