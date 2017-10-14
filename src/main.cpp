@@ -3,13 +3,9 @@
 
 
 
-
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
-    Application& app = Application::get_instance(argc, argv);
-
+    Application app(argc, argv);
 
     return app.exec();
 }

@@ -1,7 +1,6 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -16,23 +15,13 @@
 
 
 
-
 class Application : public QGuiApplication
 {
-
     public:
-
-        static Application& get_instance(int &argc, char **argv)
-        {
-            static Application* singleton = new Application(argc, argv);
-            return *singleton;
-        }
-
+        Application(int &argc, char **argv);
 
 
     private:
-
-        Application(int &argc, char **argv);
         Q_DISABLE_COPY(Application)
 
 
@@ -68,15 +57,12 @@ class Application : public QGuiApplication
                                        //(it's GUI) only next destroyed data)
 
 
-
         #ifdef TEST
             static int app_exitcode;  //In TEST not exit from app, but save exitcode in this var
-
 
             friend class Test_Application;
         #endif
 };
-
 
 
 
@@ -89,7 +75,6 @@ inline void Application::app_exit(int exitcode)
     _exit(exitcode);
 #endif
 }
-
 
 
 

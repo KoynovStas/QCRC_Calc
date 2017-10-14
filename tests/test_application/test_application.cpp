@@ -72,7 +72,7 @@ class Test_Application : public QObject
         int   argc;
         char *argv[MAX_ARGC];
 
-        Application& app;
+        Application    app;
         CRC_Param_Info info;
 };
 
@@ -83,7 +83,7 @@ Test_Application::Test_Application():
 
     //private
     argc(0),
-    app(Application::get_instance(argc, NULL))
+    app(argc, NULL)
 {
 }
 
