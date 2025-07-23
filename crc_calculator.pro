@@ -58,11 +58,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 # Input
-SOURCES += src/*.cpp
+SOURCES += $$files(src/*.cpp)
 
 
 
-HEADERS += src/*.h
+HEADERS += $$files(src/*.h)
 
 
 
