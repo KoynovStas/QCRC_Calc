@@ -122,17 +122,13 @@ int CRC_Calc_for_Text::_calculate(const QString &data)
 {
     result.set_result(0); //reset old result
 
-    num_lines = data.count('\n') + 1; // +1 last string have no EndLine char
+    if( data.isEmpty() )
+        num_lines = 0;
+    else
+        num_lines = data.count('\n') + 1; // +1 last string have no EndLine char
 
     replace_end_line(data);
     encoding_str();
-
-
-    if( raw_str.isEmpty() )
-    {
-        _set_error("String is empty");
-        return -1;
-    }
 
 
     return get_crc(raw_str.data(), raw_str.size());
@@ -154,7 +150,6 @@ void CRC_Calc_for_Text::replace_end_line(const QString &data)
 
 void CRC_Calc_for_Text::encoding_str()
 {
-
     if( encoding_index == 0 ) //ASCII
     {
         raw_str = m_data.toLatin1();

@@ -26,7 +26,6 @@ int CRC_Calc_for_File::_calculate(const QString &file_name)
     }
 
 
-
     quint64 res = ucrc.get_crc_init();
     qint64 i = 0;
     qint64 chunk_size = qMin(file.size(), (qint64)CHUNK_SIZE);
@@ -37,7 +36,6 @@ int CRC_Calc_for_File::_calculate(const QString &file_name)
 
     while( !stoped  && chunk_size )
     {
-
         file.read(buf, chunk_size);
 
         res = ucrc.get_raw_crc(buf, chunk_size, res);  //crc for chunk
@@ -48,7 +46,6 @@ int CRC_Calc_for_File::_calculate(const QString &file_name)
 
 
     res = ucrc.get_final_crc(res);
-
 
     emit calculated(res);
     result.set_result(res);

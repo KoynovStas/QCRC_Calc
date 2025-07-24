@@ -49,13 +49,5 @@ int CRC_Calc_for_Hex::_calculate(const QString &data)
         return -1; // bad string
     }
 
-
-    if( hex_to_bytes.bytes.size() == 0 )
-    {
-        _set_error("No Data");
-        return -1;
-    }
-
-
     return get_crc(hex_to_bytes.bytes.data(), hex_to_bytes.bytes.size());
 }
