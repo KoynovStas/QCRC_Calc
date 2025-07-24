@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 
 
-
 Page {
 
 
@@ -47,5 +46,4 @@ Page {
             }
         }
     }
-
 }

@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 
 
-
 ApplicationWindow {
     id: win
 
@@ -28,8 +27,6 @@ ApplicationWindow {
             id: crc_param
 
             Layout.fillWidth: true
-
-            anchors.top: parent.top
         }
 
 
@@ -39,10 +36,6 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.minimumHeight: 400
-
-
-            anchors.top: crc_param.bottom
-            anchors.bottom: parent.bottom
         }
     }
 }

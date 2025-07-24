@@ -6,12 +6,10 @@ import QtQuick.Controls.Material 2.1
 
 
 
-
 Item {
 
     property alias flickable: flickable
     property alias textArea: textArea
-
 
 
     Flickable {
@@ -60,7 +58,6 @@ Item {
     }
 
 
-
     MyScrollIndicator {
         width: 8
         orientation: Qt.Vertical
@@ -85,5 +82,4 @@ Item {
         position: flickable.visibleArea.xPosition
         pageSize: flickable.visibleArea.widthRatio
     }
-
 }

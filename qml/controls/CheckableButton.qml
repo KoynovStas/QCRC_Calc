@@ -4,7 +4,6 @@ import QtQuick.Controls 2.1
 
 
 
-
 Button {
     implicitHeight: 35
     implicitWidth: 55

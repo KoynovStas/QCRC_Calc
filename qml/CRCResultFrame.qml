@@ -7,7 +7,6 @@ import "./controls"
 
 
 
-
 Frame {
 
     property CRC_Result crc_result
@@ -36,50 +35,39 @@ Frame {
     ColumnLayout {
         anchors.fill: parent
 
-
         RowLayout {
-            anchors.left: parent.left
-            anchors.right: parent.right
-
 
             StatusBar {
                 id: statusBar
+                Layout.fillWidth: true
             }
 
+            CheckableButton {
+                id: hexBtn
+                text: qsTr("Hex")
+                checked: true
+            }
 
-            RowLayout {
-                anchors.right: parent.right
+            CheckableButton {
+                id: baseBtn
+                text: qsTr("Base")
+            }
 
-                CheckableButton {
-                    id: hexBtn
-                    text: qsTr("Hex")
-                    checked: true
-                }
-
-                CheckableButton {
-                    id: baseBtn
-                    text: qsTr("Base")
-                }
-
-                CheckableButton {
-                    id: bitsBtn
-                    text: qsTr("Bits")
-                }
+            CheckableButton {
+                id: bitsBtn
+                text: qsTr("Bits")
             }
         }
 
 
 
         RowLayout {
-            anchors.left: parent.left
-            anchors.right: parent.right
+            Layout.fillWidth: true
             Layout.bottomMargin: 8
 
             visible: hexBtn.checked
 
-
             spacing: 10
-
 
             MyTextEdit {
                 id: hex_res
@@ -112,38 +100,29 @@ Frame {
 
                 textField.text: crc_result.result_oct
             }
-
         }
 
 
 
         RowLayout {
-            anchors.left: parent.left
-            anchors.right: parent.right
-
+            Layout.fillWidth: true
             visible: baseBtn.checked
-
+            spacing: 10
 
             MyTextEdit {
                 id: base_edit
-
-                anchors.left: parent.left
                 alignment: Qt.AlignRight
 
-                implicitWidth: 640
+                width: 620
 
                 label.text: "Base:"
 
                 textField.readOnly: true
-                textField.implicitWidth: 600
-
                 textField.text: crc_result.result_base
             }
 
 
             SpinBox2d {
-                anchors.left: base_edit.right
-
                 Layout.preferredWidth: 140
                 Layout.minimumWidth: 140
                 Layout.leftMargin: 10
@@ -154,7 +133,6 @@ Frame {
 
                 onValueChanged: crc_result.base = value
             }
-
         }
 
 

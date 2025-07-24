@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 
 
-
 Item {
 
     width: 780
@@ -27,7 +26,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        spacing: 15
+        spacing: 20
 
         Repeater {
             id: byte_4_7
@@ -45,7 +44,7 @@ Item {
         anchors.right: parent.right
         anchors.topMargin: 5
 
-        spacing: 15
+        spacing: 20
 
         Repeater {
             id: byte_0_3
@@ -54,5 +53,4 @@ Item {
             ByteItem { start_bit: modelData }
         }
     }
-
 }

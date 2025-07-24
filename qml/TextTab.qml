@@ -7,11 +7,10 @@ import "./controls"
 
 
 
-
 Frame {
     id: root
 
-    width: 840
+    width: 640
     height: 480
 
     topPadding: 0
@@ -38,8 +37,6 @@ Frame {
 
             text: qsTr("Encoding:")
 
-            anchors.left: layout.left
-
             bottomPadding: 10
             rightPadding: 10
         }
@@ -47,8 +44,6 @@ Frame {
 
         ComboBox {
             id: comboBox
-
-            anchors.left: label.right
 
             Layout.bottomMargin: 10
             Layout.minimumWidth: 290
@@ -70,10 +65,8 @@ Frame {
 
             text: qsTr("BOM")
 
-            anchors.top: parent.top
-            anchors.left: comboBox.right
-
             leftPadding: 20
+            bottomPadding: 25
 
             checked: calc_text.BOM
 
@@ -89,8 +82,6 @@ Frame {
 
             text: qsTr("EndLine:")
 
-            anchors.left: checkBox2.right
-
             bottomPadding: 10
             rightPadding: 10
         }
@@ -99,9 +90,8 @@ Frame {
         ComboBox {
             id: comboBox1
 
-            anchors.left: label1.right
             Layout.bottomMargin: 10
-            Layout.minimumWidth: 150
+            Layout.minimumWidth: 160
             Layout.maximumWidth: 200
 
 
@@ -116,14 +106,18 @@ Frame {
         }
 
 
+        Item { // need only for force align comboBox1 to left
+            Layout.fillWidth: true
+        }
+
+
         CheckBox {
             id: checkBox3
 
             text: qsTr("Wrap word")
 
-            anchors.top: parent.top
-            anchors.right: layout.right
-
+            Layout.alignment: Qt.AlignRight
+            bottomPadding: 25
 
             onCheckedChanged: {
                 text_data.textArea.wrapMode = checked ? TextEdit.WordWrap : TextEdit.NoWrap;

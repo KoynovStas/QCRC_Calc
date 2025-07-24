@@ -7,7 +7,6 @@ import "./controls"
 
 
 
-
 Frame {
 
     topPadding: 5
@@ -18,10 +17,7 @@ Frame {
 
 
         RowLayout {
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
-
+            Layout.fillWidth: true
             spacing: 6
 
 
@@ -85,27 +81,27 @@ Frame {
                 onCheckedChanged: uCRC.ref_out = checked
             }
 
-
             ArrowButton {
                 id: extParamBtn
 
-                Layout.leftMargin: 80
+                Layout.leftMargin: 50
 
                 checked: true
             }
-
 
             ArrowButton {
                 id: extInfoBtn
             }
 
 
+            Item { // need only for force align ForkMe to right
+                Layout.fillWidth: true
+            }
+
             Button {
-                anchors.right: parent.right
-                anchors.rightMargin: -60
+                Layout.rightMargin: -60
 
                 implicitWidth: 150
-
                 rotation: 45
 
                 text: qsTr("Fork me")
@@ -117,9 +113,7 @@ Frame {
 
 
         RowLayout {
-            anchors.left: parent.left
-            anchors.right: parent.right
-
+            Layout.fillWidth: true
             spacing: 10
 
             visible: extParamBtn.checked
@@ -153,9 +147,7 @@ Frame {
 
 
         RowLayout {
-            anchors.left: parent.left
-            anchors.right: parent.right
-
+            Layout.fillWidth: true
             spacing: 10
 
             visible: extInfoBtn.checked
@@ -185,7 +177,5 @@ Frame {
                 textField.color: "gray"
             }
         }
-
     } //ColumnLayout
-
 }

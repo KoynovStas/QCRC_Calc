@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 
 
 
-//Rectangle {
+
 Item {
     id: root
 
@@ -35,11 +35,14 @@ Item {
     TextField {
         id: textField
 
-        anchors.left: root.alignment == Qt.AlignRight ? root.left : undefined
-        anchors.right: root.alignment == Qt.AlignLeft ? root.right : undefined
-        anchors.verticalCenter: root.verticalCenter
-
         Layout.fillWidth: root.Layout.fillWidth
+
+        anchors.left: root.alignment == Qt.AlignRight ? root.left : label.right
+        anchors.right: root.alignment == Qt.AlignLeft ? root.right : label.left
+        anchors.leftMargin: root.alignment == Qt.AlignLeft ? 10 : 0
+        anchors.rightMargin: root.alignment == Qt.AlignRight ? 10 : 0
+
+        anchors.verticalCenter: root.verticalCenter
 
         horizontalAlignment: Text.AlignLeft
 

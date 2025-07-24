@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 
 
-
 Item {
 
     property int num_bit
@@ -43,5 +42,4 @@ Item {
         anchors.horizontalCenter: rect.horizontalCenter
         anchors.top: rect.bottom
     }
-
 }

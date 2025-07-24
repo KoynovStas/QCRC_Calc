@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 
 
-
 Item {
 
     property alias label: label
@@ -25,5 +24,4 @@ Item {
 
         text: "No data"
     }
-
 }

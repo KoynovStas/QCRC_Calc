@@ -7,7 +7,6 @@ import "./controls"
 
 
 
-
 Frame {
     id: root
 
@@ -21,7 +20,6 @@ Frame {
     function calculate() {
         calc_hex.calculate(text_data.textArea.text)
     }
-
 
 
     RowLayout {
@@ -39,8 +37,7 @@ Frame {
 
             text: qsTr("Revers word")
 
-            anchors.top: parent.top
-
+            Layout.alignment: Qt.AlignLeft
             bottomPadding: 20
 
             checked: calc_hex.revers_chunk
@@ -57,9 +54,6 @@ Frame {
 
             text: qsTr("Revers data")
 
-            anchors.top: parent.top
-            anchors.left: checkBox.right
-
             bottomPadding: 20
 
             checked: calc_hex.revers_data
@@ -70,15 +64,16 @@ Frame {
             }
         }
 
+        Item { // need only for force align checkBox2 to left
+            Layout.fillWidth: true
+        }
 
         CheckBox {
             id: checkBox3
 
             text: qsTr("Wrap word")
 
-            anchors.top: parent.top
-            anchors.right: layout.right
-
+            Layout.alignment: Qt.AlignRight
             bottomPadding: 20
 
 

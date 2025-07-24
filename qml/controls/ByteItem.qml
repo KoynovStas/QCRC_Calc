@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 
 
-
 Item {
 
     property int start_bit
