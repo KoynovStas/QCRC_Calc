@@ -119,7 +119,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         void ref_outChanged();
 
 
-    public slots:
+    public:
         // get param CRC
         quint8  get_bits()    const { return ucrc.get_bits();   }
         quint64 get_poly()    const { return ucrc.get_poly();   }
