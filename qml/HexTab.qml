@@ -114,15 +114,17 @@ Frame {
 
     Connections {
         target: uCRC
-        onParamChanged: calculate()
+        function onParamChanged() { calculate() }
     }
 
 
     Connections {
         target: calc_hex
-        onCalculated: result_frame.statusBar.set_status("Bytes: " + calc_hex.get_num_bytes() +
-                                                        " Words: " + calc_hex.get_num_words(), false)
+        function onCalculated() {
+            result_frame.statusBar.set_status("Bytes: " + calc_hex.get_num_bytes() +
+                                              " Words: " + calc_hex.get_num_words(), false)
+        }
 
-        onError: result_frame.statusBar.set_status(err, true)
+        function onError(err) { result_frame.statusBar.set_status(err, true) }
     }
 }

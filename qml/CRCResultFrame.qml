@@ -144,7 +144,7 @@ Frame {
 
             Connections {
                 target: crc_result
-                onResultChanged: bitSet.set_crc_result(crc_result);
+                function onResultChanged() { bitSet.set_crc_result(crc_result) }
             }
         }
 

@@ -157,15 +157,17 @@ Frame {
 
     Connections {
         target: uCRC
-        onParamChanged: calculate()
+        function onParamChanged() { calculate() }
     }
 
 
     Connections {
         target: calc_text
-        onCalculated: result_frame.statusBar.set_status("Bytes: " + calc_text.get_num_bytes() +
-                                                        " Lines: " + calc_text.get_num_lines(), false)
+        function onCalculated() {
+            result_frame.statusBar.set_status("Bytes: " + calc_text.get_num_bytes() +
+                                              " Lines: " + calc_text.get_num_lines(), false)
+        }
 
-        onError: result_frame.statusBar.set_status(err, true)
+        function onError(err) { result_frame.statusBar.set_status(err, true) }
     }
 }
