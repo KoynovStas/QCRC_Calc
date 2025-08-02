@@ -167,11 +167,10 @@ void CRC_Calc_for_Text::encoding_str()
 
 const QList<QByteArray> CRC_Calc_for_Text::get_Encodings()
 {
-    // list from Set - list have no a duplicate
-    QList<QByteArray> list = QList<QByteArray>::fromSet( QTextCodec::availableCodecs().toSet() );
+    auto list = QTextCodec::availableCodecs();
 
     std::sort(list.begin(), list.end());
-
+    list.erase( std::unique(list.begin(), list.end() ), list.end() );//remove duplicates
 
     auto it = std::find(list.begin(), list.end(), "ASCII");
 
