@@ -51,7 +51,7 @@ class Abstract_CRC_Calc : public QObject
         virtual ~Abstract_CRC_Calc();
 
 
-        static const int CHUNK_SIZE;
+        static constexpr int CHUNK_SIZE = 4096;
 
 
         CRC_Result result;

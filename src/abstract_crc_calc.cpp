@@ -6,8 +6,7 @@
 
 
 
-
-const int Abstract_CRC_Calc::CHUNK_SIZE = 4096;
+const int Abstract_CRC_Calc::CHUNK_SIZE; //Note: No initializer here (remove when upgrading to 17++)
 
 
 
