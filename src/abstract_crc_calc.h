@@ -3,11 +3,9 @@
 
 #include <QObject>
 #include <QThread>
-#include <QDebug>
 
 #include "qucrc_t.h"
 #include "crc_result.h"
-
 
 
 
@@ -42,13 +40,11 @@ class CRC_Calc_Worker : public QObject
 
 
 
-
 class Abstract_CRC_Calc : public QObject
 {
     Q_OBJECT
 
     friend class CRC_Calc_Worker;
-
 
     public:
         explicit Abstract_CRC_Calc(const QuCRC_t &crc, QObject *parent = Q_NULLPTR);
@@ -71,22 +67,18 @@ class Abstract_CRC_Calc : public QObject
         Q_PROPERTY(CRC_Result* result READ get_result CONSTANT)
 
 
-
     signals:
         void calculated(quint64 value);
         void error(const QString & err);
-
 
 
     public slots:
         int calculate(const QString & data, bool synchro_mode = false);
 
 
-
     protected slots:
         void _set_error(const QString & err);
         virtual int _calculate(const QString & data) = 0;
-
 
 
     protected:
@@ -103,11 +95,9 @@ class Abstract_CRC_Calc : public QObject
         int  get_crc(const char *data, int size);
 
 
-
     private:
         CRC_Result* get_result() { return &result; } //for QML bindings
 };
-
 
 
 

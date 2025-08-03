@@ -1,13 +1,13 @@
 /*
- * qucrc_t.cpp
+ * QuCRC_t - Qt wrapper for uCRC_t
  *
  *
- * version 1.3
+ * version 2.0
  *
  *
  * BSD 3-Clause License
  *
- * Copyright (c) 2015, Koynov Stas - skojnov@yandex.ru
+ * Copyright (c) 2016, Koynov Stas - skojnov@yandex.ru
  *
  * All rights reserved.
  *
@@ -39,10 +39,6 @@
  */
 
 #include "qucrc_t.h"
-
-
-
-
 
 
 
@@ -206,7 +202,6 @@ const std::vector<CRC_Param_Info> QuCRC_t::CRC_List =
 
 
 
-
 QuCRC_t::QuCRC_t(QObject *parent) :
     QObject(parent)
 {
@@ -251,7 +246,6 @@ QuCRC_t &QuCRC_t::operator=(const CRC_Param_Info &r)
         _set_xor_out(r.xor_out);
         _set_ref_in (r.ref_in);
         _set_ref_out(r.ref_out);
-
 
         emit paramChanged();  //one signal for all change
         update_index();
@@ -326,7 +320,6 @@ void QuCRC_t::_set_poly(quint64 new_poly)
     if( new_poly == ucrc.get_poly() )
         return;
 
-
     ucrc.set_poly(new_poly);
     emit polyChanged();
 }
@@ -337,7 +330,6 @@ void QuCRC_t::_set_init(quint64 new_init)
 {
     if( new_init == ucrc.get_init() )
         return;
-
 
     ucrc.set_init(new_init);
     emit initChanged();
@@ -350,7 +342,6 @@ void QuCRC_t::_set_xor_out(quint64 new_xor_out)
     if( new_xor_out == ucrc.get_xor_out() )
         return;
 
-
     ucrc.set_xor_out(new_xor_out);
     emit xor_outChanged();
 }
@@ -361,7 +352,6 @@ void QuCRC_t::_set_ref_in(bool new_ref_in)
 {
     if( new_ref_in == ucrc.get_ref_in() )
         return;
-
 
     ucrc.set_ref_in(new_ref_in);
     emit ref_inChanged();
@@ -374,7 +364,6 @@ void QuCRC_t::_set_ref_out(bool new_ref_out)
     if( new_ref_out == ucrc.get_ref_out() )
         return;
 
-
     ucrc.set_ref_out(new_ref_out);
     emit ref_outChanged();
 }
@@ -383,7 +372,6 @@ void QuCRC_t::_set_ref_out(bool new_ref_out)
 
 int QuCRC_t::find_index()
 {
-
     for(size_t i = 0; i < CRC_List.size(); ++i)
     {
         if( *this == CRC_List[i] )

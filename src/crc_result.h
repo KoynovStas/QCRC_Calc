@@ -7,7 +7,6 @@
 
 
 
-
 class CRC_Result : public QObject
 {
     Q_OBJECT
@@ -24,7 +23,6 @@ class CRC_Result : public QObject
         Q_PROPERTY(QString result_base READ get_result_base NOTIFY resultChanged)
 
         Q_PROPERTY(int base READ get_base WRITE set_base NOTIFY baseChanged)
-
 
 
     signals:
@@ -55,7 +53,6 @@ class CRC_Result : public QObject
         quint64 _result;
         int     _base;
 };
-
 
 
 

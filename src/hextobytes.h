@@ -9,11 +9,9 @@
 
 
 
-
 class HexToBytes : public QObject
 {
     Q_OBJECT
-
 
     public:
         explicit HexToBytes(QObject *parent = 0);
@@ -43,7 +41,6 @@ class HexToBytes : public QObject
 
         quint32    num_words;
 };
-
 
 
 

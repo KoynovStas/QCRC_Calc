@@ -5,7 +5,6 @@
 
 
 
-
 CRC_Calc_for_File::CRC_Calc_for_File(const QuCRC_t &crc, QObject *parent):
     Abstract_CRC_Calc(crc, parent)
 {
@@ -45,7 +44,7 @@ int CRC_Calc_for_File::_calculate(const QString &file_name)
     }
 
 
-    res = ucrc.get_final_crc(res);
+    res = ucrc.get_end_crc(res);
 
     emit calculated(res);
     result.set_result(res);

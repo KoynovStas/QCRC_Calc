@@ -1,4 +1,5 @@
 #include <QFile>
+#include <QTextStream>
 
 #include "abstract_crc_calc.h"
 
@@ -83,7 +84,7 @@ int Abstract_CRC_Calc::get_crc(const char *data, int size)
     }
 
 
-    res = ucrc.get_final_crc(res);
+    res = ucrc.get_end_crc(res);
 
 
     emit calculated(res);

@@ -5,7 +5,6 @@
 
 
 
-
 CRC_Result::CRC_Result(QObject *parent) :
     QObject(parent),
 

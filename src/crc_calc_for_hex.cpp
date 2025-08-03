@@ -5,6 +5,8 @@
 #include <QThreadPool>
 
 
+
+
 CRC_Calc_for_Hex::CRC_Calc_for_Hex(const QuCRC_t &crc, QObject *parent) :
     Abstract_CRC_Calc(crc, parent)
 {

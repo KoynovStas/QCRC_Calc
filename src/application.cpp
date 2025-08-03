@@ -10,19 +10,14 @@
 
 
 
-
 #define STRINGIFY(x) #x
 #define DEF_TO_STR(x) STRINGIFY(x)
-
-
-
 
 
 
 #ifdef TEST
     int Application::app_exitcode;  //In TEST not exit from app, but save exitcode in this var
 #endif
-
 
 
 
@@ -40,10 +35,8 @@ Application::Application(int &argc, char **argv) :
                               DEF_TO_STR(MINOR_VERSION));
 
 #ifndef TEST
-
     attach_console();
     processing_cmd(argc, argv);
-
 
     // GUI
     engine.rootContext()->setContextProperty("uCRC", &uCRC);
@@ -51,7 +44,6 @@ Application::Application(int &argc, char **argv) :
     engine.rootContext()->setContextProperty("calc_hex", &calc_hex);
 
     engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
-
 #endif
 }
 
@@ -59,7 +51,6 @@ Application::Application(int &argc, char **argv) :
 
 void Application::attach_console()
 {
-
 #ifdef Q_OS_WIN
 
     // attach the new console to this application's process
@@ -71,7 +62,6 @@ void Application::attach_console()
     freopen("CON", "r", stdin);
 
 #endif
-
 }
 
 
@@ -208,10 +198,8 @@ void Application::processing_cmd(int argc, char *argv[])
 
     while( (opt = getopt_long(argc, argv, "", long_opts, NULL)) != -1 )
     {
-
         switch( opt )
         {
-
             case LongOpts::version:
                     std::cout << "CRC Calculator version "
                                  DEF_TO_STR(MAJOR_VERSION) "."

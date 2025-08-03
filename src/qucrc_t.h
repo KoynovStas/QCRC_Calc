@@ -1,8 +1,8 @@
 /*
- * qucrc_t.h
+ * QuCRC_t - Qt wrapper for uCRC_t
  *
  *
- * version 1.3
+ * version 2.0
  *
  *
  * BSD 3-Clause License
@@ -52,7 +52,6 @@
 
 
 
-
 struct CRC_Param_Info
 {
     QString name;
@@ -67,7 +66,6 @@ struct CRC_Param_Info
     quint64 check;   //need only for unit tests
 #endif
 };
-
 
 
 
@@ -106,9 +104,7 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         QuCRC_t & operator= (const CRC_Param_Info & r);
 
 
-
     signals:
-
         void paramChanged();
         void indexChanged();
         void bitsChanged();
@@ -164,20 +160,19 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         // Calculate methods
         quint64 get_crc(const char* buf, size_t len)         const { return ucrc.get_crc(buf, len);                  }
         int     get_crc(quint64 &crc, const char* file_name) const { return ucrc.get_crc((uint64_t &)crc, file_name);}
-        int     get_crc(quint64 &crc, FILE* pfile)           const { return ucrc.get_crc((uint64_t &)crc, pfile);    }
 
-        int     get_crc(quint64 &crc, const char* file_name, void* buf, size_t size_buf) const { return ucrc.get_crc((uint64_t &)crc, file_name, buf, size_buf);}
-        int     get_crc(quint64 &crc, FILE* pfile, void* buf, size_t size_buf)           const { return ucrc.get_crc((uint64_t &)crc, pfile, buf, size_buf);    }
+        int get_crc(quint64 &crc, const char* file_name, void* buf, size_t size_buf) const
+        {
+            return ucrc.get_crc((uint64_t &)crc, file_name, buf, size_buf);
+        }
 
 
         // Calculate for chunks of data
         quint64 get_raw_crc(const char* buf, size_t len, quint64 crc) const { return ucrc.get_raw_crc(buf, len, crc);}  //for first byte crc = crc_init (must be)
-        quint64 get_final_crc(quint64 raw_crc)                        const { return ucrc.get_final_crc(raw_crc);    }
-
+        quint64 get_end_crc(quint64 raw_crc)                          const { return ucrc.get_end_crc(raw_crc); }
 
 
     private:
-
         uCRC_t   ucrc;
 
         int index;
@@ -189,11 +184,9 @@ class QuCRC_t : public QObject //Qt wrapper for uCRC_t
         void _set_ref_in (bool    new_value);
         void _set_ref_out(bool    new_value);
 
-
         int  find_index();
         void update_index();
 };
-
 
 
 

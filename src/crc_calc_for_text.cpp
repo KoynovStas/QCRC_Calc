@@ -7,9 +7,7 @@
 
 
 
-
 const QList<QByteArray> CRC_Calc_for_Text::Encodings = CRC_Calc_for_Text::get_Encodings();
-
 
 
 
@@ -23,7 +21,6 @@ const QHash<qint8, EndLine> EndLine::end_line_map =
     { EndLine::EndLine_CRLF, EndLine("CR+LF (Win)",     "\r\n") },
     { EndLine::EndLine_LFCR, EndLine("LF+CR (RISC OS)", "\n\r") },
 };
-
 
 
 

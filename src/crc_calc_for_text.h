@@ -1,13 +1,11 @@
 #ifndef CRC_CALC_FOR_TEXT_H
 #define CRC_CALC_FOR_TEXT_H
 
-
 #include <QList>
 #include <QHash>
 #include <QByteArray>
 
 #include "abstract_crc_calc.h"
-
 
 
 
@@ -42,14 +40,11 @@ class EndLine
 
 
 
-
 class CRC_Calc_for_Text : public Abstract_CRC_Calc
 {
     Q_OBJECT
 
-
     public:
-
         explicit CRC_Calc_for_Text(const QuCRC_t &crc, QObject *parent = Q_NULLPTR);
 
 
@@ -61,7 +56,6 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
         Q_PROPERTY(int encoding_index READ get_encoding_index WRITE set_encoding_index NOTIFY encoding_indexChanged)
 
         Q_PROPERTY(bool BOM READ get_BOM WRITE set_BOM NOTIFY BOMChanged)
-
 
 
         QStringList end_line_names() const;
@@ -82,12 +76,10 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
         int set_encoding_index(int new_index);
 
 
-
     signals:
         void end_line_indexChanged();
         void encoding_indexChanged();
         void BOMChanged();
-
 
 
     public slots:
@@ -95,10 +87,8 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
         quint32 get_num_bytes() { return raw_str.size(); }
 
 
-
     protected slots:
         virtual int _calculate(const QString & data);
-
 
 
     private:
@@ -117,7 +107,6 @@ class CRC_Calc_for_Text : public Abstract_CRC_Calc
 
         static const QList<QByteArray> get_Encodings();
 };
-
 
 
 

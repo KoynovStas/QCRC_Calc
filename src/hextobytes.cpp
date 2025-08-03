@@ -3,7 +3,6 @@
 
 
 
-
 HexToBytes::HexToBytes(QObject *parent) :
     QObject(parent),
 
@@ -21,7 +20,6 @@ HexToBytes::HexToBytes(QObject *parent) :
 
 int HexToBytes::str_to_bytes(const QString& str)
 {
-
     bytes.clear();
     num_words = 0;
     int pos   = 0;
@@ -37,7 +35,6 @@ int HexToBytes::str_to_bytes(const QString& str)
     if( revers_data )
         std::reverse(bytes.begin(), bytes.end());
 
-
     return 0;  //good job
 }
 
@@ -45,7 +42,6 @@ int HexToBytes::str_to_bytes(const QString& str)
 
 int HexToBytes::token_to_bytes(const QString& token)
 {
-
     if( hex_rx.indexIn(token.toLower()) == -1 )
     {
         emit error("bad format: " + token);
@@ -62,6 +58,5 @@ int HexToBytes::token_to_bytes(const QString& token)
 
 
     bytes += token_bytes;
-
     return 0;  //good job
 }
