@@ -104,7 +104,7 @@ int Abstract_CRC_Calc::calculate(const QString &data, bool synchro_mode)
 
     m_data = data;                    //in async mode work with a copy of data
     worker.active = true;
-    worker.calculate(m_data);         //start calculation in another thread.
+    emit worker.calculate(m_data);    //start calculation in another thread.
 
     return 0;                         //always 0(good job) in asynchonous mode
 }
